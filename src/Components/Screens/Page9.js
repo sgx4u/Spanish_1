@@ -241,6 +241,13 @@ export default class Page9 extends Component {
     }
     return input;
   };
+  blobToBase64=(blob)=> {
+    return new Promise((resolve, _) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.readAsDataURL(blob);
+    });
+    }
   render() {
     // const classes = useStyles();
     return (
@@ -311,12 +318,13 @@ export default class Page9 extends Component {
                         </TableCell>
                         <TableCell align="center">{data.nombre}</TableCell>
                         <TableCell align="center">
-                          {this.truncate(data.imagen)}
-                          {/* <image
+                          {/* {this.truncate(data.imagen)} */}
+                         
+                          <img
                             alt="Not able to display"
-                            src={data.imagen}
-                            style={{ height: 20, width: 20 }}
-                          /> */}
+                            src={`data:image/jpeg;base64,${data.imagen}`}
+                            style={{ height: 50, width: 50 }}
+                          />
                         </TableCell>
                         <TableCell align="center">
                           {data.activo === 1 ? "Activo" : "Inactivo"}
