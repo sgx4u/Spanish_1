@@ -35,6 +35,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 export default class Page9 extends Component {
   constructor(props) {
     super(props);
+    this.textInput = React.createRef();
     this.state = {
       BackDrop: false,
       SnackBar: false,
@@ -99,9 +100,9 @@ export default class Page9 extends Component {
     }
   };
 
-  SelectedForEdit = async (info) => {
-    console.log(info);
-    await this.setState({
+  SelectedForEdit =  (info) => {
+   
+     this.setState({
       id: info.idInformacion,
       nombre: info.nombre,
       activo: info.activo,
@@ -110,6 +111,8 @@ export default class Page9 extends Component {
       EditInfo: true,
       AddNew: false,
     });
+    const data = this.blobConvertor(`data:image/jpeg;base64,${info.imagen}`)
+    this.textInput.current.value='image1';
   };
 
   Edit_or_NewData = async () => {
@@ -241,13 +244,48 @@ export default class Page9 extends Component {
     }
     return input;
   };
-  blobToBase64=(blob)=> {
+  blobToBase64 = (blob) => {
     return new Promise((resolve, _) => {
       const reader = new FileReader();
       reader.onloadend = () => resolve(reader.result);
       reader.readAsDataURL(blob);
     });
+  };
+
+  b64toBlob = (b64Data, contentType, sliceSize) => {
+    contentType = contentType || "";
+    sliceSize = sliceSize || 512;
+
+    const byteCharacters = atob(b64Data);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
     }
+
+    var blob = new Blob(byteArrays, { type: contentType });
+    return blob;
+  };
+
+  blobConvertor = (ImageURL) => {
+    const block = ImageURL.split(";");
+
+    const contentType = block[0].split(":")[1];
+
+    const realData = block[1].split(",")[1];
+
+    // Convert it to a blob to upload
+    const blob = this.b64toBlob(realData, contentType);
+    console.log("Blob <<<<<****>>>>>>", blob);
+    return blob;
+  };
   render() {
     // const classes = useStyles();
     return (
@@ -319,7 +357,7 @@ export default class Page9 extends Component {
                         <TableCell align="center">{data.nombre}</TableCell>
                         <TableCell align="center">
                           {/* {this.truncate(data.imagen)} */}
-                         
+
                           <img
                             alt="Not able to display"
                             src={`data:image/jpeg;base64,${data.imagen}`}
@@ -396,6 +434,7 @@ export default class Page9 extends Component {
                       variant="outlined"
                       fullWidth
                       type="file"
+                      
                       onChange={(e) => this.FileChanged(e)}
                     />
                   </Grid>
