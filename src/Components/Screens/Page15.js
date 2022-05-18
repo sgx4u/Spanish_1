@@ -23,11 +23,12 @@ import {
 import TableContainer from "@mui/material/TableContainer";
 import { CircleLoader } from "react-spinners";
 import axios from "axios";
+import CustomCheckBox from "../helperUi/CustomCheckBox";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-let flag =1;
+let flag = 1;
 export default class Page15 extends Component {
   constructor(props) {
     super(props);
@@ -35,8 +36,9 @@ export default class Page15 extends Component {
       BackDrop: false,
       SnackBar: false,
       SnackBarVariant: "warning",
+      isChecked: false,
       snackBarMessage: "",
-	  isReRender:false,
+      isReRender: false,
       SnackbarTimeOut: 4000,
       Data: [
         {
@@ -181,20 +183,18 @@ export default class Page15 extends Component {
       const result = await axios.put(
         `http://qa.mag.gob.sv/PRA/api/pantallas/update-sugerencia-actualizar/${idSugerencia}/${leido}`
       );
-	  console.log('result <<<<>>>>>',result)
-	 this.setState({isReRender:!this.state.isReRender})
+
+      this.setState({ isReRender: !this.state.isReRender });
     } catch (error) {
       console.log(error);
     }
   };
 
-   
-  
-  componentDidUpdate(prevProps,prevState) {
-	if (this.state.isReRender !== prevState.isReRender) {
-		console.log('Update work')
-		this.DropdownloadData(this.state.SelectedDropdownValue)
-	}
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.isReRender !== prevState.isReRender) {
+      console.log("Update work");
+      this.DropdownloadData(this.state.SelectedDropdownValue);
+    }
   }
 
   render() {
@@ -265,29 +265,35 @@ export default class Page15 extends Component {
                 <TableBody>
                   {this.state.Data.length > 0 ? (
                     this.state.Data.map((data, index) => (
-                        <TableRow>
-                          <TableCell align="center">
-                            {data.idSugerencia}
-                          </TableCell>
-                          <TableCell align="center">
-                            {data.correoElectronico}
-                          </TableCell>
-                          <TableCell align="center">
-                            {data.comentario}
-                          </TableCell>
-                          <TableCell align="center">{data.idUsuario}</TableCell>
-                          <TableCell align="center">
-                            <Checkbox
-                              onClick={() =>
-                                this.checkBoxHandler(
-                                  data.idSugerencia,
-                                  this.state.SelectedDropdownValue
-                                )
-                              }
-                            />
-                          </TableCell>
-                        </TableRow>
-					))
+                      <TableRow>
+                        <TableCell align="center">
+                          {data.idSugerencia}
+                        </TableCell>
+                        <TableCell align="center">
+                          {data.correoElectronico}
+                        </TableCell>
+                        <TableCell align="center">{data.comentario}</TableCell>
+                        <TableCell align="center">{data.idUsuario}</TableCell>
+                        <TableCell align="center">
+                          <CustomCheckBox
+                            onClick={() =>
+                              this.checkBoxHandler(
+                                data.idSugerencia,
+                                this.state.SelectedDropdownValue
+                              )
+                            }
+                          />
+                          {/* <Checkbox
+                            onClick={() =>
+                              this.checkBoxHandler(
+                                data.idSugerencia,
+                                this.state.SelectedDropdownValue
+                              )
+                            }
+                          /> */}
+                        </TableCell>
+                      </TableRow>
+                    ))
                   ) : (
                     <TableRow>
                       <TableCell colSpan={5} align="center">
