@@ -191,7 +191,7 @@ export default class Page18 extends Component {
 											return (
 												<TableRow>
 													<TableCell align="center">{data.idUsuario}</TableCell>
-													<TableCell align="center">{data.nombres}</TableCell>
+													<TableCell align="center">{data.nombresCompleto}</TableCell>
 													<TableCell align="center">{data.usuario}</TableCell>
 													<TableCell align="center">{data.clave}</TableCell>
 													<TableCell align="center">{data.activo === 1 ? "Activo" : "Inactivo"}</TableCell>
