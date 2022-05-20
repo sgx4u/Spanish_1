@@ -98,8 +98,8 @@ export default class Page12 extends Component {
 		await this.setState({ SelectedData: Data });
 	};
 
-	AddUpdateData =  () => {
-		 this.setState({ UpdateLoader: true });
+	AddUpdateData = () => {
+		this.setState({ UpdateLoader: true });
 		let data = this.state.SelectedData;
 		console.log(data);
 		const formData = new FormData();
@@ -114,8 +114,8 @@ export default class Page12 extends Component {
 		}
 		const config = { headers: { "content-type": "multipart/form-data" } };
 		if (this.state.AddNew) {
-			console.log('Call Api 1',data)
-			 axios
+			console.log("Call Api 1", data);
+			axios
 				.post("http://qa.mag.gob.sv/PRA/api/pantallas/add-Detalle-de-Informacion/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + data.descripcion + "/" + data.link + "/" + data.idTipoAlerta + "/" + data.nombreImagen + "/" + data.nombreDocumento1 + "/" + data.nombreDocumento2, formData, config)
 				.then((res) => {
 					let API_Response = res.data;
@@ -133,9 +133,9 @@ export default class Page12 extends Component {
 					console.log(error);
 				});
 		} else {
-			console.log('Call Api 2',data)
+			console.log("Call Api 2", data);
 
-			 axios
+			axios
 				.put("http://qa.mag.gob.sv/PRA/api/pantallas/update-Detalle-de-Informacion/" + data.idInformacionDetalle + "/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + data.descripcion + "/" + data.link + "/" + data.idTipoAlerta + "/" + data.activo + "/" + data.nombreImagen + "/" + data.nombreDocumento1 + "/" + data.nombreDocumento2, formData, config)
 				.then((res) => {
 					let API_Response = res.data;
@@ -153,7 +153,7 @@ export default class Page12 extends Component {
 					console.log(error);
 				});
 		}
-		 this.setState({ UpdateLoader: false });
+		this.setState({ UpdateLoader: false });
 	};
 
 	render() {
