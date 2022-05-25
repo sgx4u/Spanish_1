@@ -236,6 +236,7 @@ export default class Page9 extends Component {
 	};
 	render() {
 		// const classes = useStyles();
+		console.log('this.state.nombre <<<<>>>>>>>',this.state)
 		return (
 			<>
 				<Grid container spacing={2}>

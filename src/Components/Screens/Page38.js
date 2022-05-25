@@ -138,7 +138,7 @@ export default class Page31 extends Component {
   TextFeildValueChanges = async (value, key) => {
     let Data = this.state.ModifiedData;
     Data[key] = value;
-    await this.setState({ ModifiedData: Data });
+    this.setState({ ModifiedData: Data });
     console.log(this.state.ModifiedData);
   };
 
@@ -148,60 +148,96 @@ export default class Page31 extends Component {
     await this.setState({ ModifiedData: Data });
   };
 
-  Add_and_UpdateData = async () => {
-    this.setState({ UpdateLoader: true });
-    const formData = new FormData();
+  updateHandler = () => {
     let Data = this.state.ModifiedData;
-	console.log("Form Data <<<<<@@@@>>>>", Data);
-    // if (Data.SelectedFileName !== null) {
-    formData.append("file", Data.SelectedFile);
-    // }
+    var myHeaders = new Headers();
+    myHeaders.append(
+      "Cookie",
+      "ARRAffinity=157a08f3cf7318bcf09a7abb8ef35f9619888baf70de15241990350d6f427fbd; ARRAffinitySameSite=157a08f3cf7318bcf09a7abb8ef35f9619888baf70de15241990350d6f427fbd"
+    );
 
-    const config = { headers: { "content-type": "multipart/form-data" } };
-    await axios
-      .post(
-        "http://qa.mag.gob.sv/PRA/api/pantallas/add-subir-precios-internacional/" +
-          Data.nombre +
-          "/" +
-          Data.Title +
-          "/" +
-          Data.Description +
-          "",
-        formData,
-        config
-      )
+    var formdata = new FormData();
+    formdata.append("file", Data.SelectedFile, "[PROXY]");
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
+    };
+
+    fetch(
+      `https://siam-mag-dev.azurewebsites.net/api/pantallas/add-subir-precios-internacional/${Data.nombre}/${Data.Título}/${Data.Descripción}`,
+      requestOptions
+    )
+      .then((response) => response.text())
       .then((res) => {
-        let API_Response = res.data;
-        console.log(API_Response);
-
-        if (API_Response === null || API_Response === undefined) {
-          this.SnackbarActions({
-            key: "Open",
-            variant: "warning",
-            Message: "API Not responding.....",
-            TimeOut: 1000,
-          });
-        } else if (API_Response.code === "OK") {
-          this.SnackbarActions({
-            key: "Open",
-            variant: "success",
-            Message: "Saved",
-            TimeOut: 1000,
-          });
-          this.loadDefaultData();
-        } else {
-          this.SnackbarActions({
-            key: "Open",
-            variant: "warning",
-            Message: "API Not responding.....",
-            TimeOut: 1000,
-          });
-        }
+        this.loadDefaultData();
+        this.CancelEditAddWindow();
       })
       .catch((error) => {
         console.log(error);
       });
-    await this.setState({ UpdateLoader: false });
+    this.setState({ UpdateLoader: false });
+  };
+
+  Add_and_UpdateData = async () => {
+    this.setState({ UpdateLoader: true });
+    this.updateHandler();
+    this.setState({ UpdateLoader: false });
+    //   this.setState({ UpdateLoader: true });
+    //   const formData = new FormData();
+    //   let Data = this.state.ModifiedData;
+    // console.log("Form Data <<<<<@@@@>>>>", Data);
+    //   // if (Data.SelectedFileName !== null) {
+    //   formData.append("file", Data.SelectedFile);
+    //   // }
+
+    //   const config = { headers: { "content-type": "multipart/form-data" } };
+    //   await axios
+    //     .post(
+    //       "http://qa.mag.gob.sv/PRA/api/pantallas/add-subir-precios-internacional/" +
+    //         Data.nombre +
+    //         "/" +
+    //         Data.Title +
+    //         "/" +
+    //         Data.Description +
+    //         "",
+    //       formData,
+    //       config
+    //     )
+    //     .then((res) => {
+    //       let API_Response = res.data;
+    //       console.log(API_Response);
+
+    //       if (API_Response === null || API_Response === undefined) {
+    //         this.SnackbarActions({
+    //           key: "Open",
+    //           variant: "warning",
+    //           Message: "API Not responding.....",
+    //           TimeOut: 1000,
+    //         });
+    //       } else if (API_Response.code === "OK") {
+    //         this.SnackbarActions({
+    //           key: "Open",
+    //           variant: "success",
+    //           Message: "Saved",
+    //           TimeOut: 1000,
+    //         });
+    //         this.loadDefaultData();
+    //       } else {
+    //         this.SnackbarActions({
+    //           key: "Open",
+    //           variant: "warning",
+    //           Message: "API Not responding.....",
+    //           TimeOut: 1000,
+    //         });
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    //   await this.setState({ UpdateLoader: false });
   };
 
   CancelEditAddWindow = async () => {
@@ -253,6 +289,7 @@ export default class Page31 extends Component {
 
   render() {
     // const classes = useStyles();
+    console.log("ModifiedData <<<<###??????>>>>>", this.state.ModifiedData);
     return (
       <>
         <Grid container spacing={2}>
