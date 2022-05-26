@@ -241,7 +241,7 @@ export default class Page9 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Tipos de Información</Typography>
+						<Typography variant="h4">Mantenimiento de Cadenas Productivas</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Button
@@ -256,7 +256,7 @@ export default class Page9 extends Component {
 								})
 							}
 						>
-							Agregar Alerta
+							Agregar
 						</Button>
 					</Grid>
 					<Grid item xs={12}>
@@ -321,7 +321,7 @@ export default class Page9 extends Component {
 					fullWidth
 					size="lg"
 				>
-					<DialogTitle>{this.state.AddNew ? "Agregar Tipo de Información" : "Editar Tipo de Información"}</DialogTitle>
+					<DialogTitle>{this.state.AddNew ? "Agregar" : "Editar"}</DialogTitle>
 					<Divider />
 					<DialogContent>
 						<Grid container spacing={2}>

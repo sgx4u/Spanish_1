@@ -92,7 +92,7 @@ export default class Page16 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Usuario APP</Typography>
+						<Typography variant="h4">Mantenimiento de Usuario del APP</Typography>
 					</Grid>
 
 					<Grid item xs={12}>
@@ -158,7 +158,7 @@ export default class Page16 extends Component {
 				</Grid>
 
 				<Dialog open={this.state.Edit_window} onClose={() => this.setState({ Edit_window: false })} fullWidth size="lg">
-					<DialogTitle>Mantenimiento de Usuario APP</DialogTitle>
+					<DialogTitle>Mantenimiento de Usuario del APP</DialogTitle>
 					<Divider />
 					<DialogContent>
 						<Grid container spacing={2}>

@@ -131,7 +131,7 @@ export default function MainPage(props) {
                 color: "black",
               }}
             >
-              Main Menu List
+              Menú
             </Typography>
             <IconButton
               style={{ outline: "none", float: "right", marginRight: 0 }}
@@ -161,7 +161,7 @@ export default function MainPage(props) {
             <ListItemIcon>
               <MdArrowForward style={{ height: "30", width: "30" }} />
             </ListItemIcon>
-            <ListItemText primary="Tipos de Alerta" />
+            <ListItemText primary="Tipos de Información" />
           </ListItem>
           <Divider />
 
@@ -193,7 +193,7 @@ export default function MainPage(props) {
             <ListItemIcon>
               <MdArrowForward style={{ height: "30", width: "30" }} />
             </ListItemIcon>
-            <ListItemText primary="Tipos de Informacion" />
+            <ListItemText primary="Cadenas Productivas" />
           </ListItem>
           <Divider />
 
@@ -209,7 +209,7 @@ export default function MainPage(props) {
             <ListItemIcon>
               <MdArrowForward style={{ height: "30", width: "30" }} />
             </ListItemIcon>
-            <ListItemText primary="Detalle de Información" />
+            <ListItemText primary="Información de Cadenas Productivas" />
           </ListItem>
           <Divider />
 
@@ -239,7 +239,7 @@ export default function MainPage(props) {
             <ListItemIcon>
               <MdArrowForward style={{ height: "30", width: "30" }} />
             </ListItemIcon>
-            <ListItemText primary="Usuarios App" />
+            <ListItemText primary="Usuarios del App" />
           </ListItem>
           <Divider />
 
@@ -254,7 +254,7 @@ export default function MainPage(props) {
             <ListItemIcon>
               <MdArrowForward style={{ height: "30", width: "30" }} />
             </ListItemIcon>
-            <ListItemText primary="Usuarios Web" />
+            <ListItemText primary="Usuarios del CMS" />
           </ListItem>
           <Divider />
 
@@ -286,7 +286,7 @@ export default function MainPage(props) {
             <ListItemIcon>
               <MdArrowForward style={{ height: "30", width: "30" }} />
             </ListItemIcon>
-            <ListItemText primary="Certificaciones" />
+            <ListItemText primary="Certificaciones de Productores" />
           </ListItem>
           <Divider />
 
@@ -387,7 +387,7 @@ export default function MainPage(props) {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Application Name Here
+              SIAM CMS
             </Typography>
           </Toolbar>
         </AppBar>

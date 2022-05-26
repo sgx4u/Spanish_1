@@ -311,7 +311,7 @@ export default class Page31 extends Component {
                 })
               }
             >
-              Agregar Informe de precios
+              Agregar
             </Button>
           </Grid>
           <Grid item xs={12}>
@@ -402,7 +402,7 @@ export default class Page31 extends Component {
           fullWidth
           size="lg"
         >
-          <DialogTitle>Subir Archivo de Precios Internacionales</DialogTitle>
+          <DialogTitle>Subir Archivo</DialogTitle>
           <Divider />
           <DialogContent>
             <Grid container spacing={2}>

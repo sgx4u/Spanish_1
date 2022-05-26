@@ -40,13 +40,13 @@ export default class Page17 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Usuario APP</Typography>
+						<Typography variant="h4">Mantenimiento de Usuario del APP</Typography>
 					</Grid>
 					<Grid item xs={12} />
 					<Grid item xs={12}>
 						<Grid container spacing={2}>
 							<Grid item xs={5} sm={2}>
-								<Typography>Nombre de Usuario App:</Typography>
+								<Typography>Nombre de Usuario del App:</Typography>
 							</Grid>
 							<Grid item xs={7} sm={3}>
 								<TextField fullWidth />

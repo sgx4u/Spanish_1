@@ -162,11 +162,11 @@ export default class Page12 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Detalle de Información</Typography>
+						<Typography variant="h4">Mantenimiento de Información de Cadenas Productivas</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Button color="primary" variant="outlined" style={{ float: "right" }} onClick={() => this.setState({ Add_Edit_window: true, EditInfo: false, AddNew: true, SelectedData: {} })}>
-							Agregar Detalle Información
+							Agregar
 						</Button>
 					</Grid>
 					<Grid item xs={12}>
@@ -228,18 +228,18 @@ export default class Page12 extends Component {
 
 				{/* Add New / Edit*/}
 				<Dialog open={this.state.Add_Edit_window} onClose={() => this.setState({ Add_Edit_window: false, SelectedData: {} })} fullWidth size="lg">
-					<DialogTitle>{this.state.AddNew ? "Agregar Detalle de Información" : "Editar Detalle de Información"}</DialogTitle>
+					<DialogTitle>{this.state.AddNew ? "Agregar" : "Editar"}</DialogTitle>
 					<Divider />
 					<DialogContent>
 						<Grid container spacing={2}>
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>
-										<Typography variant="h6">Información:</Typography>
+										<Typography variant="h6">Cadenas Productivas:</Typography>
 									</Grid>
 									<Grid item xs={7}>
-										<TextField variant="outlined" defaultValue={"Seleccione Tipo Información"} fullWidth select value={this.state.SelectedData.idInformacion} onChange={(e) => this.InputDataChanges("idInformacion", e.target.value)}>
-											<MenuItem value={"Seleccione Tipo Información"}>Seleccione Tipo Información</MenuItem>
+										<TextField variant="outlined" defaultValue={"Seleccione Cadena Productiva"} fullWidth select value={this.state.SelectedData.idInformacion} onChange={(e) => this.InputDataChanges("idInformacion", e.target.value)}>
+											<MenuItem value={"Seleccione Cadena Productiva"}>Seleccione Cadena Productiva</MenuItem>
 											{this.state.InfoDropdown.map((data, Index) => {
 												return <MenuItem value={data.idInformacion}>{data.nombre}</MenuItem>;
 											})}
@@ -250,7 +250,7 @@ export default class Page12 extends Component {
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>
-										<Typography variant="h6">Nombre de Detalle de Información:</Typography>
+										<Typography variant="h6">Nombre:</Typography>
 									</Grid>
 									<Grid item xs={7}>
 										<TextField variant="outlined" fullWidth value={this.state.SelectedData.nombreInformacionDetalle} onChange={(e) => this.InputDataChanges("nombreInformacionDetalle", e.target.value)} />
@@ -310,11 +310,11 @@ export default class Page12 extends Component {
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>
-										<Typography variant="h6">Tipo de Alerta:</Typography>
+										<Typography variant="h6">Tipos de Información:</Typography>
 									</Grid>
 									<Grid item xs={7}>
-										<TextField variant="outlined" fullWidth select defaultValue={"Seleccione Tipo Alerta"} value={this.state.SelectedData.idTipoAlerta} onChange={(e) => this.InputDataChanges("idTipoAlerta", e.target.value)}>
-											<MenuItem value="Seleccione Tipo Alerta">Seleccione Tipo Alerta</MenuItem>
+										<TextField variant="outlined" fullWidth select defaultValue={"Seleccione Tipo Información"} value={this.state.SelectedData.idTipoAlerta} onChange={(e) => this.InputDataChanges("idTipoAlerta", e.target.value)}>
+											<MenuItem value="Seleccione Tipo Información">Seleccione Tipo Información</MenuItem>
 											{this.state.DropDowns.map((data, Index) => {
 												return (
 													<MenuItem key={"MI" + Index} value={data.idTipoAlerta}>

@@ -155,11 +155,11 @@ export default class Page18 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Usuario Web</Typography>
+						<Typography variant="h4">Mantenimiento de Usuario del CMS</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Button color="primary" variant="outlined" style={{ float: "right" }} onClick={() => this.setState({ Add_Edit_window: true, AddNew: true, EditInfo: false })}>
-							Agregar Usuario Web
+							Agregar
 						</Button>
 					</Grid>
 					<Grid item xs={12}>
@@ -218,7 +218,7 @@ export default class Page18 extends Component {
 
 				{/* Add New / Edit*/}
 				<Dialog open={this.state.Add_Edit_window} onClose={() => this.setState({ Add_Edit_window: false, EditInfo: false, AddNew: false })} fullWidth size="lg">
-					<DialogTitle>{this.state.AddNew ? "Agregar Usuario Web" : "Editar Usuario Web"}</DialogTitle>
+					<DialogTitle>{this.state.AddNew ? "Agregar" : "Editar"}</DialogTitle>
 					<Divider />
 					<DialogContent>
 						<Grid container spacing={2}>

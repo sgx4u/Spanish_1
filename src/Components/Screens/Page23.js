@@ -68,13 +68,13 @@ export default class Page23 extends Component{
             <>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
-                        <Typography variant="h4">Mantenimiento de Certifcaciones</Typography>
+                        <Typography variant="h4">Mantenimiento de Certifcaciones de Productores</Typography>
                     </Grid>
                     <Grid item xs={12}>
                         //Put Search Bar here //Put dropdown here <Button size="small" variant="outlined" color="primary">Clear Productor</Button>
                     </Grid>
                     <Grid item xs={12}>
-                        <Button color="primary" variant="outlined" style={{float:"right"}}>Agregar Certifcacion</Button>
+                        <Button color="primary" variant="outlined" style={{float:"right"}}>Agregar</Button>
                     </Grid>
                     <Grid item xs={12}>
                         <TableContainer component={Paper}>

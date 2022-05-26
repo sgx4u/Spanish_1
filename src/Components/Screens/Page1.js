@@ -129,11 +129,11 @@ export default class Page1 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Tipos de Alertas</Typography>
+						<Typography variant="h4">Mantenimiento de Tipos de Información</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Button color="primary" variant="outlined" style={{ float: "right" }} onClick={() => this.setState({ Add_Edit_window: true, EditInfo: false, AddNew: true })}>
-							Agregar Tipo Alerta
+							Agregar
 						</Button>
 					</Grid>
 					<Grid item xs={12}>
@@ -145,7 +145,7 @@ export default class Page1 extends Component {
 											ID Tipo Alerta
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											Nombre Tipo Alerta
+											Nombre
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
 											Estado
@@ -175,14 +175,14 @@ export default class Page1 extends Component {
 				</Grid>
 
 				<Dialog open={this.state.Add_Edit_window} onClose={() => this.setState({ Add_Edit_window: false, EditInfo: false, AddNew: false })} fullWidth size="lg">
-					<DialogTitle>{this.state.AddNew ? "Agregar Tipo Alerta" : "Editar Tipo Alerta"}</DialogTitle>
+					<DialogTitle>{this.state.AddNew ? "Agregar" : "Editar"}</DialogTitle>
 					<Divider />
 					<DialogContent>
 						<Grid container spacing={2}>
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>
-										<Typography variant="h6">Nombre Tipo Alerta:</Typography>
+										<Typography variant="h6">Nombre:</Typography>
 									</Grid>
 									<Grid item xs={7}>
 										<TextField variant="outlined" fullWidth value={this.state.ModifiedData.nombreTipoAlerta} onChange={(e) => this.TextFeildValueChanges(e.target.value)} />

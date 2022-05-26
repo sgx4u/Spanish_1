@@ -125,7 +125,7 @@ export default class Page4 extends Component {
               style={{ float: "right" }}
               onClick={() => this.setState({ Agregar_window: true })}
             >
-              Agregar Alerta
+              Agregar
             </Button>
           </Grid>
           <Grid item xs={12}>

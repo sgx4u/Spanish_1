@@ -136,11 +136,11 @@ export default class Page31 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Certificaciones</Typography>
+						<Typography variant="h4">Mantenimiento de Certificaciones de Productores</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Button color="primary" variant="outlined" style={{ float: "right" }} onClick={() => this.setState({ EditInfo: false, AddNew: true, Add_Edit_window: true })}>
-							Agregar Certificacion
+							Agregar
 						</Button>
 					</Grid>
 					<Grid item xs={12}>
@@ -191,7 +191,7 @@ export default class Page31 extends Component {
 
 				{/* Add New / Edit*/}
 				<Dialog open={this.state.Add_Edit_window} onClose={() => this.setState({ Add_Edit_window: false, EditInfo: false, AddNew: false })} fullWidth size="lg">
-					<DialogTitle>{this.state.AddNew ? "Agregar Certifcación" : "Editar Certifcación"}</DialogTitle>
+					<DialogTitle>{this.state.AddNew ? "Agregar" : "Editar"}</DialogTitle>
 					<Divider />
 					<DialogContent>
 						<Grid container spacing={2}>
