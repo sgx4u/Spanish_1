@@ -51,7 +51,7 @@ export default class Page12 extends Component {
 		await this.setState({ BackDrop: true });
 		await axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-detalle-Informacion").then((res) => {
 			let API_Response = res.data;
-			console.log(API_Response);
+			console.log('API_Response 1',API_Response);
 			if (API_Response === null || API_Response === undefined) {
 				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
 			} else if (API_Response.code === "OK") {
@@ -62,7 +62,7 @@ export default class Page12 extends Component {
 		});
 		axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-tipos-de-alertas").then((res) => {
 			let API_Response = res.data;
-			console.log(API_Response);
+			console.log('API_Response 2',API_Response);
 			if (API_Response === null || API_Response === undefined) {
 				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
 			} else if (API_Response.code === "OK") {
@@ -73,7 +73,7 @@ export default class Page12 extends Component {
 		});
 		axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-tipos-informacion-lista").then((res) => {
 			let API_Response = res.data;
-			console.log(API_Response);
+			console.log('API_Response 3',API_Response);
 			if (API_Response === null || API_Response === undefined) {
 				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
 			} else if (API_Response.code === "OK") {
