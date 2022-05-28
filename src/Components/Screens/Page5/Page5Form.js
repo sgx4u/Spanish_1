@@ -93,7 +93,7 @@ const Page5Form = ({ DropDowns, modalCloseHandler }) => {
 					</Grid>
 				</Grid>
 			</Grid>
-			<Grid item xs={12}>
+			{/* <Grid item xs={12}>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
 						<FormControl>
@@ -106,14 +106,14 @@ const Page5Form = ({ DropDowns, modalCloseHandler }) => {
 						</FormControl>
 					</Grid>
 				</Grid>
-			</Grid>
+			</Grid> */}
 
 			{/* //* Custom Options */}
-			<Option2 />
+			{/* <Option2 /> */}
 
 			<Grid item xs={12} />
 			<Grid item xs={12}>
-				<Grid container spacing={2}>
+				<Grid container spacing={15}>
 					<Grid item xs={2}>
 						<Button onClick={saveHandler} variant="outlined">
 							Guardar
