@@ -45,7 +45,8 @@ export default class Page31 extends Component {
       Add_Edit_window: false,
       AddNew: false,
       EditInfo: false,
-      ModifiedData: {},
+      ModifiedData:{
+      },
       DropdownData: [],
     };
   }
@@ -135,12 +136,6 @@ export default class Page31 extends Component {
     });
   };
 
-  TextFeildValueChanges = async (value, key) => {
-    let Data = this.state.ModifiedData;
-    Data[key] = value;
-    this.setState({ ModifiedData: Data });
-    console.log(this.state.ModifiedData);
-  };
 
   DropDownValueChanges = async (value) => {
     let Data = this.state.ModifiedData;
@@ -184,60 +179,59 @@ export default class Page31 extends Component {
   Add_and_UpdateData = async () => {
     this.setState({ UpdateLoader: true });
     this.updateHandler();
-    this.setState({ UpdateLoader: false });
-    //   this.setState({ UpdateLoader: true });
-    //   const formData = new FormData();
-    //   let Data = this.state.ModifiedData;
-    // console.log("Form Data <<<<<@@@@>>>>", Data);
-    //   // if (Data.SelectedFileName !== null) {
-    //   formData.append("file", Data.SelectedFile);
-    //   // }
+      const formData = new FormData();
+      let Data = this.state.ModifiedData;
+    console.log("Form Data <<<<<@@@@>>>>", Data);
+      // if (Data.SelectedFileName !== null) {
+      formData.append("file", Data.SelectedFile);
+      // }
 
-    //   const config = { headers: { "content-type": "multipart/form-data" } };
-    //   await axios
-    //     .post(
-    //       "http://qa.mag.gob.sv/PRA/api/pantallas/add-subir-precios-internacional/" +
-    //         Data.nombre +
-    //         "/" +
-    //         Data.Title +
-    //         "/" +
-    //         Data.Description +
-    //         "",
-    //       formData,
-    //       config
-    //     )
-    //     .then((res) => {
-    //       let API_Response = res.data;
-    //       console.log(API_Response);
+      const config = { headers: { "content-type": "multipart/form-data" } };
+     
+       await axios
+        .post(
+          "http://qa.mag.gob.sv/PRA/api/pantallas/add-subir-precios-internacional/" +
+          Data.nombre +
+          "/" +
+          Data.Título +
+          "/" +
+          Data.Descripción +
+            "",
+          formData,
+          config
+        )
+        .then((res) => {
+          let API_Response = res.data;
+          console.log(API_Response);
 
-    //       if (API_Response === null || API_Response === undefined) {
-    //         this.SnackbarActions({
-    //           key: "Open",
-    //           variant: "warning",
-    //           Message: "API Not responding.....",
-    //           TimeOut: 1000,
-    //         });
-    //       } else if (API_Response.code === "OK") {
-    //         this.SnackbarActions({
-    //           key: "Open",
-    //           variant: "success",
-    //           Message: "Saved",
-    //           TimeOut: 1000,
-    //         });
-    //         this.loadDefaultData();
-    //       } else {
-    //         this.SnackbarActions({
-    //           key: "Open",
-    //           variant: "warning",
-    //           Message: "API Not responding.....",
-    //           TimeOut: 1000,
-    //         });
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    //   await this.setState({ UpdateLoader: false });
+          if (API_Response === null || API_Response === undefined) {
+            this.SnackbarActions({
+              key: "Open",
+              variant: "warning",
+              Message: "API Not responding.....",
+              TimeOut: 1000,
+            });
+          } else if (API_Response.code === "OK") {
+            this.SnackbarActions({
+              key: "Open",
+              variant: "success",
+              Message: "Saved",
+              TimeOut: 1000,
+            });
+            this.loadDefaultData();
+          } else {
+            this.SnackbarActions({
+              key: "Open",
+              variant: "warning",
+              Message: "API Not responding.....",
+              TimeOut: 1000,
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      await this.setState({ UpdateLoader: false });
   };
 
   CancelEditAddWindow = async () => {
@@ -280,11 +274,12 @@ export default class Page31 extends Component {
     await this.setState({ BackDrop: false });
   };
   onChangeFiles = (e) => {
-    let Data = this.state.ModifiedData;
-    Data.SelectedFile = e.target.files.length > 0 ? e.target.files[0] : null;
-    Data.SelectedFileName =
+   
+    const SelectedFile = e.target.files.length > 0 ? e.target.files[0] : null;
+    const SelectedFileName =
       e.target.files.length > 0 ? e.target.files[0].name : null;
-    this.setState({ ModifiedData: Data });
+     
+    this.setState({ ModifiedData: { ...this.state.ModifiedData , SelectedFile:SelectedFile,SelectedFileName: SelectedFileName } });
   };
 
   render() {
@@ -418,7 +413,7 @@ export default class Page31 extends Component {
                       fullWidth
                       value={this.state.ModifiedData.nombre}
                       onChange={(e) =>
-                        this.TextFeildValueChanges(e.target.value, "nombre")
+                        this.setState({ModifiedData:{...this.state.ModifiedData,"nombre" :e.target.value }})
                       }
                     >
                       <MenuItem>Select</MenuItem>
@@ -447,7 +442,7 @@ export default class Page31 extends Component {
                       value={this.state.ModifiedData.Título}
                       fullWidth
                       onChange={(e) =>
-                        this.TextFeildValueChanges(e.target.value, "Título")
+                        this.setState({ModifiedData:{...this.state.ModifiedData,"Título" :e.target.value }})
                       }
                     />
                   </Grid>
@@ -465,10 +460,8 @@ export default class Page31 extends Component {
                       value={this.state.ModifiedData.Descripción}
                       fullWidth
                       onChange={(e) =>
-                        this.TextFeildValueChanges(
-                          e.target.value,
-                          "Descripción"
-                        )
+                        
+                        this.setState({ModifiedData:{...this.state.ModifiedData,"Descripción" :e.target.value }})
                       }
                     />
                   </Grid>
