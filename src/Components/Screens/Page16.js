@@ -51,7 +51,7 @@ export default class Page16 extends Component {
 
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
-		await axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-Usuario").then((res) => {
+		await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-Usuario").then((res) => {
 			console.log(res);
 			let API_Response = res.data;
 			console.log(API_Response);
@@ -72,7 +72,7 @@ export default class Page16 extends Component {
 	};
 	addData = async () => {
 		await this.setState({ BackDrop: true, Edit_window: false });
-		await axios.post("http://qa.mag.gob.sv/PRA/api/pantallas/add-usuario-activator/" + this.state.selectedData.idUsuario + "/" + (this.state.selectedData.checked === true ? 1 : 0)).then((res) => {
+		await axios.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-usuario-activator/" + this.state.selectedData.idUsuario + "/" + (this.state.selectedData.checked === true ? 1 : 0)).then((res) => {
 			console.log(res);
 			let API_Response = res.data;
 			console.log(API_Response);

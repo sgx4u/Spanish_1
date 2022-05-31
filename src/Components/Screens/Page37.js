@@ -69,7 +69,7 @@ export default class Page31 extends Component {
 
   // loadDefaultData=async()=>{
   //     await this.setState({BackDrop:true})
-  //     await axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-tipo-precios").then(res => {
+  //     await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipo-precios").then(res => {
   //         let API_Response = res.data;
   //         console.log(API_Response)
   //         if(API_Response === null || API_Response === undefined){
@@ -98,7 +98,7 @@ export default class Page31 extends Component {
     const config = { headers: { "content-type": "multipart/form-data" } };
     await axios
       .post(
-        "http://qa.mag.gob.sv/PRA/api/pantallas/add-precios-internacional",
+        "https://siam-mag-dev.azurewebsites.net/api/pantallas/add-precios-internacional",
         formData,
         config
       )

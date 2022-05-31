@@ -87,7 +87,7 @@ export default class Page5 extends Component {
   async componentDidMount() {
     await this.setState({ BackDrop: true });
     axios
-      .get("http://qa.mag.gob.sv/PRA/api/pantallas/get-tipos-de-alertas")
+      .get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipos-de-alertas")
       .then((res) => {
         let API_Response = res.data;
         console.log(API_Response);

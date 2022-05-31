@@ -46,8 +46,8 @@ export default class ProductsMainPage extends Component{
     loadDefaultData=async()=>{
         await this.setState({BackDrop:true})
         let [Data, Data1] = await Promise.all([
-            axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-productores-lista"),
-            axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/categoris_lista")
+            axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-productores-lista"),
+            axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/categoris_lista")
         ]);
         Data=Data.data;
         Data1=Data1.data;
@@ -67,7 +67,7 @@ export default class ProductsMainPage extends Component{
 
     loaddropdown3=async(value)=>{
         await this.setState({BackDrop:true,dropdown2Value:value})
-        await axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-detalle-productos-categoria/"+value).then(res => {
+        await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-detalle-productos-categoria/"+value).then(res => {
             let API_Response = res.data;
             console.log(API_Response)
             if(API_Response === null || API_Response === undefined){
@@ -82,9 +82,9 @@ export default class ProductsMainPage extends Component{
     }
 
     // Products dropdowns
-    // 1=>http://qa.mag.gob.sv/PRA/api/pantallas/get-productores-lista
-    // 2=>http://qa.mag.gob.sv/PRA/api/pantallas/categoris_lista
-    // 3=>http://qa.mag.gob.sv/PRA/api/pantallas/get-detalle-productos-categoria/'string'(2nd API)
+    // 1=>https://siam-mag-dev.azurewebsites.net/api/pantallas/get-productores-lista
+    // 2=>https://siam-mag-dev.azurewebsites.net/api/pantallas/categoris_lista
+    // 3=>https://siam-mag-dev.azurewebsites.net/api/pantallas/get-detalle-productos-categoria/'string'(2nd API)
     // Save API Not there
     // Default page load API is not there(not need to show at the time of page load)
     // Delete API Not there
@@ -92,7 +92,7 @@ export default class ProductsMainPage extends Component{
     AddData=async()=>{
         await this.setState({BackDrop:true})
         let Cantidad = parseInt(this.state.Cantidad)
-        await axios.post("http://qa.mag.gob.sv/PRA/api/pantallas/get-Detalle-productores-ingresar/"+this.state.dropdown1Value+"/"+this.state.dropdown3Value+"/"+Cantidad+"/"+this.state.Peso).then(res => {
+        await axios.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-Detalle-productores-ingresar/"+this.state.dropdown1Value+"/"+this.state.dropdown3Value+"/"+Cantidad+"/"+this.state.Peso).then(res => {
             let API_Response = res.data;
             console.log(API_Response)
             if(API_Response === null || API_Response === undefined){
@@ -107,7 +107,7 @@ export default class ProductsMainPage extends Component{
     }
     DeleteData=async(idProductores)=>{
         await this.setState({BackDrop:true})
-        await axios.post("http://qa.mag.gob.sv/PRA/api/pantallas/get-Detalle-productores-actualizar/"+idProductores).then(res => {
+        await axios.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-Detalle-productores-actualizar/"+idProductores).then(res => {
             let API_Response = res.data;
             console.log(API_Response)
             if(API_Response === null || API_Response === undefined){

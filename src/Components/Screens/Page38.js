@@ -72,7 +72,7 @@ export default class Page31 extends Component {
   loadDefaultData = async () => {
     await this.setState({ BackDrop: true });
     await axios
-      .get("http://qa.mag.gob.sv/PRA/api/pantallas/get-informe-precios")
+      .get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-informe-precios")
       .then((res) => {
         let API_Response = res.data;
         console.log(API_Response);
@@ -95,7 +95,7 @@ export default class Page31 extends Component {
         }
       });
     await axios
-      .get("http://qa.mag.gob.sv/PRA/api/pantallas/get-tipo-precios")
+      .get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipo-precios")
       .then((res) => {
         let API_Response = res.data;
         console.log(API_Response);
@@ -190,7 +190,7 @@ export default class Page31 extends Component {
      
        await axios
         .post(
-          "http://qa.mag.gob.sv/PRA/api/pantallas/add-subir-precios-internacional/" +
+          "https://siam-mag-dev.azurewebsites.net/api/pantallas/add-subir-precios-internacional/" +
           Data.nombre +
           "/" +
           Data.Título +
@@ -245,7 +245,7 @@ export default class Page31 extends Component {
     await this.setState({ BackDrop: true });
     await axios
       .put(
-        "http://qa.mag.gob.sv/PRA/api/pantallas/update-precio-informe/" +
+        "https://siam-mag-dev.azurewebsites.net/api/pantallas/update-precio-informe/" +
           id +
           "/" +
           status

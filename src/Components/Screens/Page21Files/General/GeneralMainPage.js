@@ -34,7 +34,7 @@ export default class GeneralMainPage extends Component {
 
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
-		await axios.get("http://qa.mag.gob.sv/PRA/api/desarrollos/Get_Productores").then((res) => {
+		await axios.get("https://siam-mag-dev.azurewebsites.net/api/desarrollos/Get_Productores").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
@@ -110,7 +110,7 @@ export default class GeneralMainPage extends Component {
 		}
 		const config = { headers: { "content-type": "multipart/form-data" } };
 		if (this.state.AddNew) {
-			await axios.post("http://qa.mag.gob.sv/PRA/api/pantallas/add-productores-ingresar", formData, config).then((res) => {
+			await axios.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-productores-ingresar", formData, config).then((res) => {
 				let API_Response = res.data;
 				console.log(API_Response);
 				if (API_Response === null || API_Response === undefined) {
@@ -135,7 +135,7 @@ export default class GeneralMainPage extends Component {
 				whatsapp: data.whatsapp,
 				exportador: data.exportador ? 1 : 0,
 			});
-			await axios.put("http://qa.mag.gob.sv/PRA/api/pantallas/update-productores-aquilizar/" + data.idProdctores + "/" + data.nombre + "/" + data.telephono + "/" + data.facebook + "/" + data.whatsapp + "/" + data.direccion + "/" + data.instagram + "/" + data.activo + "/" + (data.exportador ? 1 : 0), formData, config).then((res) => {
+			await axios.put("https://siam-mag-dev.azurewebsites.net/api/pantallas/update-productores-aquilizar/" + data.idProdctores + "/" + data.nombre + "/" + data.telephono + "/" + data.facebook + "/" + data.whatsapp + "/" + data.direccion + "/" + data.instagram + "/" + data.activo + "/" + (data.exportador ? 1 : 0), formData, config).then((res) => {
 				let API_Response = res.data;
 				console.log(API_Response);
 				if (API_Response === null || API_Response === undefined) {

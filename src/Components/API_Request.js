@@ -1,7 +1,7 @@
 async function ProcessRequest(info){
     var error = 0;
     let API_Response;
-    var urlapi = "http://qa.mag.gob.sv/PRA/api/pantallas/"+info.API_Endpoint;
+    var urlapi = "https://siam-mag-dev.azurewebsites.net/api/pantallas/"+info.API_Endpoint;
     console.log(urlapi);
     await fetch(urlapi, {
         method: info.method,

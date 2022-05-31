@@ -51,7 +51,7 @@ export default class Page18 extends Component {
 
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
-		await axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-web-usuario").then((res) => {
+		await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-web-usuario").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
@@ -101,7 +101,7 @@ export default class Page18 extends Component {
 		let data = this.state.ModifiedData;
 		if (this.state.AddNew) {
 			await axios
-				.post("http://qa.mag.gob.sv/PRA/api/pantallas/add-usuario-web", {
+				.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-usuario-web", {
 					apellidos: data.apellidos,
 					clave: data.clave,
 					nombre: data.nombre,
@@ -121,7 +121,7 @@ export default class Page18 extends Component {
 				});
 		} else {
 			await axios
-				.put("http://qa.mag.gob.sv/PRA/api/pantallas/update-usuario-web", {
+				.put("https://siam-mag-dev.azurewebsites.net/api/pantallas/update-usuario-web", {
 					activo: data.activo,
 					apellidos: data.apellidos,
 					clave: data.clave,

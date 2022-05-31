@@ -41,7 +41,7 @@ export default class Page4 extends Component {
 
 	async componentDidMount() {
 		await this.setState({ BackDrop: true });
-		axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-alertas-tempranas").then((res) => {
+		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-alertas-tempranas").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {

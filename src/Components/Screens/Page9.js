@@ -39,7 +39,7 @@ export default class Page9 extends Component {
 
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
-		await axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-tipos-de-informacion").then((res) => {
+		await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipos-de-informacion").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
@@ -108,10 +108,10 @@ export default class Page9 extends Component {
 			}
 			const config = { headers: { "content-type": "multipart/form-data" } };
 			if (data.AddNew) {
-				console.log("http://qa.mag.gob.sv/PRA/api/pantallas/add-tipos-de-Informacion/" + data.nombre + "/" + data.SelectedFileName, formData, config);
+				console.log("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-tipos-de-Informacion/" + data.nombre + "/" + data.SelectedFileName, formData, config);
 
 				await axios
-					.post("http://qa.mag.gob.sv/PRA/api/pantallas/add-tipos-de-Informacion/" + data.nombre + "/" + data.SelectedFileName, formData, config)
+					.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-tipos-de-Informacion/" + data.nombre + "/" + data.SelectedFileName, formData, config)
 					.then((res) => {
 						let API_Response = res.data;
 						console.log(API_Response);
@@ -143,10 +143,10 @@ export default class Page9 extends Component {
 						console.log(error);
 					});
 			} else {
-				// console.log("http://qa.mag.gob.sv/PRA/api/pantallas/update-tipos-de-Informacion/" + data.id + "/" + data.nombre + "/" + data.activo + "/" + (data.SelectedFileName === null ? data.nombreImagen : data.SelectedFileName));
+				// console.log("https://siam-mag-dev.azurewebsites.net/api/pantallas/update-tipos-de-Informacion/" + data.id + "/" + data.nombre + "/" + data.activo + "/" + (data.SelectedFileName === null ? data.nombreImagen : data.SelectedFileName));
 				console.log('FNVBJFDV',data.imagenNombre)
 				await axios
-					.put("http://qa.mag.gob.sv/PRA/api/pantallas/update-tipos-de-Informacion/" + data.id + "/" + data.nombre + "/" + data.activo + "/"+ (data.SelectedFileName === null ? data.imagenNombre : data.SelectedFileName),data.SelectedFileName !== null && formData,config)
+					.put("https://siam-mag-dev.azurewebsites.net/api/pantallas/update-tipos-de-Informacion/" + data.id + "/" + data.nombre + "/" + data.activo + "/"+ (data.SelectedFileName === null ? data.imagenNombre : data.SelectedFileName),data.SelectedFileName !== null && formData,config)
 					.then((res) => {
 						let API_Response = res.data;
 						console.log(API_Response);
