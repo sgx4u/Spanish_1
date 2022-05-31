@@ -49,9 +49,9 @@ export default class Page12 extends Component {
 
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
-		await axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-detalle-Informacion").then((res) => {
+		await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-detalle-Informacion").then((res) => {
 			let API_Response = res.data;
-			console.log('API_Response 1',API_Response);
+			console.log('API_Response 1',res.data);
 			if (API_Response === null || API_Response === undefined) {
 				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
 			} else if (API_Response.code === "OK") {
