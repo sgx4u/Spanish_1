@@ -16,7 +16,7 @@ import {
 import Option2 from "./Option2";
 import axios from "axios";
 
-const Page5Form = ({ DropDowns, modalCloseHandler }) => {
+const Page5Form = ({ DropDowns, modalCloseHandler, renderHandler }) => {
   const [tipoDeAlerta, setTipoDeAlerta] = React.useState("");
   const [textoAlerta, setTextoAlerta] = React.useState("");
   const [DescripciónDeAlerta, setDescripciónDeAlerta] = React.useState("");
@@ -29,6 +29,42 @@ const Page5Form = ({ DropDowns, modalCloseHandler }) => {
     setAfectacion(e.target.value);
   };
 
+  const dropDownDataFinder = (data) => {
+    let value;
+    switch (data) {
+      case "Selecciona Tipo Alerta":
+         value = 0;
+         break;
+      case "Noticias generales":
+         value = 1;
+         break;
+      case "Noticias agroclimáticas":
+         value = 2;
+         break;
+      case "Eventos extremos":
+         value = 3;
+         break;
+      case "Plagas":
+         value = 4;
+         break;
+      case "Recomendaciones":
+         value = 5;
+         break;
+      case "prueba":
+         value = 6;
+         break;
+      case "prueba 2":
+         value = 7;
+         break;
+      case "Prueba 3":
+         value = 8;
+         break;
+      default:
+         value = 0;
+    }
+
+    return value;
+  };
   const saveHandler = () => {
     console.log({
       textoAlerta,
@@ -38,14 +74,21 @@ const Page5Form = ({ DropDowns, modalCloseHandler }) => {
     });
     axios
       .post(
-        `https://siam-mag-dev.azurewebsites.net/api/pantallas/add-alertas-tempranas/${textoAlerta}/${DescripciónDeAlerta}/1/1/1%2C2%2C3%2C4`
+        `https://siam-mag-dev.azurewebsites.net/api/pantallas/add-alertas-tempranas/${textoAlerta}/${DescripciónDeAlerta}/${dropDownDataFinder(tipoDeAlerta)}/1/1%2C2%2C3%2C4`
       )
-      .then((result) => console.log(console.log("Response",result)));
+      .then((result) => {
+        if (result.status === 200) {
+          renderHandler();
+          modalCloseHandler();
+        } else {
+          alert("Something Went wrong");
+        }
+      });
   };
   const cancelHandler = () => {
     modalCloseHandler();
   };
-
+  console.log("data.nombreTipoAlerta <<<@@@@>>>>>>", DropDowns);
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
