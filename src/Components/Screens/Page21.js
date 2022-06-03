@@ -2,6 +2,7 @@ import React,{ Component } from "react";
 import MuiAlert from '@mui/lab/Alert';
 import {Box,Tab} from '@mui/material';
 import {TabContext,TabList,TabPanel} from '@mui/lab';
+import { Paper, Table, TableBody, TableCell, TableHead, TablePagination, TableRow, Badge, TextField, Fab, Backdrop, Grid, MenuItem, Button, Snackbar, Typography } from "@mui/material";
 
 import GeneralMainPage from "./Page21Files/General/GeneralMainPage"; // page-21 to page-25
 import ProductsMainPage from "./Page21Files/General/ProductsMainPage"; // page-26
@@ -44,6 +45,11 @@ export default class Page21 extends Component{
         // const classes = useStyles();
         return(
             <>
+				<Grid container spacing={2}>
+					<Grid item xs={12}>
+						<Typography variant="h4">Directorio de Productores</Typography>
+					</Grid>
+				</Grid>
                 <TabContext value={this.state.SelectedTab}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <TabList onChange={this.SelectedTabValueChanges.bind(this)} aria-label="lab API tabs example">

@@ -177,7 +177,7 @@ export default class ProductsMainPage extends Component{
                                 <TextField fullWidth label="Cantidad" value={this.state.Cantidad} onChange={(e)=>this.setState({Cantidad:e.target.value})} type="number"/>
                             </Grid>
                             <Grid item xs={12} sm={4}>
-                                <TextField fullWidth label="Peso" value={this.state.Peso} onChange={(e)=>this.setState({Peso:e.target.value})}/>
+                                <TextField fullWidth label="Capacidad de Producción" value={this.state.Peso} onChange={(e)=>this.setState({Peso:e.target.value})}/>
                             </Grid>
                             <Grid item xs={6} sm={2}>
                                 <Button variant="outlined" style={{marginTop:10,float:"right"}} onClick={()=>this.AddData()}>Guardar</Button>

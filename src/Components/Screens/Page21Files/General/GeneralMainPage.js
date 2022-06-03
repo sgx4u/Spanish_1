@@ -312,37 +312,37 @@ export default class GeneralMainPage extends Component {
                       style={{ backgroundColor: "#a4b2b0" }}
                       align="center"
                     >
-                      telephono
+                      Teléphono
                     </TableCell>
                     <TableCell
                       style={{ backgroundColor: "#a4b2b0" }}
                       align="center"
                     >
-                      direccion
+                      Dirección
                     </TableCell>
                     <TableCell
                       style={{ backgroundColor: "#a4b2b0" }}
                       align="center"
                     >
-                      whatsapp
+                      Whatsapp
                     </TableCell>
                     <TableCell
                       style={{ backgroundColor: "#a4b2b0" }}
                       align="center"
                     >
-                      facebook
+                      Facebook
                     </TableCell>
                     <TableCell
                       style={{ backgroundColor: "#a4b2b0" }}
                       align="center"
                     >
-                      instagram
+                      Instagram
                     </TableCell>
                     <TableCell
                       style={{ backgroundColor: "#a4b2b0" }}
                       align="center"
                     >
-                      activo
+                      Activo
                     </TableCell>
                     <TableCell
                       style={{ backgroundColor: "#a4b2b0" }}
@@ -460,7 +460,7 @@ export default class GeneralMainPage extends Component {
               <Grid item xs={12}>
                 <Grid container spacing={2}>
                   <Grid item xs={5}>
-                    <Typography variant="h6">direccion:</Typography>
+                    <Typography variant="h6">Dirección:</Typography>
                   </Grid>
                   <Grid item xs={7}>
                     <TextField
@@ -477,7 +477,7 @@ export default class GeneralMainPage extends Component {
               <Grid item xs={12}>
                 <Grid container spacing={2}>
                   <Grid item xs={5}>
-                    <Typography variant="h6">whatsapp:</Typography>
+                    <Typography variant="h6">Whatsapp:</Typography>
                   </Grid>
                   <Grid item xs={7}>
                     <TextField
@@ -494,7 +494,7 @@ export default class GeneralMainPage extends Component {
               <Grid item xs={12}>
                 <Grid container spacing={2}>
                   <Grid item xs={5}>
-                    <Typography variant="h6">facebook:</Typography>
+                    <Typography variant="h6">Facebook:</Typography>
                   </Grid>
                   <Grid item xs={7}>
                     <TextField
@@ -502,7 +502,7 @@ export default class GeneralMainPage extends Component {
                       fullWidth
                       value={this.state.ModifiedData.facebook}
                       onChange={(e) =>
-                        this.TextFeildValueChanges(e.target.value, "facebook")
+                        this.TextFeildValueChanges(e.target.value, "Facebook")
                       }
                     />
                   </Grid>
@@ -511,7 +511,7 @@ export default class GeneralMainPage extends Component {
               <Grid item xs={12}>
                 <Grid container spacing={2}>
                   <Grid item xs={5}>
-                    <Typography variant="h6">instagram:</Typography>
+                    <Typography variant="h6">Instagram:</Typography>
                   </Grid>
                   <Grid item xs={7}>
                     <TextField

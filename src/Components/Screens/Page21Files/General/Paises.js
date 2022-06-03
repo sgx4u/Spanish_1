@@ -278,7 +278,7 @@ export default class Paises extends Component {
                   style={{ display: "flex", flexDirection: "column" }}
                 >
                   <center>
-                    <Typography>Certifcaciones no Asociados</Typography>
+                    <Typography>Paises no Asociados</Typography>
                   </center>
                   {/* <Divider/> */}
                   {/* //* Edited - Subhajit Ghosh */}
@@ -355,7 +355,7 @@ export default class Paises extends Component {
                 >
                   {/* <Paper sx={{ width: 200, height: 230, overflow: 'auto' }}> */}
                   <center>
-                    <Typography>Certifcaciones Asociados</Typography>
+                    <Typography>Paises Asociados</Typography>
                   </center>
                   {/* <Divider/> */}
                   {/* //* Edited - Subhajit Ghosh */}
