@@ -48,10 +48,10 @@ export default class Page12 extends Component {
 	}
 
 	loadDefaultData = async () => {
-		 this.setState({ BackDrop: true });
+		this.setState({ BackDrop: true });
 		await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-detalle-Informacion").then((res) => {
 			let API_Response = res.data;
-			console.log('API_Response 1',res.data);
+			console.log("API_Response 1", res.data);
 			if (API_Response === null || API_Response === undefined) {
 				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
 			} else if (API_Response.code === "OK") {
@@ -62,7 +62,7 @@ export default class Page12 extends Component {
 		});
 		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipos-de-alertas").then((res) => {
 			let API_Response = res.data;
-			console.log('API_Response 2',API_Response);
+			console.log("API_Response 2", API_Response);
 			if (API_Response === null || API_Response === undefined) {
 				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
 			} else if (API_Response.code === "OK") {
@@ -73,7 +73,7 @@ export default class Page12 extends Component {
 		});
 		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipos-informacion-lista").then((res) => {
 			let API_Response = res.data;
-			console.log('API_Response 3',API_Response);
+			console.log("API_Response 3", API_Response);
 			if (API_Response === null || API_Response === undefined) {
 				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
 			} else if (API_Response.code === "OK") {
@@ -188,7 +188,7 @@ export default class Page12 extends Component {
 										</TableCell>
 										{/* <TableCell style={{backgroundColor:"#a4b2b0"}} align="center">ID Informaci</TableCell> */}
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											Título
+											Nombre
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
 											Descripción
@@ -259,7 +259,7 @@ export default class Page12 extends Component {
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>
-										<Typography variant="h6">Título:</Typography>
+										<Typography variant="h6">Nombre:</Typography>
 									</Grid>
 									<Grid item xs={7}>
 										<TextField variant="outlined" fullWidth value={this.state.SelectedData.nombreInformacionDetalle} onChange={(e) => this.InputDataChanges("nombreInformacionDetalle", e.target.value)} />

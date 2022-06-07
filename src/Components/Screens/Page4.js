@@ -39,7 +39,7 @@ export default class Page4 extends Component {
 		};
 	}
 
-	getMantenimientoData=()=>{
+	async componentDidMount() {
 		this.setState({ BackDrop: true });
 		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-alertas-tempranas").then((res) => {
 			let API_Response = res.data;
@@ -62,24 +62,20 @@ export default class Page4 extends Component {
 				});
 			}
 		});
-		 this.setState({ BackDrop: false });
-	}
-
-	async componentDidMount() {
-		 this.getMantenimientoData()
+		await this.setState({ BackDrop: false });
 	}
 
 	// Alert Messages Trigger function
-	SnackbarActions = async (Data) => {
+	SnackbarActions = (Data) => {
 		if (Data.key === "Open") {
-			await this.setState({
+			this.setState({
 				SnackBar: true,
 				SnackBarVariant: Data.variant,
 				snackBarMessage: Data.Message,
 				SnackbarTimeOut: Data.TimeOut,
 			});
 		} else {
-			await this.setState({ SnackBar: false, SnackbarTimeOut: 10000 });
+			this.setState({ SnackBar: false, SnackbarTimeOut: 10000 });
 		}
 	};
 
@@ -185,7 +181,7 @@ export default class Page4 extends Component {
 					<Divider />
 					<DialogContent>
 						<div className="customModal">
-							<Page5 modalCloseHandler={this.modalCloseHandler} getMantenimientoData={this.getMantenimientoData} />
+							<Page5 modalCloseHandler={this.modalCloseHandler} />
 						</div>
 					</DialogContent>
 					<DialogActions>

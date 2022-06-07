@@ -25,7 +25,7 @@ export default class Page9 extends Component {
 			EditInfo: false,
 			SelectedFile: null,
 			SelectedFileName: null,
-			imagenNombre:null,
+			imagenNombre: null,
 			nombre: "",
 			id: null,
 			activo: 1,
@@ -80,7 +80,7 @@ export default class Page9 extends Component {
 		this.setState({
 			id: info.idInformacion,
 			nombre: info.nombre,
-			imagenNombre:info.nombreImagen,
+			imagenNombre: info.nombreImagen,
 			activo: info.activo,
 			SelectedFile: info.imagen,
 			Add_Edit_window: true,
@@ -101,7 +101,7 @@ export default class Page9 extends Component {
 				TimeOut: 8000,
 			});
 		} else {
-			 this.setState({ updateLoader: true });
+			this.setState({ updateLoader: true });
 			const formData = new FormData();
 			if (data.SelectedFileName !== null) {
 				formData.append("file", data.SelectedFile);
@@ -144,9 +144,9 @@ export default class Page9 extends Component {
 					});
 			} else {
 				// console.log("https://siam-mag-dev.azurewebsites.net/api/pantallas/update-tipos-de-Informacion/" + data.id + "/" + data.nombre + "/" + data.activo + "/" + (data.SelectedFileName === null ? data.nombreImagen : data.SelectedFileName));
-				console.log('FNVBJFDV',data.imagenNombre)
+				console.log("FNVBJFDV", data.imagenNombre);
 				await axios
-					.put("https://siam-mag-dev.azurewebsites.net/api/pantallas/update-tipos-de-Informacion/" + data.id + "/" + data.nombre + "/" + data.activo + "/"+ (data.SelectedFileName === null ? data.imagenNombre : data.SelectedFileName),data.SelectedFileName !== null && formData,config)
+					.put("https://siam-mag-dev.azurewebsites.net/api/pantallas/update-tipos-de-Informacion/" + data.id + "/" + data.nombre + "/" + data.activo + "/" + (data.SelectedFileName === null ? data.imagenNombre : data.SelectedFileName), data.SelectedFileName !== null && formData, config)
 					.then((res) => {
 						let API_Response = res.data;
 						console.log(API_Response);
@@ -238,7 +238,7 @@ export default class Page9 extends Component {
 	};
 	render() {
 		// const classes = useStyles();
-		console.log('this.state.nombre <<<<>>>>>>>',this.state)
+		console.log("this.state.nombre <<<<>>>>>>>", this.state);
 		return (
 			<>
 				<Grid container spacing={2}>

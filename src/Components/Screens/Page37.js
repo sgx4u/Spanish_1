@@ -1,168 +1,139 @@
 import React, { Component } from "react";
 import MuiAlert from "@mui/lab/Alert";
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TablePagination,
-  TableRow,
-  Badge,
-  TextField,
-  Fab,
-  Backdrop,
-  Grid,
-  MenuItem,
-  Button,
-  Snackbar,
-  Typography,
-  DialogActions,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  Divider,
-  CircularProgress,
-} from "@mui/material";
+import { Paper, Table, TableBody, TableCell, TableHead, TablePagination, TableRow, Badge, TextField, Fab, Backdrop, Grid, MenuItem, Button, Snackbar, Typography, DialogActions, Dialog, DialogContent, DialogTitle, Divider, CircularProgress } from "@mui/material";
 import TableContainer from "@mui/material/TableContainer";
 import { CircleLoader } from "react-spinners";
 import axios from "axios";
 
 function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
+	return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
 export default class Page31 extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      BackDrop: false,
-      SnackBar: false,
-      SnackBarVariant: "warning",
-      snackBarMessage: "",
-      SnackbarTimeOut: 4000,
-      Data: [],
-      DropdownData: [],
-      ModifiedData: {},
-      SelectedFile: null,
-      SelectedFileName: "",
-    };
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			BackDrop: false,
+			SnackBar: false,
+			SnackBarVariant: "warning",
+			snackBarMessage: "",
+			SnackbarTimeOut: 4000,
+			Data: [],
+			DropdownData: [],
+			ModifiedData: {},
+			SelectedFile: null,
+			SelectedFileName: "",
+		};
+	}
 
-  // Alert Messages Trigger function
-  SnackbarActions = async (Data) => {
-    if (Data.key === "Open") {
-      await this.setState({
-        SnackBar: true,
-        SnackBarVariant: Data.variant,
-        snackBarMessage: Data.Message,
-        SnackbarTimeOut: Data.TimeOut,
-      });
-    } else {
-      await this.setState({ SnackBar: false, SnackbarTimeOut: 10000 });
-    }
-  };
+	// Alert Messages Trigger function
+	SnackbarActions = async (Data) => {
+		if (Data.key === "Open") {
+			await this.setState({
+				SnackBar: true,
+				SnackBarVariant: Data.variant,
+				snackBarMessage: Data.Message,
+				SnackbarTimeOut: Data.TimeOut,
+			});
+		} else {
+			await this.setState({ SnackBar: false, SnackbarTimeOut: 10000 });
+		}
+	};
 
-  // async componentDidMount(){
-  //     this.loadDefaultData();
-  // }
+	// async componentDidMount(){
+	//     this.loadDefaultData();
+	// }
 
-  // loadDefaultData=async()=>{
-  //     await this.setState({BackDrop:true})
-  //     await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipo-precios").then(res => {
-  //         let API_Response = res.data;
-  //         console.log(API_Response)
-  //         if(API_Response === null || API_Response === undefined){
-  //             this.SnackbarActions({key:"Open",variant:"warning",Message:"API Not responding.....",TimeOut:1000});
-  //         }else if(API_Response.code==="OK"){
-  //             this.setState({DropdownData:API_Response.body});
-  //         }else{
-  //             this.SnackbarActions({key:"Open",variant:"warning",Message:"API Not responding.....",TimeOut:1000});
-  //         }
-  //     })
-  //     await this.setState({BackDrop:false})
-  // }
-  // TextFeildValueChanges=async(value, key)=>{
-  //     let Data = this.state.ModifiedData;
-  //     Data[key]= value;
-  //     await this.setState({ModifiedData:Data});
-  //     console.log(this.state.ModifiedData);
-  // }
+	// loadDefaultData=async()=>{
+	//     await this.setState({BackDrop:true})
+	//     await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipo-precios").then(res => {
+	//         let API_Response = res.data;
+	//         console.log(API_Response)
+	//         if(API_Response === null || API_Response === undefined){
+	//             this.SnackbarActions({key:"Open",variant:"warning",Message:"API Not responding.....",TimeOut:1000});
+	//         }else if(API_Response.code==="OK"){
+	//             this.setState({DropdownData:API_Response.body});
+	//         }else{
+	//             this.SnackbarActions({key:"Open",variant:"warning",Message:"API Not responding.....",TimeOut:1000});
+	//         }
+	//     })
+	//     await this.setState({BackDrop:false})
+	// }
+	// TextFeildValueChanges=async(value, key)=>{
+	//     let Data = this.state.ModifiedData;
+	//     Data[key]= value;
+	//     await this.setState({ModifiedData:Data});
+	//     console.log(this.state.ModifiedData);
+	// }
 
-  SaveData = async () => {
-     this.setState({ BackDrop: true });
-    const formData = new FormData();
-    if (this.state.SelectedFileName !== null) {
-      formData.append("file", this.state.SelectedFile);
-    }
-    const config = { headers: { "content-type": "multipart/form-data" } };
-    await axios
-      .post(
-        "https://siam-mag-dev.azurewebsites.net/api/pantallas/add-precios-internacional",
-        formData,
-        config
-      )
-      .then((res) => {
-        let API_Response = res.data;
-        console.log(API_Response);
-        if (API_Response === null || API_Response === undefined) {
-          this.SnackbarActions({
-            key: "Open",
-            variant: "warning",
-            Message: "API Not responding.....",
-            TimeOut: 1000,
-          });
-        //   this.setState({ SnackBar: true });
-        } else if (API_Response.code === "OK") {
-          this.SnackbarActions({key:"Open",variant:"success",Message:"Uploaded!",TimeOut:1000});
-          this.setState({ SelectedFileName: "", SelectedFile: null,SnackBar: true,snackBarMessage:'Uploaded!' });
-        } else {
-          this.SnackbarActions({
-            key: "Open",
-            variant: "warning",
-            Message: "API Not responding.....",
-            TimeOut: 1000,
-          });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        this.SnackbarActions({key:"Open",variant:"success",Message:"Uploaded!",TimeOut:1000});
-        this.setState({ SnackBar: true,snackBarMessage:'API Not responding.....' });
-      });
-    await this.setState({ BackDrop: false });
-  };
+	SaveData = async () => {
+		this.setState({ BackDrop: true });
+		const formData = new FormData();
+		if (this.state.SelectedFileName !== null) {
+			formData.append("file", this.state.SelectedFile);
+		}
+		const config = { headers: { "content-type": "multipart/form-data" } };
+		await axios
+			.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-precios-internacional", formData, config)
+			.then((res) => {
+				let API_Response = res.data;
+				console.log(API_Response);
+				if (API_Response === null || API_Response === undefined) {
+					this.SnackbarActions({
+						key: "Open",
+						variant: "warning",
+						Message: "API Not responding.....",
+						TimeOut: 1000,
+					});
+					//   this.setState({ SnackBar: true });
+				} else if (API_Response.code === "OK") {
+					this.SnackbarActions({ key: "Open", variant: "success", Message: "Uploaded!", TimeOut: 1000 });
+					this.setState({ SelectedFileName: "", SelectedFile: null, SnackBar: true, snackBarMessage: "Uploaded!" });
+				} else {
+					this.SnackbarActions({
+						key: "Open",
+						variant: "warning",
+						Message: "API Not responding.....",
+						TimeOut: 1000,
+					});
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+				this.SnackbarActions({ key: "Open", variant: "success", Message: "Uploaded!", TimeOut: 1000 });
+				this.setState({ SnackBar: true, snackBarMessage: "API Not responding....." });
+			});
+		await this.setState({ BackDrop: false });
+	};
 
-  onChangeFiles = async (e) => {
-    console.log(e.target.files);
-    if (e.target.files.length > 0) {
-      // var allowedExtensions =  /(\.csv)$/i;
-      // var filePath = e.target.files[0].name;
-      // console.log(filePath)
-      // if (!allowedExtensions.exec(filePath)) {
-      //     this.SnackbarActions({key:"Open",variant:"warning",Message:"Please Select CSV file.....",TimeOut:1000});
-      // }else{
-      await this.setState({
-        SelectedFile: e.target.files[0],
-        SelectedFileName: e.target.files[0].name,
-      });
-      // }
-    }
-  };
+	onChangeFiles = async (e) => {
+		console.log(e.target.files);
+		if (e.target.files.length > 0) {
+			// var allowedExtensions =  /(\.csv)$/i;
+			// var filePath = e.target.files[0].name;
+			// console.log(filePath)
+			// if (!allowedExtensions.exec(filePath)) {
+			//     this.SnackbarActions({key:"Open",variant:"warning",Message:"Please Select CSV file.....",TimeOut:1000});
+			// }else{
+			await this.setState({
+				SelectedFile: e.target.files[0],
+				SelectedFileName: e.target.files[0].name,
+			});
+			// }
+		}
+	};
 
-  render() {
-    // const classes = useStyles();
-    console.log('this.state.SnackBar',this.state.SnackBar)
-    return (
-      <>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Typography variant="h4">
-              Subir Archivo de Precios Internacionales
-            </Typography>
-          </Grid>
+	render() {
+		// const classes = useStyles();
+		console.log("this.state.SnackBar", this.state.SnackBar);
+		return (
+			<>
+				<Grid container spacing={2}>
+					<Grid item xs={12}>
+						<Typography variant="h4">Subir Archivo de Precios Internacionales</Typography>
+					</Grid>
 
-          {/* <Grid item xs={12}>
+					{/* <Grid item xs={12}>
                             <Grid container spacing={2}>
                                 <Grid item xs={5}>
                                     <Typography variant="h6">Tipo de Precio:</Typography>
@@ -199,61 +170,40 @@ export default class Page31 extends Component {
                                 </Grid>
                             </Grid>
                         </Grid> */}
-          <Grid item xs={12}>
-            <Grid container spacing={2}>
-              <Grid item xs={5}>
-                <Typography variant="h6">Subir Archivo:</Typography>
-              </Grid>
-              <Grid item xs={7}>
-                <TextField
-                  variant="outlined"
-                  id="FileElement"
-                  fullWidth
-                  type="file"
-                  onChange={(e) => this.onChangeFiles(e)}
-                />
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item xs={12} />
-          <Grid item xs={12}>
-            <center>
-              <Button
-                color="primary"
-                variant="outlined"
-                onClick={() => this.SaveData()}
-              >
-                Guardar
-              </Button>
-            </center>
-          </Grid>
-        </Grid>
+					<Grid item xs={12}>
+						<Grid container spacing={2}>
+							<Grid item xs={5}>
+								<Typography variant="h6">Subir Archivo:</Typography>
+							</Grid>
+							<Grid item xs={7}>
+								<TextField variant="outlined" id="FileElement" fullWidth type="file" onChange={(e) => this.onChangeFiles(e)} />
+							</Grid>
+						</Grid>
+					</Grid>
+					<Grid item xs={12} />
+					<Grid item xs={12}>
+						<center>
+							<Button color="primary" variant="outlined" onClick={() => this.SaveData()}>
+								Guardar
+							</Button>
+						</center>
+					</Grid>
+				</Grid>
 
-        {/* Alert Messages */}
-        {/* <Snackbar open={this.state.SnackBar} autoHideDuration={this.state.SnackbarTimeOut} onClose={()=>this.SnackbarActions({key:"Close",variant:"warning"})} anchorOrigin={{vertical: 'top',horizontal: 'center'}}>
+				{/* Alert Messages */}
+				{/* <Snackbar open={this.state.SnackBar} autoHideDuration={this.state.SnackbarTimeOut} onClose={()=>this.SnackbarActions({key:"Close",variant:"warning"})} anchorOrigin={{vertical: 'top',horizontal: 'center'}}>
                     <Alert onClose={()=>this.SnackbarActions({key:"Close"})} severity={this.state.SnackBarVariant} variant="filled">
                         {this.state.snackBarMessage}
                     </Alert>
                 </Snackbar> */}
 
-        <Snackbar
-          open={this.state.SnackBar}
-          autoHideDuration={this.state.SnackbarTimeOut}
-          onClose={()=>this.SnackbarActions({key:"Close"})}
-          message={this.state.snackBarMessage}
-          anchorOrigin={{vertical: 'top',horizontal: 'center'}}
-        >
+				<Snackbar open={this.state.SnackBar} autoHideDuration={this.state.SnackbarTimeOut} onClose={() => this.SnackbarActions({ key: "Close" })} message={this.state.snackBarMessage} anchorOrigin={{ vertical: "top", horizontal: "center" }}></Snackbar>
 
-        </Snackbar>
-
-        {/* Backdrop When Data Loading */}
-        <Backdrop
-          style={{ zIndex: 2, color: "#fff" }}
-          open={this.state.BackDrop}
-        >
-          <CircleLoader color="white" size={100} />
-        </Backdrop>
-      </>
-    );
-  }
+				{/* Backdrop When Data Loading */}
+				<Backdrop style={{ zIndex: 2, color: "#fff" }} open={this.state.BackDrop}>
+					<CircleLoader color="white" size={100} />
+				</Backdrop>
+			</>
+		);
+	}
 }
