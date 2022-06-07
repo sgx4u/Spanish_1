@@ -29,6 +29,7 @@ export default class Page5 extends Component {
 			SnackBarVariant: "warning",
 			snackBarMessage: "",
 			SnackbarTimeOut: 4000,
+			loading: false,
 			Data: [
 				{
 					idAlertasTempranas: 1,
@@ -71,7 +72,34 @@ export default class Page5 extends Component {
 			DropDowns: [{ nombreTipoAlerta: "Selecciona Tipo Alerta" }],
 		};
 	}
-
+	getTableData = () => {
+		this.setState({ BackDrop: true });
+		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipos-de-alertas").then((res) => {
+			let API_Response = res.data;
+			// console.log(API_Response);
+			if (API_Response === null || API_Response === undefined) {
+				this.SnackbarActions({
+					key: "Open",
+					variant: "warning",
+					Message: "API Not responding.....",
+					TimeOut: 1000,
+				});
+			} else if (API_Response.code === "OK") {
+				const dropDownData = this.state.DropDowns.concat(API_Response.body);
+				this.setState({
+					DropDowns: dropDownData,
+				});
+			} else {
+				this.SnackbarActions({
+					key: "Open",
+					variant: "warning",
+					Message: "API Not responding.....",
+					TimeOut: 1000,
+				});
+			}
+		});
+		this.setState({ BackDrop: false });
+	};
 	componentDidMount() {
 		this.setState({ BackDrop: true });
 		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipos-de-alertas").then((res) => {
@@ -101,6 +129,16 @@ export default class Page5 extends Component {
 		this.setState({ BackDrop: false });
 	}
 
+	renderHandler = () => {
+		this.setState({ loading: !this.state.loading });
+	};
+
+	componentDidUpdate(prevProps, prevState) {
+		if (this.state.loading !== prevState.loading) {
+			this.props.getMantenimientoData();
+		}
+	}
+
 	// Alert Messages Trigger function
 	SnackbarActions = async (Data) => {
 		if (Data.key === "Open") {
@@ -118,7 +156,7 @@ export default class Page5 extends Component {
 	render() {
 		return (
 			<>
-				<Page5Form DropDowns={this.state.DropDowns} modalCloseHandler={this.props.modalCloseHandler} />
+				<Page5Form renderHandler={this.renderHandler} DropDowns={this.state.DropDowns} modalCloseHandler={this.props.modalCloseHandler} />
 				{/* Alert Messages */}
 				<Snackbar open={this.state.SnackBar} autoHideDuration={this.state.SnackbarTimeOut} onClose={() => this.SnackbarActions({ key: "Close", variant: "warning" })} anchorOrigin={{ vertical: "top", horizontal: "center" }}>
 					<Alert onClose={() => this.SnackbarActions({ key: "Close" })} severity={this.state.SnackBarVariant} variant="filled">

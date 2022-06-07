@@ -262,15 +262,15 @@ export default function MainPage(props) {
             button
             style={{
               backgroundColor:
-                selectedMenu === "Asociación Productores" ? "#d7efd2" : "",
+                selectedMenu === "Directorio de Productores" ? "#d7efd2" : "",
             }}
-            key="Asociación Productores"
-            onClick={() => SelectedMenu("Asociación Productores")}
+            key="Directorio de Productores"
+            onClick={() => SelectedMenu("Directorio de Productores")}
           >
             <ListItemIcon>
               <MdArrowForward style={{ height: "30", width: "30" }} />
             </ListItemIcon>
-            <ListItemText primary="Asociación Productores" />
+            <ListItemText primary="Directorio de Productores" />
           </ListItem>
           <Divider />
 
@@ -351,7 +351,7 @@ export default function MainPage(props) {
       case "Usuarios Web":
         SetSelectedPage(<Page18 />); // 19,20
         break;
-      case "Asociación Productores":
+      case "Directorio de Productores":
         SetSelectedPage(<Page21 />); // 21 to 30
         break;
       case "Certificaciones":

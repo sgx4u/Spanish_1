@@ -179,7 +179,7 @@ export default class Page12 extends Component {
 										</TableCell>
 										{/* <TableCell style={{backgroundColor:"#a4b2b0"}} align="center">ID Informaci</TableCell> */}
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											Nombre
+											Título
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
 											Descripción
@@ -250,7 +250,7 @@ export default class Page12 extends Component {
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>
-										<Typography variant="h6">Nombre:</Typography>
+										<Typography variant="h6">Título:</Typography>
 									</Grid>
 									<Grid item xs={7}>
 										<TextField variant="outlined" fullWidth value={this.state.SelectedData.nombreInformacionDetalle} onChange={(e) => this.InputDataChanges("nombreInformacionDetalle", e.target.value)} />

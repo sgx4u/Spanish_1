@@ -45,6 +45,7 @@ export default class Page31 extends Component {
 		this.loadDefaultData();
 	}
 
+<<<<<<< HEAD
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
 		await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-informe-precios").then((res) => {
@@ -89,6 +90,56 @@ export default class Page31 extends Component {
 				});
 			}
 		});
+=======
+  loadDefaultData = async () => {
+    await this.setState({ BackDrop: true });
+    await axios
+      .get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-informe-precios")
+      .then((res) => {
+        let API_Response = res.data;
+        console.log(API_Response);
+        if (API_Response === null || API_Response === undefined) {
+          this.SnackbarActions({
+            key: "Open",
+            variant: "warning",
+            Message: "API Not responding.....",
+            TimeOut: 1000,
+          });
+        } else if (API_Response.code === "OK") {
+          this.setState({ Data: API_Response.body, Add_Edit_window: false });
+        } else {
+          this.SnackbarActions({
+            key: "Open",
+            variant: "warning",
+            Message: "API Not responding.....",
+            TimeOut: 1000,
+          });
+        }
+      });
+    await axios
+      .get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipo-precios")
+      .then((res) => {
+        let API_Response = res.data;
+        console.log(API_Response);
+        if (API_Response === null || API_Response === undefined) {
+          this.SnackbarActions({
+            key: "Open",
+            variant: "warning",
+            Message: "API Not responding.....",
+            TimeOut: 1000,
+          });
+        } else if (API_Response.code === "OK") {
+          this.setState({ DropdownData: API_Response.body });
+        } else {
+          this.SnackbarActions({
+            key: "Open",
+            variant: "warning",
+            Message: "API Not responding.....",
+            TimeOut: 1000,
+          });
+        }
+      });
+>>>>>>> 7e0fe71fc6d7b18c7ef2caad6bfac73a0debae8d
 
 		await this.setState({ BackDrop: false });
 	};
@@ -153,11 +204,31 @@ export default class Page31 extends Component {
 
 		const config = { headers: { "content-type": "multipart/form-data" } };
 
+<<<<<<< HEAD
 		await axios
 			.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-subir-precios-internacional/" + Data.nombre + "/" + Data.Título + "/" + Data.Descripción + "", formData, config)
 			.then((res) => {
 				let API_Response = res.data;
 				console.log(API_Response);
+=======
+      const config = { headers: { "content-type": "multipart/form-data" } };
+     
+       await axios
+        .post(
+          "https://siam-mag-dev.azurewebsites.net/api/pantallas/add-subir-precios-internacional/" +
+          Data.nombre +
+          "/" +
+          Data.Título +
+          "/" +
+          Data.Descripción +
+            "",
+          formData,
+          config
+        )
+        .then((res) => {
+          let API_Response = res.data;
+          console.log(API_Response);
+>>>>>>> 7e0fe71fc6d7b18c7ef2caad6bfac73a0debae8d
 
 				if (API_Response === null || API_Response === undefined) {
 					this.SnackbarActions({

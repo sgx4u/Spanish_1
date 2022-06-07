@@ -1,13 +1,39 @@
 import React, { Component } from "react";
 import MuiAlert from "@mui/lab/Alert";
-import { FormControlLabel, Checkbox, Paper, Table, TableBody, TableCell, TableHead, TablePagination, TableRow, Badge, TextField, Fab, Backdrop, Grid, MenuItem, Button, Snackbar, InputAdornment, Typography, Divider, DialogActions, Dialog, DialogContent, DialogTitle, CircularProgress } from "@mui/material";
+import {
+  FormControlLabel,
+  Checkbox,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TablePagination,
+  TableRow,
+  Badge,
+  TextField,
+  Fab,
+  Backdrop,
+  Grid,
+  MenuItem,
+  Button,
+  Snackbar,
+  InputAdornment,
+  Typography,
+  Divider,
+  DialogActions,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  CircularProgress,
+} from "@mui/material";
 import TableContainer from "@mui/material/TableContainer";
 import { CircleLoader } from "react-spinners";
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
-	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 export default class GeneralMainPage extends Component {
@@ -28,9 +54,9 @@ export default class GeneralMainPage extends Component {
 		};
 	}
 
-	async componentDidMount() {
-		this.loadDefaultData();
-	}
+  async componentDidMount() {
+    this.loadDefaultData();
+  }
 
 	loadDefaultData = async () => {
 		this.setState({ BackDrop: true });
@@ -50,7 +76,6 @@ export default class GeneralMainPage extends Component {
 					MasterData: API_Response.body,
 				});
 			} else {
-				this.SnackbarActions({
 					key: "Open",
 					variant: "warning",
 					Message: "API Not responding.....",
@@ -82,162 +107,153 @@ export default class GeneralMainPage extends Component {
 		});
 	};
 
-	TextFeildValueChanges = async (value, key) => {
-		let Data = this.state.ModifiedData;
-		Data[key] = value;
-		await this.setState({ ModifiedData: Data });
-		console.log(this.state.ModifiedData);
-	};
+    let documentJson = {
+      activo: data.activo ? 1 : 0,
+      direccion: data.direccion,
+      facebook: data.facebook,
+      fechaCreado: date,
+      instagram: data.instagram,
+      nombre: data.nombre,
+      telephono: data.telephono,
+      whatsapp: data.whatsapp,
+      exportador: data.exportador ? 1 : 0,
+    };
 
-	DropDownValueChanges = async (value) => {
-		let Data = this.state.ModifiedData;
-		Data.activo = value;
-		await this.setState({ ModifiedData: Data });
-	};
+    var config = {
+      method: "put",
+      url: `https://siam-mag-dev.azurewebsites.net/api/pantallas/update-productores-aquilizar/${
+        data.idProdctores
+      }/${data.nombre}/${data.telephono}/${data.facebook}/${data.whatsapp}/${
+        data.direccion
+      }/${data.instagram}/${data.activo ? data.activo : 1}/${
+        data.exportador ? 1 : 0
+      }`,
 
-	Add_and_UpdateData = async () => {
-		await this.setState({ UpdateLoader: true });
-		let data = this.state.ModifiedData;
-		let date = new Date();
-		const formData = new FormData();
+      data: formData,
+    };
+    if (this.state.AddNew) {
+      /*  formData.append("webProductores", JSON.stringify(documentJson)); */
+      var config_add = {
+        method: "post",
+        url: `https://siam-mag-dev.azurewebsites.net/api/pantallas/add-productores-ingresar/${
+          data.nombre
+        }/${data.telephono}/${data.direccion}/${data.whatsapp}/${
+          data.facebook
+        }/${data.instagram}/${data.exportador ? 1 : 0}`,
+        data: formData,
+      };
+      await axios(config_add).then((res) => {
+        let API_Response = res.data;
+        console.log(API_Response);
+        if (API_Response === null || API_Response === undefined) {
+          this.SnackbarActions({
+            key: "Open",
+            variant: "warning",
+            Message: "API Not responding.....",
+            TimeOut: 1000,
+          });
+        } else if (API_Response.code === "OK") {
+          this.setState({ ModifiedData: {}, Add_Edit_window: false });
+          this.loadDefaultData();
+        } else {
+          this.SnackbarActions({
+            key: "Open",
+            variant: "warning",
+            Message: "API Not responding.....",
+            TimeOut: 1000,
+          });
+        }
+      });
+    } else {
+      await axios(config).then((res) => {
+        let API_Response = res.data;
+        console.log(API_Response);
+        if (API_Response === null || API_Response === undefined) {
+          this.SnackbarActions({
+            key: "Open",
+            variant: "warning",
+            Message: "API Not responding.....",
+            TimeOut: 1000,
+          });
+        } else if (API_Response.code === "OK") {
+          this.setState({ ModifiedData: {}, Add_Edit_window: false });
+        } else {
+          this.SnackbarActions({
+            key: "Open",
+            variant: "warning",
+            Message: "API Not responding.....",
+            TimeOut: 1000,
+          });
+        }
+      });
+    }
+    this.loadDefaultData();
+    await this.setState({ UpdateLoader: false });
+  };
 
-		formData.append("file", data.file ? data.file : "");
+  CancelEditAddWindow = async () => {
+    await this.setState({
+      Add_Edit_window: false,
+      EditInfo: false,
+      ModifiedData: {},
+    });
+  };
 
-		let documentJson = {
-			activo: data.activo ? 1 : 0,
-			direccion: data.direccion,
-			facebook: data.facebook,
-			fechaCreado: date,
-			instagram: data.instagram,
-			nombre: data.nombre,
-			telephono: data.telephono,
-			whatsapp: data.whatsapp,
-			exportador: data.exportador ? 1 : 0,
-		};
+  // Alert Messages Trigger function
+  SnackbarActions = async (Data) => {
+    if (Data.key === "Open") {
+      await this.setState({
+        SnackBar: true,
+        SnackBarVariant: Data.variant,
+        snackBarMessage: Data.Message,
+        SnackbarTimeOut: Data.TimeOut,
+      });
+    } else {
+      await this.setState({ SnackBar: false, SnackbarTimeOut: 10000 });
+    }
+  };
 
-		var config = {
-			method: "put",
-			url: `https://siam-mag-dev.azurewebsites.net/api/pantallas/update-productores-aquilizar/${data.idProdctores}/${data.nombre}/${data.telephono}/${data.facebook}/${data.whatsapp}/${data.direccion}/${data.instagram}/${data.activo ? data.activo : 1}/${data.exportador ? 1 : 0}`,
+  SearchFilter = async (value) => {
+    value = value.toLowerCase();
+    await this.setState({
+      Data: this.state.MasterData.filter((data) =>
+        data.nombre.toLowerCase().includes(value)
+      ),
+      SearchValue: value,
+    });
+  };
 
-			data: formData,
-		};
-		if (this.state.AddNew) {
-			/*  formData.append("webProductores", JSON.stringify(documentJson)); */
-			var config_add = {
-				method: "post",
-				url: `https://siam-mag-dev.azurewebsites.net/api/pantallas/add-productores-ingresar/${data.nombre}/${data.telephono}/${data.direccion}/${data.whatsapp}/${data.facebook}/${data.instagram}/${data.exportador ? 1 : 0}`,
-				data: formData,
-			};
-			await axios(config_add).then((res) => {
-				let API_Response = res.data;
-				console.log(API_Response);
-				if (API_Response === null || API_Response === undefined) {
-					this.SnackbarActions({
-						key: "Open",
-						variant: "warning",
-						Message: "API Not responding.....",
-						TimeOut: 1000,
-					});
-				} else if (API_Response.code === "OK") {
-					this.setState({ ModifiedData: {}, Add_Edit_window: false });
-					this.loadDefaultData();
-				} else {
-					this.SnackbarActions({
-						key: "Open",
-						variant: "warning",
-						Message: "API Not responding.....",
-						TimeOut: 1000,
-					});
-				}
-			});
-		} else {
-			await axios(config).then((res) => {
-				let API_Response = res.data;
-				console.log(API_Response);
-				if (API_Response === null || API_Response === undefined) {
-					this.SnackbarActions({
-						key: "Open",
-						variant: "warning",
-						Message: "API Not responding.....",
-						TimeOut: 1000,
-					});
-				} else if (API_Response.code === "OK") {
-					this.setState({ ModifiedData: {}, Add_Edit_window: false });
-				} else {
-					this.SnackbarActions({
-						key: "Open",
-						variant: "warning",
-						Message: "API Not responding.....",
-						TimeOut: 1000,
-					});
-				}
-			});
-		}
-		this.loadDefaultData();
-		await this.setState({ UpdateLoader: false });
-	};
+  onChangeFiles = async (key, filenameKey, files) => {
+    let Data = this.state.ModifiedData;
+    Data[key] = files.length > 0 ? files[0] : null;
+    Data[filenameKey] = files.length > 0 ? files[0].name : null;
+    await this.setState({ ModifiedData: Data });
+  };
 
-	CancelEditAddWindow = async () => {
-		await this.setState({
-			Add_Edit_window: false,
-			EditInfo: false,
-			ModifiedData: {},
-		});
-	};
-
-	// Alert Messages Trigger function
-	SnackbarActions = async (Data) => {
-		if (Data.key === "Open") {
-			await this.setState({
-				SnackBar: true,
-				SnackBarVariant: Data.variant,
-				snackBarMessage: Data.Message,
-				SnackbarTimeOut: Data.TimeOut,
-			});
-		} else {
-			await this.setState({ SnackBar: false, SnackbarTimeOut: 10000 });
-		}
-	};
-
-	SearchFilter = async (value) => {
-		value = value.toLowerCase();
-		await this.setState({
-			Data: this.state.MasterData.filter((data) => data.nombre.toLowerCase().includes(value)),
-			SearchValue: value,
-		});
-	};
-
-	onChangeFiles = async (key, filenameKey, files) => {
-		let Data = this.state.ModifiedData;
-		Data[key] = files.length > 0 ? files[0] : null;
-		Data[filenameKey] = files.length > 0 ? files[0].name : null;
-		await this.setState({ ModifiedData: Data });
-	};
-
-	render() {
-		// const classes = useStyles();
-		return (
-			<>
-				<Grid container spacing={2}>
-					<Grid item xs={12}>
-						<Grid container spacing={2}>
-							<Grid item xs={12} sm={6}>
-								<TextField
-									fullWidth
-									InputProps={{
-										startAdornment: (
-											<InputAdornment position="start">
-												<SearchIcon color="primary" />
-											</InputAdornment>
-										),
-									}}
-									placeholder="Buscar Productor"
-									value={this.state.SearchValue}
-									onChange={(e) => this.SearchFilter(e.target.value)}
-								/>
-							</Grid>
-							{/* //* Edited - Subhajit Ghosh */}
-							{/* <Grid item xs={12} sm={3}>
+  render() {
+    // const classes = useStyles();
+    return (
+      <>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  fullWidth
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon color="primary" />
+                      </InputAdornment>
+                    ),
+                  }}
+                  placeholder="Buscar Productor"
+                  value={this.state.SearchValue}
+                  onChange={(e) => this.SearchFilter(e.target.value)}
+                />
+              </Grid>
+              {/* //* Edited - Subhajit Ghosh */}
+              {/* <Grid item xs={12} sm={3}>
                                 <TextField select fullWidth value="Buscar Todos">
                                     <MenuItem value="Buscar Todos">Buscar Todos</MenuItem>
                                 </TextField>
@@ -453,18 +469,32 @@ export default class GeneralMainPage extends Component {
 					</DialogActions>
 				</Dialog>
 
-				{/* Alert Messages */}
-				<Snackbar open={this.state.SnackBar} autoHideDuration={this.state.SnackbarTimeOut} onClose={() => this.SnackbarActions({ key: "Close", variant: "warning" })} anchorOrigin={{ vertical: "top", horizontal: "center" }}>
-					<Alert onClose={() => this.SnackbarActions({ key: "Close" })} severity={this.state.SnackBarVariant} variant="filled">
-						{this.state.snackBarMessage}
-					</Alert>
-				</Snackbar>
+        {/* Alert Messages */}
+        <Snackbar
+          open={this.state.SnackBar}
+          autoHideDuration={this.state.SnackbarTimeOut}
+          onClose={() =>
+            this.SnackbarActions({ key: "Close", variant: "warning" })
+          }
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <Alert
+            onClose={() => this.SnackbarActions({ key: "Close" })}
+            severity={this.state.SnackBarVariant}
+            variant="filled"
+          >
+            {this.state.snackBarMessage}
+          </Alert>
+        </Snackbar>
 
-				{/* Backdrop When Data Loading */}
-				<Backdrop style={{ zIndex: 2, color: "#fff" }} open={this.state.BackDrop}>
-					<CircleLoader color="white" size={100} />
-				</Backdrop>
-			</>
-		);
-	}
+        {/* Backdrop When Data Loading */}
+        <Backdrop
+          style={{ zIndex: 2, color: "#fff" }}
+          open={this.state.BackDrop}
+        >
+          <CircleLoader color="white" size={100} />
+        </Backdrop>
+      </>
+    );
+  }
 }
