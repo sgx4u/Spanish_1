@@ -54,15 +54,25 @@ export default class Paises extends Component {
 
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
-		await axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-productores-exportaderos").then((res) => {
+		await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-productores-exportaderos").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
-				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+				this.SnackbarActions({
+					key: "Open",
+					variant: "warning",
+					Message: "API Not responding.....",
+					TimeOut: 1000,
+				});
 			} else if (API_Response.code === "OK") {
 				this.setState({ Dropdown: API_Response.body });
 			} else {
-				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+				this.SnackbarActions({
+					key: "Open",
+					variant: "warning",
+					Message: "API Not responding.....",
+					TimeOut: 1000,
+				});
 			}
 		});
 		await this.setState({ BackDrop: false });
@@ -71,9 +81,9 @@ export default class Paises extends Component {
 	LoadListData = async (value) => {
 		await this.setState({ BackDrop: true, dropdownValue: value });
 		let [Data, Data1] = await Promise.all([
-			axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-paise-no-asociados/" + value),
-			// axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-detalle-no-asociados/"+value)
-			axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-paise-asociados/" + value),
+			axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-paise-no-asociados/" + value),
+			// axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-detalle-no-asociados/"+value)
+			axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-paise-asociados/" + value),
 		]);
 		Data = Data.data;
 		Data1 = Data1.data;
@@ -81,12 +91,22 @@ export default class Paises extends Component {
 		if (Data.code === "OK") {
 			this.setState({ LeftList: Data.body });
 		} else {
-			this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+			this.SnackbarActions({
+				key: "Open",
+				variant: "warning",
+				Message: "API Not responding.....",
+				TimeOut: 1000,
+			});
 		}
 		if (Data1.code === "OK") {
 			this.setState({ RightList: Data1.body });
 		} else {
-			this.SnackbarActions({ key: "Open", variant: "warning", Message: "Dropdown values are not loaded", TimeOut: 1000 });
+			this.SnackbarActions({
+				key: "Open",
+				variant: "warning",
+				Message: "Dropdown values are not loaded",
+				TimeOut: 1000,
+			});
 		}
 		await this.setState({ BackDrop: false });
 	};
@@ -151,17 +171,32 @@ export default class Paises extends Component {
 		};
 		const config = { headers: { "content-type": "application/json" } };
 		await axios
-			.post("http://qa.mag.gob.sv/PRA/api/pantallas/get-productores-paises-ingresar", reqData, config)
+			.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-productores-paises-ingresar", reqData, config)
 			.then((res) => {
 				let API_Response = res.data;
 				console.log(API_Response);
 				if (API_Response === null || API_Response === undefined) {
-					this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+					this.SnackbarActions({
+						key: "Open",
+						variant: "warning",
+						Message: "API Not responding.....",
+						TimeOut: 1000,
+					});
 				} else if (API_Response.code === "OK") {
-					this.setState({ Add_Edit_window: false, nombre: "", SelectedFile: null, SelectedFileName: null });
+					this.setState({
+						Add_Edit_window: false,
+						nombre: "",
+						SelectedFile: null,
+						SelectedFileName: null,
+					});
 					this.loadDefaultData();
 				} else {
-					this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+					this.SnackbarActions({
+						key: "Open",
+						variant: "warning",
+						Message: "API Not responding.....",
+						TimeOut: 1000,
+					});
 				}
 			})
 			.catch((error) => {
@@ -302,7 +337,17 @@ export default class Paises extends Component {
 						<Grid container spacing={2}>
 							<Grid item xs={6} sm={2}>
 								{this.state.LeftList.length > 0 || this.state.RightList.length > 0 ? (
-									<Button variant="outlined" color="secondary" onClick={() => this.setState({ LeftList: [], RightList: [], dropdownValue: "" })}>
+									<Button
+										variant="outlined"
+										color="secondary"
+										onClick={() =>
+											this.setState({
+												LeftList: [],
+												RightList: [],
+												dropdownValue: "",
+											})
+										}
+									>
 										Cancelar
 									</Button>
 								) : (

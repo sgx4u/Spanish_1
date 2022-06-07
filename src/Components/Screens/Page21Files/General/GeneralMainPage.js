@@ -24,7 +24,7 @@ export default class GeneralMainPage extends Component {
 			Add_Edit_window: false,
 			AddNew: false,
 			EditInfo: false,
-			ModifiedData: {},
+			ModifiedData: { file: "" },
 		};
 	}
 
@@ -33,25 +33,38 @@ export default class GeneralMainPage extends Component {
 	}
 
 	loadDefaultData = async () => {
-		await this.setState({ BackDrop: true });
-		await axios.get("http://qa.mag.gob.sv/PRA/api/desarrollos/Get_Productores").then((res) => {
+		this.setState({ BackDrop: true });
+		await axios.get("https://siam-mag-dev.azurewebsites.net/api/desarrollos/Get_Productores").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
-				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+				this.SnackbarActions({
+					key: "Open",
+					variant: "warning",
+					Message: "API Not responding.....",
+					TimeOut: 1000,
+				});
 			} else if (API_Response.code === "OK") {
-				this.setState({ Data: API_Response.body, MasterData: API_Response.body });
+				this.setState({
+					Data: API_Response.body,
+					MasterData: API_Response.body,
+				});
 			} else {
-				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+				this.SnackbarActions({
+					key: "Open",
+					variant: "warning",
+					Message: "API Not responding.....",
+					TimeOut: 1000,
+				});
 			}
 		});
-		await this.setState({ BackDrop: false });
+		this.setState({ BackDrop: false });
 	};
 
-	EditWindow = async (Index) => {
+	EditWindow = (Index) => {
 		const SelectedData = this.state.Data[Index];
 		console.log(SelectedData);
-		await this.setState({
+		this.setState({
 			Add_Edit_window: true,
 			EditInfo: true,
 			AddNew: false,
@@ -87,11 +100,11 @@ export default class GeneralMainPage extends Component {
 		let data = this.state.ModifiedData;
 		let date = new Date();
 		const formData = new FormData();
-		if (data.logo !== null) {
-			formData.append("file", data.file);
-		}
+
+		formData.append("file", data.file ? data.file : "");
+
 		let documentJson = {
-			activo: data.activo,
+			activo: data.activo ? 1 : 0,
 			direccion: data.direccion,
 			facebook: data.facebook,
 			fechaCreado: date,
@@ -101,49 +114,62 @@ export default class GeneralMainPage extends Component {
 			whatsapp: data.whatsapp,
 			exportador: data.exportador ? 1 : 0,
 		};
+
+		var config = {
+			method: "put",
+			url: `https://siam-mag-dev.azurewebsites.net/api/pantallas/update-productores-aquilizar/${data.idProdctores}/${data.nombre}/${data.telephono}/${data.facebook}/${data.whatsapp}/${data.direccion}/${data.instagram}/${data.activo ? data.activo : 1}/${data.exportador ? 1 : 0}`,
+
+			data: formData,
+		};
 		if (this.state.AddNew) {
-			// const json = JSON.stringify(documentJson);
-			// const blob = new Blob([json], {
-			//     type: 'application/json'
-			// });
-			formData.append("webProductores", JSON.stringify(documentJson));
-		}
-		const config = { headers: { "content-type": "multipart/form-data" } };
-		if (this.state.AddNew) {
-			await axios.post("http://qa.mag.gob.sv/PRA/api/pantallas/add-productores-ingresar", formData, config).then((res) => {
+			/*  formData.append("webProductores", JSON.stringify(documentJson)); */
+			var config_add = {
+				method: "post",
+				url: `https://siam-mag-dev.azurewebsites.net/api/pantallas/add-productores-ingresar/${data.nombre}/${data.telephono}/${data.direccion}/${data.whatsapp}/${data.facebook}/${data.instagram}/${data.exportador ? 1 : 0}`,
+				data: formData,
+			};
+			await axios(config_add).then((res) => {
 				let API_Response = res.data;
 				console.log(API_Response);
 				if (API_Response === null || API_Response === undefined) {
-					this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+					this.SnackbarActions({
+						key: "Open",
+						variant: "warning",
+						Message: "API Not responding.....",
+						TimeOut: 1000,
+					});
 				} else if (API_Response.code === "OK") {
 					this.setState({ ModifiedData: {}, Add_Edit_window: false });
 					this.loadDefaultData();
 				} else {
-					this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+					this.SnackbarActions({
+						key: "Open",
+						variant: "warning",
+						Message: "API Not responding.....",
+						TimeOut: 1000,
+					});
 				}
 			});
 		} else {
-			console.log({
-				activo: data.activo,
-				direccion: data.direccion,
-				facebook: data.facebook,
-				fechaCreado: date,
-				idProdctores: data.idProdctores,
-				instagram: data.instagram,
-				nombre: data.nombre,
-				telephono: data.telephono,
-				whatsapp: data.whatsapp,
-				exportador: data.exportador ? 1 : 0,
-			});
-			await axios.put("http://qa.mag.gob.sv/PRA/api/pantallas/update-productores-aquilizar/" + data.idProdctores + "/" + data.nombre + "/" + data.telephono + "/" + data.facebook + "/" + data.whatsapp + "/" + data.direccion + "/" + data.instagram + "/" + data.activo + "/" + (data.exportador ? 1 : 0), formData, config).then((res) => {
+			await axios(config).then((res) => {
 				let API_Response = res.data;
 				console.log(API_Response);
 				if (API_Response === null || API_Response === undefined) {
-					this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+					this.SnackbarActions({
+						key: "Open",
+						variant: "warning",
+						Message: "API Not responding.....",
+						TimeOut: 1000,
+					});
 				} else if (API_Response.code === "OK") {
 					this.setState({ ModifiedData: {}, Add_Edit_window: false });
 				} else {
-					this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+					this.SnackbarActions({
+						key: "Open",
+						variant: "warning",
+						Message: "API Not responding.....",
+						TimeOut: 1000,
+					});
 				}
 			});
 		}
@@ -152,7 +178,11 @@ export default class GeneralMainPage extends Component {
 	};
 
 	CancelEditAddWindow = async () => {
-		await this.setState({ Add_Edit_window: false, EditInfo: false, ModifiedData: {} });
+		await this.setState({
+			Add_Edit_window: false,
+			EditInfo: false,
+			ModifiedData: {},
+		});
 	};
 
 	// Alert Messages Trigger function
@@ -219,9 +249,9 @@ export default class GeneralMainPage extends Component {
 							</Grid>
 						</Grid>
 					</Grid>
-					<Grid item xs={12}>
+					<Grid item>
 						<TableContainer component={Paper}>
-							<Table>
+							<Table style={{ paddingRight: 4, paddingLeft: 5 }}>
 								<TableHead>
 									<TableRow>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
@@ -258,7 +288,7 @@ export default class GeneralMainPage extends Component {
 												<TableCell align="center">{data.whatsapp}</TableCell>
 												<TableCell align="center">{data.facebook}</TableCell>
 												<TableCell align="center">{data.instagram}</TableCell>
-												<TableCell align="center">{data.activo === 1 ? "Activo" : "Inactivo"}</TableCell>
+												<TableCell align="center">{data.activo != 1 ? "Activo" : "Inactivo"}</TableCell>
 												<TableCell align="center">
 													<Button size="small" variant="outlined" color="primary" onClick={() => this.EditWindow(index)}>
 														Editar
@@ -274,7 +304,18 @@ export default class GeneralMainPage extends Component {
 				</Grid>
 
 				{/* Add New / Edit*/}
-				<Dialog open={this.state.Add_Edit_window} onClose={() => this.setState({ Add_Edit_window: false, EditInfo: false, AddNew: false })} fullWidth size="lg">
+				<Dialog
+					open={this.state.Add_Edit_window}
+					onClose={() =>
+						this.setState({
+							Add_Edit_window: false,
+							EditInfo: false,
+							AddNew: false,
+						})
+					}
+					fullWidth
+					size="lg"
+				>
 					<DialogTitle>{this.state.AddNew ? "Agregar Productor" : "Editar Productor"}</DialogTitle>
 					<Divider />
 					<DialogContent>
@@ -347,14 +388,22 @@ export default class GeneralMainPage extends Component {
 									</Grid>
 								</Grid>
 							</Grid>
-							{this.state.EditInfo ? (
+							{/*   {this.state.EditInfo ? (
 								<Grid item xs={12}>
 									<Grid container spacing={2}>
 										<Grid item xs={5}>
 											<Typography variant="h6">activo:</Typography>
 										</Grid>
 										<Grid item xs={7}>
-											<TextField variant="outlined" select value={this.state.ModifiedData.activo} fullWidth onChange={(e) => this.DropDownValueChanges(e.target.value)}>
+										 <TextField
+                        variant="outlined"
+                        select
+                        value={this.state.ModifiedData.activo}
+                        fullWidth
+                        onChange={(e) =>
+                          this.DropDownValueChanges(e.target.value)
+                        }
+                      >
 												<MenuItem value={1}>Activo</MenuItem>
 												<MenuItem value={0}>InActivo</MenuItem>
 											</TextField>
@@ -363,7 +412,7 @@ export default class GeneralMainPage extends Component {
 								</Grid>
 							) : (
 								<></>
-							)}
+						    )} */}
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>

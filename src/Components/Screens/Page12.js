@@ -48,10 +48,10 @@ export default class Page12 extends Component {
 	}
 
 	loadDefaultData = async () => {
-		await this.setState({ BackDrop: true });
-		await axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-detalle-Informacion").then((res) => {
+		this.setState({ BackDrop: true });
+		await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-detalle-Informacion").then((res) => {
 			let API_Response = res.data;
-			console.log('API_Response 1',API_Response);
+			console.log("API_Response 1", res.data);
 			if (API_Response === null || API_Response === undefined) {
 				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
 			} else if (API_Response.code === "OK") {
@@ -60,9 +60,9 @@ export default class Page12 extends Component {
 				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
 			}
 		});
-		axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-tipos-de-alertas").then((res) => {
+		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipos-de-alertas").then((res) => {
 			let API_Response = res.data;
-			console.log('API_Response 2',API_Response);
+			console.log("API_Response 2", API_Response);
 			if (API_Response === null || API_Response === undefined) {
 				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
 			} else if (API_Response.code === "OK") {
@@ -71,9 +71,9 @@ export default class Page12 extends Component {
 				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
 			}
 		});
-		axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-tipos-informacion-lista").then((res) => {
+		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipos-informacion-lista").then((res) => {
 			let API_Response = res.data;
-			console.log('API_Response 3',API_Response);
+			console.log("API_Response 3", API_Response);
 			if (API_Response === null || API_Response === undefined) {
 				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
 			} else if (API_Response.code === "OK") {
@@ -116,7 +116,7 @@ export default class Page12 extends Component {
 		if (this.state.AddNew) {
 			console.log("Call Api 1", data);
 			axios
-				.post("http://qa.mag.gob.sv/PRA/api/pantallas/add-Detalle-de-Informacion/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + data.descripcion + "/" + data.link + "/" + data.idTipoAlerta + "/" + data.nombreImagen + "/" + data.nombreDocumento1 + "/" + data.nombreDocumento2, formData, config)
+				.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-Detalle-de-Informacion/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + data.descripcion + "/" + data.link + "/" + data.idTipoAlerta + "/" + data.nombreImagen + "/" + data.nombreDocumento1 + "/" + data.nombreDocumento2, formData, config)
 				.then((res) => {
 					let API_Response = res.data;
 					console.log(API_Response);
@@ -136,7 +136,7 @@ export default class Page12 extends Component {
 			console.log("Call Api 2", data);
 
 			axios
-				.put("http://qa.mag.gob.sv/PRA/api/pantallas/update-Detalle-de-Informacion/" + data.idInformacionDetalle + "/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + data.descripcion + "/" + data.link + "/" + data.idTipoAlerta + "/" + data.activo + "/" + data.nombreImagen + "/" + data.nombreDocumento1 + "/" + data.nombreDocumento2, formData, config)
+				.put("https://siam-mag-dev.azurewebsites.net/api/pantallas/update-Detalle-de-Informacion/" + data.idInformacionDetalle + "/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + data.descripcion + "/" + data.link + "/" + data.idTipoAlerta + "/" + data.activo + "/" + data.nombreImagen + "/" + data.nombreDocumento1 + "/" + data.nombreDocumento2, formData, config)
 				.then((res) => {
 					let API_Response = res.data;
 					console.log(API_Response);

@@ -2,6 +2,7 @@ import React from "react";
 import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, TextField, Grid, MenuItem, Button, Typography, Select } from "@mui/material";
 
 import Option2 from "./Option2";
+import axios from "axios";
 
 const Page5Form = ({ DropDowns, modalCloseHandler }) => {
 	const [tipoDeAlerta, setTipoDeAlerta] = React.useState("");
@@ -23,6 +24,7 @@ const Page5Form = ({ DropDowns, modalCloseHandler }) => {
 			tipoDeAlerta,
 			afectacion,
 		});
+		axios.post(`https://siam-mag-dev.azurewebsites.net/api/pantallas/add-alertas-tempranas/${textoAlerta}/${DescripciónDeAlerta}/1/1/1%2C2%2C3%2C4`).then((result) => console.log(console.log("Response", result)));
 	};
 	const cancelHandler = () => {
 		modalCloseHandler();

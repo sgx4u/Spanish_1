@@ -40,8 +40,8 @@ export default class Page4 extends Component {
 	}
 
 	async componentDidMount() {
-		await this.setState({ BackDrop: true });
-		axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-alertas-tempranas").then((res) => {
+		this.setState({ BackDrop: true });
+		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-alertas-tempranas").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
@@ -66,16 +66,16 @@ export default class Page4 extends Component {
 	}
 
 	// Alert Messages Trigger function
-	SnackbarActions = async (Data) => {
+	SnackbarActions = (Data) => {
 		if (Data.key === "Open") {
-			await this.setState({
+			this.setState({
 				SnackBar: true,
 				SnackBarVariant: Data.variant,
 				snackBarMessage: Data.Message,
 				SnackbarTimeOut: Data.TimeOut,
 			});
 		} else {
-			await this.setState({ SnackBar: false, SnackbarTimeOut: 10000 });
+			this.setState({ SnackBar: false, SnackbarTimeOut: 10000 });
 		}
 	};
 

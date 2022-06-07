@@ -21,9 +21,21 @@ export default class Page1 extends Component {
 			snackBarMessage: "",
 			SnackbarTimeOut: 4000,
 			Data: [
-				{ idTipoAlerta: 1, nombreTipoAlerta: "Tipo Alerta 2", activo: "Activo" },
-				{ idTipoAlerta: 1, nombreTipoAlerta: "Tipo Alerta 2", activo: "Activo" },
-				{ idTipoAlerta: 1, nombreTipoAlerta: "Tipo Alerta 2", activo: "Activo" },
+				{
+					idTipoAlerta: 1,
+					nombreTipoAlerta: "Tipo Alerta 2",
+					activo: "Activo",
+				},
+				{
+					idTipoAlerta: 1,
+					nombreTipoAlerta: "Tipo Alerta 2",
+					activo: "Activo",
+				},
+				{
+					idTipoAlerta: 1,
+					nombreTipoAlerta: "Tipo Alerta 2",
+					activo: "Activo",
+				},
 			],
 			Add_Edit_window: false,
 			AddNew: false,
@@ -38,15 +50,25 @@ export default class Page1 extends Component {
 
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
-		axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-tipos-de-alertas").then((res) => {
+		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipos-de-alertas").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
-				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+				this.SnackbarActions({
+					key: "Open",
+					variant: "warning",
+					Message: "API Not responding.....",
+					TimeOut: 1000,
+				});
 			} else if (API_Response.code === "OK") {
 				this.setState({ Data: API_Response.body });
 			} else {
-				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+				this.SnackbarActions({
+					key: "Open",
+					variant: "warning",
+					Message: "API Not responding.....",
+					TimeOut: 1000,
+				});
 			}
 		});
 		await this.setState({ BackDrop: false });
@@ -71,7 +93,11 @@ export default class Page1 extends Component {
 			Add_Edit_window: true,
 			EditInfo: true,
 			AddNew: false,
-			ModifiedData: { idTipoAlerta: SelectedData.idTipoAlerta, nombreTipoAlerta: SelectedData.nombreTipoAlerta, activo: SelectedData.activo },
+			ModifiedData: {
+				idTipoAlerta: SelectedData.idTipoAlerta,
+				nombreTipoAlerta: SelectedData.nombreTipoAlerta,
+				activo: SelectedData.activo,
+			},
 		});
 	};
 
@@ -90,28 +116,48 @@ export default class Page1 extends Component {
 		let data = this.state.ModifiedData;
 		// console.log(data)
 		if (this.state.AddNew) {
-			await axios.post("http://qa.mag.gob.sv/PRA/api/pantallas/add-tipo_alertas/" + data.nombreTipoAlerta).then((res) => {
+			await axios.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-tipo_alertas/" + data.nombreTipoAlerta).then((res) => {
 				let API_Response = res.data;
 				console.log(API_Response);
 				if (API_Response === null || API_Response === undefined) {
-					this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+					this.SnackbarActions({
+						key: "Open",
+						variant: "warning",
+						Message: "API Not responding.....",
+						TimeOut: 1000,
+					});
 				} else if (API_Response.code === "OK") {
 					this.setState({ ModifiedData: {}, Add_Edit_window: false });
 					this.loadDefaultData();
 				} else {
-					this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+					this.SnackbarActions({
+						key: "Open",
+						variant: "warning",
+						Message: "API Not responding.....",
+						TimeOut: 1000,
+					});
 				}
 			});
 		} else {
-			await axios.put("http://qa.mag.gob.sv/PRA/api/pantallas/update-tipos-de-Alertas/" + data.idTipoAlerta + "/" + data.nombreTipoAlerta + "/" + data.activo).then((res) => {
+			await axios.put("https://siam-mag-dev.azurewebsites.net/api/pantallas/update-tipos-de-Alertas/" + data.idTipoAlerta + "/" + data.nombreTipoAlerta + "/" + data.activo).then((res) => {
 				let API_Response = res.data;
 				console.log(API_Response);
 				if (API_Response === null || API_Response === undefined) {
-					this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+					this.SnackbarActions({
+						key: "Open",
+						variant: "warning",
+						Message: "API Not responding.....",
+						TimeOut: 1000,
+					});
 				} else if (API_Response.code === "OK") {
 					this.setState({ ModifiedData: {}, Add_Edit_window: false });
 				} else {
-					this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+					this.SnackbarActions({
+						key: "Open",
+						variant: "warning",
+						Message: "API Not responding.....",
+						TimeOut: 1000,
+					});
 				}
 			});
 		}
@@ -120,7 +166,11 @@ export default class Page1 extends Component {
 	};
 
 	CancelEditAddWindow = async () => {
-		await this.setState({ Add_Edit_window: false, EditInfo: false, ModifiedData: {} });
+		await this.setState({
+			Add_Edit_window: false,
+			EditInfo: false,
+			ModifiedData: {},
+		});
 	};
 
 	render() {
@@ -132,7 +182,18 @@ export default class Page1 extends Component {
 						<Typography variant="h4">Mantenimiento de Tipos de Información</Typography>
 					</Grid>
 					<Grid item xs={12}>
-						<Button color="primary" variant="outlined" style={{ float: "right" }} onClick={() => this.setState({ Add_Edit_window: true, EditInfo: false, AddNew: true })}>
+						<Button
+							color="primary"
+							variant="outlined"
+							style={{ float: "right" }}
+							onClick={() =>
+								this.setState({
+									Add_Edit_window: true,
+									EditInfo: false,
+									AddNew: true,
+								})
+							}
+						>
 							Agregar
 						</Button>
 					</Grid>
@@ -174,7 +235,18 @@ export default class Page1 extends Component {
 					</Grid>
 				</Grid>
 
-				<Dialog open={this.state.Add_Edit_window} onClose={() => this.setState({ Add_Edit_window: false, EditInfo: false, AddNew: false })} fullWidth size="lg">
+				<Dialog
+					open={this.state.Add_Edit_window}
+					onClose={() =>
+						this.setState({
+							Add_Edit_window: false,
+							EditInfo: false,
+							AddNew: false,
+						})
+					}
+					fullWidth
+					size="lg"
+				>
 					<DialogTitle>{this.state.AddNew ? "Agregar" : "Editar"}</DialogTitle>
 					<Divider />
 					<DialogContent>

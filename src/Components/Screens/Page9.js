@@ -25,7 +25,7 @@ export default class Page9 extends Component {
 			EditInfo: false,
 			SelectedFile: null,
 			SelectedFileName: null,
-			imagenNombre:null,
+			imagenNombre: null,
 			nombre: "",
 			id: null,
 			activo: 1,
@@ -39,7 +39,7 @@ export default class Page9 extends Component {
 
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
-		await axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-tipos-de-informacion").then((res) => {
+		await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipos-de-informacion").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
@@ -80,7 +80,7 @@ export default class Page9 extends Component {
 		this.setState({
 			id: info.idInformacion,
 			nombre: info.nombre,
-			imagenNombre:info.nombreImagen,
+			imagenNombre: info.nombreImagen,
 			activo: info.activo,
 			SelectedFile: info.imagen,
 			Add_Edit_window: true,
@@ -101,17 +101,17 @@ export default class Page9 extends Component {
 				TimeOut: 8000,
 			});
 		} else {
-			 this.setState({ updateLoader: true });
+			this.setState({ updateLoader: true });
 			const formData = new FormData();
 			if (data.SelectedFileName !== null) {
 				formData.append("file", data.SelectedFile);
 			}
 			const config = { headers: { "content-type": "multipart/form-data" } };
 			if (data.AddNew) {
-				console.log("http://qa.mag.gob.sv/PRA/api/pantallas/add-tipos-de-Informacion/" + data.nombre + "/" + data.SelectedFileName, formData, config);
+				console.log("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-tipos-de-Informacion/" + data.nombre + "/" + data.SelectedFileName, formData, config);
 
 				await axios
-					.post("http://qa.mag.gob.sv/PRA/api/pantallas/add-tipos-de-Informacion/" + data.nombre + "/" + data.SelectedFileName, formData, config)
+					.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-tipos-de-Informacion/" + data.nombre + "/" + data.SelectedFileName, formData, config)
 					.then((res) => {
 						let API_Response = res.data;
 						console.log(API_Response);
@@ -143,10 +143,10 @@ export default class Page9 extends Component {
 						console.log(error);
 					});
 			} else {
-				// console.log("http://qa.mag.gob.sv/PRA/api/pantallas/update-tipos-de-Informacion/" + data.id + "/" + data.nombre + "/" + data.activo + "/" + (data.SelectedFileName === null ? data.nombreImagen : data.SelectedFileName));
-				console.log('FNVBJFDV',data.imagenNombre)
+				// console.log("https://siam-mag-dev.azurewebsites.net/api/pantallas/update-tipos-de-Informacion/" + data.id + "/" + data.nombre + "/" + data.activo + "/" + (data.SelectedFileName === null ? data.nombreImagen : data.SelectedFileName));
+				console.log("FNVBJFDV", data.imagenNombre);
 				await axios
-					.put("http://qa.mag.gob.sv/PRA/api/pantallas/update-tipos-de-Informacion/" + data.id + "/" + data.nombre + "/" + data.activo + "/"+ (data.SelectedFileName === null ? data.imagenNombre : data.SelectedFileName),data.SelectedFileName !== null && formData,config)
+					.put("https://siam-mag-dev.azurewebsites.net/api/pantallas/update-tipos-de-Informacion/" + data.id + "/" + data.nombre + "/" + data.activo + "/" + (data.SelectedFileName === null ? data.imagenNombre : data.SelectedFileName), data.SelectedFileName !== null && formData, config)
 					.then((res) => {
 						let API_Response = res.data;
 						console.log(API_Response);
@@ -238,7 +238,7 @@ export default class Page9 extends Component {
 	};
 	render() {
 		// const classes = useStyles();
-		console.log('this.state.nombre <<<<>>>>>>>',this.state)
+		console.log("this.state.nombre <<<<>>>>>>>", this.state);
 		return (
 			<>
 				<Grid container spacing={2}>

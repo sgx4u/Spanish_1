@@ -41,6 +41,7 @@ export default class Page5 extends Component {
 					fechaCreado: "",
 				},
 				{
+					idAlertasTempranas: 2,
 					name: "Alerta 2",
 					tipoalerta: "",
 					description: "Esta es una alerta de prueba",
@@ -49,6 +50,7 @@ export default class Page5 extends Component {
 					active: "Activo",
 				},
 				{
+					idAlertasTempranas: 3,
 					name: "Alerta 3",
 					tipoalerta: "",
 					description: "Esta es una alerta de prueba",
@@ -57,6 +59,7 @@ export default class Page5 extends Component {
 					active: "Inactivo",
 				},
 				{
+					idAlertasTempranas: 4,
 					name: "Alerta 4",
 					tipoalerta: "",
 					description: "Esta es una alerta de prueba",
@@ -71,7 +74,7 @@ export default class Page5 extends Component {
 
 	componentDidMount() {
 		this.setState({ BackDrop: true });
-		axios.get("http://qa.mag.gob.sv/PRA/api/pantallas/get-tipos-de-alertas").then((res) => {
+		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipos-de-alertas").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
