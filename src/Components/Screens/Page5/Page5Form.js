@@ -39,14 +39,14 @@ const Page5Form = ({ DropDowns, modalCloseHandler }) => {
 			<Grid item xs={12}>
 				<Grid container spacing={2}>
 					<Grid item xs={2}>
-						<Typography>Texto Alerta:</Typography>
+						<Typography>Título:</Typography>
 					</Grid>
 					<Grid item xs={3}>
 						<TextField
 							fullWidth
 							variant="outlined"
 							value={textoAlerta}
-							placeholder="Texto Alerta"
+							placeholder="Título"
 							onChange={(e) => {
 								setTextoAlerta(e.target.value);
 							}}

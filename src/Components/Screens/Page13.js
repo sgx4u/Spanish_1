@@ -40,10 +40,10 @@ export default class Page13 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Detalle de Información</Typography>
+						<Typography variant="h4">Mantenimiento de noticias de Cadenas Productivas</Typography>
 					</Grid>
 					<Grid item xs={12}>
-						<Typography variant="h5">Editar Detalle de Información</Typography>
+						<Typography variant="h5">Editar noticia</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Grid container spacing={2}>
@@ -60,7 +60,7 @@ export default class Page13 extends Component {
 					<Grid item xs={12}>
 						<Grid container spacing={2}>
 							<Grid item xs={5} sm={2}>
-								<Typography variant="h6">Nombre de Detalle de Información:</Typography>
+								<Typography variant="h6">Título:</Typography>
 							</Grid>
 							<Grid item xs={7} sm={3}>
 								<TextField variant="outlined" fullWidth />
@@ -70,7 +70,7 @@ export default class Page13 extends Component {
 					<Grid item xs={12}>
 						<Grid container spacing={2}>
 							<Grid item xs={5} sm={2}>
-								<Typography variant="h6">Descripción:</Typography>
+								<Typography variant="h6">Contenido:</Typography>
 							</Grid>
 							<Grid item xs={7} sm={3}>
 								<TextField variant="outlined" fullWidth multiline />

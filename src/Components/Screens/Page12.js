@@ -177,7 +177,7 @@ export default class Page12 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Información de Cadenas Productivas</Typography>
+						<Typography variant="h4">Mantenimiento de noticias de Cadenas Productivas</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Button color="primary" variant="outlined" style={{ float: "right" }} onClick={() => this.setState({ Add_Edit_window: true, EditInfo: false, AddNew: true, SelectedData: {} })}>
@@ -194,10 +194,10 @@ export default class Page12 extends Component {
 										</TableCell>
 										{/* <TableCell style={{backgroundColor:"#a4b2b0"}} align="center">ID Informaci</TableCell> */}
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											Nombre
+											Título
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											Descripción
+											Contenido
 										</TableCell>
 										{/* <TableCell style={{backgroundColor:"#a4b2b0"}} align="center">Imagen</TableCell>
                                         <TableCell style={{backgroundColor:"#a4b2b0"}} align="center">Doc 1</TableCell>
@@ -265,7 +265,7 @@ export default class Page12 extends Component {
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>
-										<Typography variant="h6">Nombre:</Typography>
+										<Typography variant="h6">Título:</Typography>
 									</Grid>
 									<Grid item xs={7}>
 										<TextField variant="outlined" fullWidth value={this.state.SelectedData.nombreInformacionDetalle} onChange={(e) => this.InputDataChanges("nombreInformacionDetalle", e.target.value)} />
@@ -275,7 +275,7 @@ export default class Page12 extends Component {
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>
-										<Typography variant="h6">Descripción:</Typography>
+										<Typography variant="h6">Contenido:</Typography>
 									</Grid>
 									<Grid item xs={7}>
 										<TextField variant="outlined" fullWidth multiline value={this.state.SelectedData.descripcion} onChange={(e) => this.InputDataChanges("descripcion", e.target.value)} />

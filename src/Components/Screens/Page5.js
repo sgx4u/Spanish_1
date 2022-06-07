@@ -121,7 +121,7 @@ export default class Page5 extends Component {
 					<Grid item xs={12}>
 						<Grid container spacing={2}>
 							<Grid item xs={2}>
-								<Typography>Texto Alerta:</Typography>
+								<Typography>Título:</Typography>
 							</Grid>
 							<Grid item xs={3}>
 								<TextField fullWidth variant="outlined" />
@@ -131,7 +131,7 @@ export default class Page5 extends Component {
 					<Grid item xs={12}>
 						<Grid container spacing={2}>
 							<Grid item xs={2}>
-								<Typography>Descripción de Alerta:</Typography>
+								<Typography>Mensaje:</Typography>
 							</Grid>
 							<Grid item xs={3}>
 								<TextField multiline fullWidth variant="outlined" placeholder="Description" />
