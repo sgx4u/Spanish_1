@@ -62,11 +62,7 @@ export default class Page4 extends Component {
 				});
 			}
 		});
-		this.setState({ BackDrop: false });
-	}
-
-	async componentDidMount() {
-		this.getMantenimientoData();
+		await this.setState({ BackDrop: false });
 	}
 
 	// Alert Messages Trigger function
@@ -185,7 +181,7 @@ export default class Page4 extends Component {
 					<Divider />
 					<DialogContent>
 						<div className="customModal">
-							<Page5 modalCloseHandler={this.modalCloseHandler} getMantenimientoData={this.getMantenimientoData} />
+							<Page5 modalCloseHandler={this.modalCloseHandler} />
 						</div>
 					</DialogContent>
 					<DialogActions>
