@@ -106,17 +106,26 @@ export default class Page12 extends Component {
 		if (data.nombreImagen !== null) {
 			formData.append("file", data.file);
 		}
-		if (data.nombreDocumento1 !== null) {
+
+		console.log('data.file1 <<<<@@@@>>>>>>',data.file1);
+		console.log('data.file1 <<<<@@@@>>>>>>',data.file2);
+
+		let extraFileUri='';
+
+		if (data.nombreDocumento1 !== null && data.file1 !==undefined  ) {
+			extraFileUri =`?nombreDocumento1=${data.nombreDocumento1}`
 			formData.append("file1", data.file1);
 		}
-		if (data.nombreDocumento2 !== null) {
+		if (data.nombreDocumento2 !== null && data.file2 !==undefined) {
+			extraFileUri=extraFileUri + `?nombreDocumento2=${data.nombreDocumento2}`
 			formData.append("file2", data.file2);
 		}
+
 		const config = { headers: { "content-type": "multipart/form-data" } };
 		if (this.state.AddNew) {
 			console.log("Call Api 1", data);
 			axios
-				.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-Detalle-de-Informacion/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + data.descripcion + "/" + data.link + "/" + data.idTipoAlerta + "/" + data.nombreImagen + "/" + data.nombreDocumento1 + "/" + data.nombreDocumento2, formData, config)
+				.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-Detalle-de-Informacion/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + data.descripcion + "/" + data.link + "/" + data.idTipoAlerta + "/" + data.nombreImagen + extraFileUri, formData, config)
 				.then((res) => {
 					let API_Response = res.data;
 					console.log(API_Response);
