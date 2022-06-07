@@ -107,25 +107,31 @@ export default class Page12 extends Component {
 			formData.append("file", data.file);
 		}
 
-		console.log('data.file1 <<<<@@@@>>>>>>',data.file1);
-		console.log('data.file1 <<<<@@@@>>>>>>',data.file2);
+		console.log("data.file1 <<<<@@@@>>>>>>", data.file1);
+		console.log("data.file1 <<<<@@@@>>>>>>", data.file2);
 
-		let extraFileUri='';
+		let extraFileUri = "";
 
-		if (data.nombreDocumento1 !== null && data.file1 !==undefined  ) {
-			extraFileUri =`?nombreDocumento1=${data.nombreDocumento1}`
+		if (data.nombreDocumento1 !== null && data.file1 !== undefined) {
+			extraFileUri = `?nombreDocumento1=${data.nombreDocumento1}`;
 			formData.append("file1", data.file1);
 		}
-		if (data.nombreDocumento2 !== null && data.file2 !==undefined) {
-			extraFileUri=extraFileUri + `?nombreDocumento2=${data.nombreDocumento2}`
+		if (data.nombreDocumento2 !== null && data.file2 !== undefined) {
+			extraFileUri = extraFileUri + `?nombreDocumento2=${data.nombreDocumento2}`;
 			formData.append("file2", data.file2);
+		}
+		if (data.link !== null && data.link !== undefined) {
+			extraFileUri = extraFileUri + `?link=${data.link}`;
+			formData.append("link", data.link);
 		}
 
 		const config = { headers: { "content-type": "multipart/form-data" } };
 		if (this.state.AddNew) {
 			console.log("Call Api 1", data);
 			axios
-				.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-Detalle-de-Informacion/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + data.descripcion + "/" + data.link + "/" + data.idTipoAlerta + "/" + data.nombreImagen + extraFileUri, formData, config)
+				.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-Detalle-de-Informacion/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + data.descripcion + "/" + data.idTipoAlerta + "/" + data.nombreImagen + extraFileUri, formData, config)
+				// .post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-Detalle-de-Informacion/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + data.descripcion + "/" + data.link + "/" + data.idTipoAlerta + "/" + data.nombreImagen + extraFileUri, formData, config)
+
 				.then((res) => {
 					let API_Response = res.data;
 					console.log(API_Response);
