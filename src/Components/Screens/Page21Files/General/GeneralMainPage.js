@@ -288,7 +288,7 @@ export default class GeneralMainPage extends Component {
 												<TableCell align="center">{data.whatsapp}</TableCell>
 												<TableCell align="center">{data.facebook}</TableCell>
 												<TableCell align="center">{data.instagram}</TableCell>
-												<TableCell align="center">{data.activo != 1 ? "Activo" : "Inactivo"}</TableCell>
+												<TableCell align="center">{data.activo == 1 ? "Activo" : "Inactivo"}</TableCell>
 												<TableCell align="center">
 													<Button size="small" variant="outlined" color="primary" onClick={() => this.EditWindow(index)}>
 														Editar

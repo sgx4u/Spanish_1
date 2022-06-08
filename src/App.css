@@ -44,3 +44,38 @@
 .customModal .MuiOutlinedInput-root.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-multiline.css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root {
 	width: 350px;
 }
+
+@media (min-width: 1200px) {
+	.css-1oqqzyl-MuiContainer-root {
+		max-width: 1400px !important;
+	}
+}
+
+.MuiPaper-root.MuiPaper-elevation1.MuiPaper-rounded {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: fit-content;
+	height: fit-content;
+	padding: 100px;
+}
+
+.LoginPage {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 100%;
+	height: 100%;
+	background: url(https://c4.wallpaperflare.com/wallpaper/556/970/373/artwork-white-hexagon-abstract-3d-hd-wallpaper-preview.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.LoginPage .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-fullWidth {
+	background-color: #61dafb;
+	padding: 10px 25px;
+	margin-top: 30px;
+}
