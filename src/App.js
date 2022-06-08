@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import MainPage from "./Components/MainPage";
@@ -8,9 +8,13 @@ function App() {
 	const [success, setSuccess] = useState(false);
 	const [info, setInfo] = useState();
 
-	console.log(info);
+	useEffect(() => {
+		const response = localStorage.getItem("login");
+		if (response === null || response === false) setSuccess(false);
+		return () => {};
+	}, []);
 
-	return success ? <MainPage /> : <Login setInfo={setInfo} />;
+	return success ? <MainPage /> : <Login />;
 }
 
 export default App;
