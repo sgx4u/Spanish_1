@@ -105,13 +105,13 @@ export default class Page4 extends Component {
 											ID Alerta
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											Texto Alerta
+											Título
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
 											Tipo Alerta
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											Descripción
+											Mensaje
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
 											Affectation
