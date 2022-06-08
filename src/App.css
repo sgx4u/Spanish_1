@@ -51,7 +51,7 @@
 	}
 }
 
-.MuiPaper-root.MuiPaper-elevation1.MuiPaper-rounded {
+.LoginPage .MuiPaper-root.MuiPaper-elevation1.MuiPaper-rounded {
 	display: flex;
 	align-items: center;
 	justify-content: center;
