@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, TextField, Paper, Button } from "@material-ui/core";
-const Login = () => {
+const Login = ({ setInfo }) => {
 	const [username, setUsername] = useState();
 	const [password, setPassword] = useState();
+
+	useEffect(() => {
+		setInfo([{ username: username, password: password }]);
+	}, [username, password]);
 
 	return (
 		<div className="LoginPage">
