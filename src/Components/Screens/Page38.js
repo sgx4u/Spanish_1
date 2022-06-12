@@ -42,12 +42,13 @@ export default class Page31 extends Component {
 	};
 
 	async componentDidMount() {
-		this.loadDefaultData();
+		await this.loadDefaultData();
+		console.log("Test 1");
 	}
 
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
-		await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-informe-precios").then((res) => {
+		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-informe-precios").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
@@ -69,7 +70,7 @@ export default class Page31 extends Component {
 			}
 		});
 
-		await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipo-precios").then((res) => {
+		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipo-precios").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
@@ -143,7 +144,7 @@ export default class Page31 extends Component {
 	};
 
 	Add_and_UpdateData = async () => {
-		this.setState({ UpdateLoader: true });
+		await this.setState({ UpdateLoader: true });
 		this.updateHandler();
 		const formData = new FormData();
 		let Data = this.state.ModifiedData;
@@ -168,12 +169,12 @@ export default class Page31 extends Component {
 						TimeOut: 1000,
 					});
 				} else if (API_Response.code === "OK") {
-					this.SnackbarActions({
-						key: "Open",
-						variant: "success",
-						Message: "Saved",
-						TimeOut: 1000,
-					});
+					// this.SnackbarActions({
+					// 	key: "Open",
+					// 	variant: "success",
+					// 	Message: "Saved",
+					// 	TimeOut: 1000,
+					// });
 					this.loadDefaultData();
 				} else {
 					this.SnackbarActions({
@@ -187,7 +188,7 @@ export default class Page31 extends Component {
 			.catch((error) => {
 				console.log(error);
 			});
-		this.setState({ UpdateLoader: false });
+		await this.setState({ UpdateLoader: false });
 	};
 
 	CancelEditAddWindow = async () => {
@@ -233,7 +234,7 @@ export default class Page31 extends Component {
 
 	render() {
 		// const classes = useStyles();
-		console.log("ModifiedData <<<<###??????>>>>>", this.state.ModifiedData);
+		// console.log("ModifiedData <<<<###??????>>>>>", this.state.ModifiedData);
 		return (
 			<>
 				<Grid container spacing={2}>

@@ -13,7 +13,7 @@ function App() {
 	// 	return () => {};
 	// }, []);
 
-	return success ? <MainPage returnID={returnID} /> : <Login setSuccess={setSuccess} setReturnID={setReturnID} />;
+	return success ? <MainPage returnID={2} setSuccess={setSuccess} /> : <Login setSuccess={setSuccess} setReturnID={setReturnID} />;
 }
 
 export default App;

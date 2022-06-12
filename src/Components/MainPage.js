@@ -216,7 +216,7 @@ export default function MainPage(props) {
 							<Divider />
 						</div>
 					)}
-					{(props.returnID == 3 || props.returnID == 4) && (
+					{(props.returnID == 2 || props.returnID == 3 || props.returnID == 4) && (
 						<div>
 							<ListItem
 								button
@@ -234,7 +234,7 @@ export default function MainPage(props) {
 							<Divider />
 						</div>
 					)}
-					{(props.returnID == 3 || props.returnID == 4) && (
+					{(props.returnID == 2 || props.returnID == 3 || props.returnID == 4) && (
 						<div>
 							<ListItem
 								button
@@ -252,7 +252,7 @@ export default function MainPage(props) {
 							<Divider />
 						</div>
 					)}
-					{(props.returnID == 3 || props.returnID == 4) && (
+					{(props.returnID == 2 || props.returnID == 3 || props.returnID == 4) && (
 						<div>
 							<ListItem
 								button
@@ -270,7 +270,7 @@ export default function MainPage(props) {
 							<Divider />
 						</div>
 					)}
-					{(props.returnID == 3 || props.returnID == 4) && (
+					{(props.returnID == 2 || props.returnID == 3 || props.returnID == 4) && (
 						<div>
 							<ListItem
 								button
@@ -288,7 +288,7 @@ export default function MainPage(props) {
 							<Divider />
 						</div>
 					)}
-					{(props.returnID == 3 || props.returnID == 4) && (
+					{(props.returnID == 2 || props.returnID == 3 || props.returnID == 4) && (
 						<div>
 							<ListItem
 								button
@@ -378,6 +378,9 @@ export default function MainPage(props) {
 						<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 							SIAM CMS
 						</Typography>
+						<button onClick={() => props.setSuccess(false)} className="Logout_Main">
+							LOGOUT
+						</button>
 					</Toolbar>
 				</AppBar>
 			</HideOnScroll>
