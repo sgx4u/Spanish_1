@@ -39,7 +39,7 @@ export default class Page4 extends Component {
 		};
 	}
 
-	async componentDidMount() {
+	getData = () => {
 		this.setState({ BackDrop: true });
 		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-alertas-tempranas").then((res) => {
 			let API_Response = res.data;
@@ -62,7 +62,11 @@ export default class Page4 extends Component {
 				});
 			}
 		});
-		await this.setState({ BackDrop: false });
+		this.setState({ BackDrop: false });
+	};
+
+	async componentDidMount() {
+		this.getData();
 	}
 
 	// Alert Messages Trigger function
@@ -81,6 +85,7 @@ export default class Page4 extends Component {
 
 	modalCloseHandler = () => {
 		this.setState({ Agregar_window: false });
+		this.getData();
 	};
 
 	render() {
@@ -181,7 +186,7 @@ export default class Page4 extends Component {
 					<Divider />
 					<DialogContent>
 						<div className="customModal">
-							<Page5 modalCloseHandler={this.modalCloseHandler} />
+							<Page5 getData={this.getData} modalCloseHandler={this.modalCloseHandler} />
 						</div>
 					</DialogContent>
 					<DialogActions>

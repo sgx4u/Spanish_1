@@ -118,7 +118,7 @@ export default class Page5 extends Component {
 	render() {
 		return (
 			<>
-				<Page5Form DropDowns={this.state.DropDowns} modalCloseHandler={this.props.modalCloseHandler} />
+				<Page5Form DropDowns={this.state.DropDowns} getData={this.props.getData} modalCloseHandler={this.props.modalCloseHandler} />
 				{/* Alert Messages */}
 				<Snackbar open={this.state.SnackBar} autoHideDuration={this.state.SnackbarTimeOut} onClose={() => this.SnackbarActions({ key: "Close", variant: "warning" })} anchorOrigin={{ vertical: "top", horizontal: "center" }}>
 					<Alert onClose={() => this.SnackbarActions({ key: "Close" })} severity={this.state.SnackBarVariant} variant="filled">

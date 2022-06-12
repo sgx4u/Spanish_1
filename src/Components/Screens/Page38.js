@@ -68,6 +68,7 @@ export default class Page31 extends Component {
 				});
 			}
 		});
+
 		await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipo-precios").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
@@ -129,15 +130,15 @@ export default class Page31 extends Component {
 			redirect: "follow",
 		};
 
-		fetch(`https://siam-mag-dev.azurewebsites.net/api/pantallas/add-subir-precios-internacional/${Data.nombre}/${Data.Título}/${Data.Descripción}`, requestOptions)
-			.then((response) => response.text())
-			.then((res) => {
-				this.loadDefaultData();
-				this.CancelEditAddWindow();
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		// fetch(`https://siam-mag-dev.azurewebsites.net/api/pantallas/add-subir-precios-internacional/${Data.nombre}/${Data.Título}/${Data.Descripción}`, requestOptions)
+		// 	.then((response) => response.text())
+		// 	.then((res) => {
+		// 		this.loadDefaultData();
+		// 		this.CancelEditAddWindow();
+		// 	})
+		// 	.catch((error) => {
+		// 		console.log(error);
+		// 	});
 		this.setState({ UpdateLoader: false });
 	};
 
@@ -186,7 +187,7 @@ export default class Page31 extends Component {
 			.catch((error) => {
 				console.log(error);
 			});
-		await this.setState({ UpdateLoader: false });
+		this.setState({ UpdateLoader: false });
 	};
 
 	CancelEditAddWindow = async () => {
@@ -196,6 +197,7 @@ export default class Page31 extends Component {
 			ModifiedData: {},
 		});
 	};
+
 	UpdateStatusData = async (id, status) => {
 		await this.setState({ BackDrop: true });
 		await axios.put("https://siam-mag-dev.azurewebsites.net/api/pantallas/update-precio-informe/" + id + "/" + status).then((res) => {
@@ -221,6 +223,7 @@ export default class Page31 extends Component {
 		});
 		await this.setState({ BackDrop: false });
 	};
+
 	onChangeFiles = (e) => {
 		const SelectedFile = e.target.files.length > 0 ? e.target.files[0] : null;
 		const SelectedFileName = e.target.files.length > 0 ? e.target.files[0].name : null;

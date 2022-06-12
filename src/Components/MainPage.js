@@ -59,7 +59,7 @@ HideOnScroll.propTypes = {
 export default function MainPage(props) {
 	let Page = <Page1 />; //<h1>Sample Testing Page</h1>//<ProductEnquiries/>;//<ClientDetails/>; //<TSEnquiries/>//
 	const [SelectedPage, SetSelectedPage] = React.useState(Page);
-	const [selectedMenu, SetSelectedMenu] = React.useState("Tipos_de_Alerta");
+	const [selectedMenu, SetSelectedMenu] = React.useState("Alertas_Tempranas");
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const [state, setState] = React.useState({
 		left: false,
@@ -108,170 +108,204 @@ export default function MainPage(props) {
 			<Divider />
 			<Scrollbar style={{ width: 250 }}>
 				<List style={{ width: 250 }}>
-					<ListItem
-						style={{
-							backgroundColor: selectedMenu === "Tipos_de_Alerta" ? "#d7efd2" : "",
-						}}
-						button
-						key="Tipos_de_Alerta"
-						onClick={() => SelectedMenu("Tipos_de_Alerta")}
-					>
-						<ListItemIcon>
-							<MdArrowForward style={{ height: "30", width: "30" }} />
-						</ListItemIcon>
-						<ListItemText primary="Tipos de Información" />
-					</ListItem>
-					<Divider />
-
-					<ListItem
-						style={{
-							backgroundColor: selectedMenu === "Alertas_Tempranas" ? "#d7efd2" : "",
-						}}
-						button
-						key="Alertas_Tempranas"
-						onClick={() => SelectedMenu("Alertas_Tempranas")}
-					>
-						<ListItemIcon>
-							<MdArrowForward style={{ height: "30", width: "30" }} />
-						</ListItemIcon>
-						<ListItemText primary="Alertas Tempranas" />
-					</ListItem>
-
-					<Divider />
-					<ListItem
-						button
-						style={{
-							backgroundColor: selectedMenu === "Tipos_de_Información" ? "#d7efd2" : "",
-						}}
-						key="Tipos_de_Información"
-						onClick={() => SelectedMenu("Tipos_de_Información")}
-					>
-						<ListItemIcon>
-							<MdArrowForward style={{ height: "30", width: "30" }} />
-						</ListItemIcon>
-						<ListItemText primary="Cadenas Productivas" />
-					</ListItem>
-					<Divider />
-
-					<ListItem
-						button
-						style={{
-							backgroundColor: selectedMenu === "Detalle_de_Información" ? "#d7efd2" : "",
-						}}
-						key="Detalle_de_Información"
-						onClick={() => SelectedMenu("Detalle_de_Información")}
-					>
-						<ListItemIcon>
-							<MdArrowForward style={{ height: "30", width: "30" }} />
-						</ListItemIcon>
-						<ListItemText primary="Información de Cadenas Productivas" />
-					</ListItem>
-					<Divider />
-
-					<ListItem
-						button
-						style={{
-							backgroundColor: selectedMenu === "Sugerencias" ? "#d7efd2" : "",
-						}}
-						key="Sugerencias"
-						onClick={() => SelectedMenu("Sugerencias")}
-					>
-						<ListItemIcon>
-							<MdArrowForward style={{ height: "30", width: "30" }} />
-						</ListItemIcon>
-						<ListItemText primary="Sugerencias" />
-					</ListItem>
-					<Divider />
-
-					<ListItem
-						button
-						style={{
-							backgroundColor: selectedMenu === "Usuarios_App" ? "#d7efd2" : "",
-						}}
-						key="Usuarios_App"
-						onClick={() => SelectedMenu("Usuarios_App")}
-					>
-						<ListItemIcon>
-							<MdArrowForward style={{ height: "30", width: "30" }} />
-						</ListItemIcon>
-						<ListItemText primary="Usuarios del App" />
-					</ListItem>
-					<Divider />
-
-					<ListItem
-						button
-						style={{
-							backgroundColor: selectedMenu === "Usuarios Web" ? "#d7efd2" : "",
-						}}
-						key="Usuarios Web"
-						onClick={() => SelectedMenu("Usuarios Web")}
-					>
-						<ListItemIcon>
-							<MdArrowForward style={{ height: "30", width: "30" }} />
-						</ListItemIcon>
-						<ListItemText primary="Usuarios del CMS" />
-					</ListItem>
-					<Divider />
-
-					<ListItem
-						button
-						style={{
-							backgroundColor: selectedMenu === "Asociación Productores" ? "#d7efd2" : "",
-						}}
-						key="Asociación Productores"
-						onClick={() => SelectedMenu("Asociación Productores")}
-					>
-						<ListItemIcon>
-							<MdArrowForward style={{ height: "30", width: "30" }} />
-						</ListItemIcon>
-						<ListItemText primary="Asociación Productores" />
-					</ListItem>
-					<Divider />
-
-					<ListItem
-						button
-						style={{
-							backgroundColor: selectedMenu === "Certificaciones" ? "#d7efd2" : "",
-						}}
-						key="Certificaciones"
-						onClick={() => SelectedMenu("Certificaciones")}
-					>
-						<ListItemIcon>
-							<MdArrowForward style={{ height: "30", width: "30" }} />
-						</ListItemIcon>
-						<ListItemText primary="Certificaciones de Productores" />
-					</ListItem>
-					<Divider />
-
-					<ListItem
-						button
-						style={{
-							backgroundColor: selectedMenu === "PreciosInternacionales" ? "#d7efd2" : "",
-						}}
-						key="PreciosInternacionales"
-						onClick={() => SelectedMenu("PreciosInternacionales")}
-					>
-						<ListItemIcon>
-							<MdArrowForward style={{ height: "30", width: "30" }} />
-						</ListItemIcon>
-						<ListItemText primary="Precios Internacionales" />
-					</ListItem>
-					<Divider />
-
-					<ListItem
-						button
-						style={{
-							backgroundColor: selectedMenu === "InformesdePrecios" ? "#d7efd2" : "",
-						}}
-						key="InformesdePrecios"
-						onClick={() => SelectedMenu("InformesdePrecios")}
-					>
-						<ListItemIcon>
-							<MdArrowForward style={{ height: "30", width: "30" }} />
-						</ListItemIcon>
-						<ListItemText primary="Informes de Precios" />
-					</ListItem>
-					<Divider />
+					{(props.returnID == 1 || props.returnID == 2 || props.returnID == 3 || props.returnID == 4 || props.returnID == 5 || props.returnID == 6 || props.returnID == 7 || props.returnID == 8 || props.returnID == 9 || props.returnID == 10 || props.returnID == 11) && (
+						<div>
+							<ListItem
+								style={{
+									backgroundColor: selectedMenu === "Alertas_Tempranas" ? "#d7efd2" : "",
+								}}
+								button
+								key="Alertas_Tempranas"
+								onClick={() => SetSelectedMenu("Alertas_Tempranas")}
+							>
+								<ListItemIcon>
+									<MdArrowForward style={{ height: "30", width: "30" }} />
+								</ListItemIcon>
+								<ListItemText primary="Alertas Tempranas" />
+							</ListItem>
+							<Divider />
+						</div>
+					)}
+					{(props.returnID == 2 || props.returnID == 3 || props.returnID == 4 || props.returnID == 5 || props.returnID == 6 || props.returnID == 7) && (
+						<div>
+							<ListItem
+								style={{
+									backgroundColor: selectedMenu === "Tipos_de_Alerta" ? "#d7efd2" : "",
+								}}
+								button
+								key="Tipos_de_Alerta"
+								onClick={() => SetSelectedMenu("Tipos_de_Alerta")}
+							>
+								<ListItemIcon>
+									<MdArrowForward style={{ height: "30", width: "30" }} />
+								</ListItemIcon>
+								<ListItemText primary="Tipos de Información" />
+							</ListItem>
+							<Divider />
+						</div>
+					)}
+					{(props.returnID == 2 || props.returnID == 3 || props.returnID == 4 || props.returnID == 5 || props.returnID == 6 || props.returnID == 7) && (
+						<div>
+							<ListItem
+								button
+								style={{
+									backgroundColor: selectedMenu === "Tipos_de_Información" ? "#d7efd2" : "",
+								}}
+								key="Tipos_de_Información"
+								onClick={() => SetSelectedMenu("Tipos_de_Información")}
+							>
+								<ListItemIcon>
+									<MdArrowForward style={{ height: "30", width: "30" }} />
+								</ListItemIcon>
+								<ListItemText primary="Cadenas Productivas" />
+							</ListItem>
+							<Divider />
+						</div>
+					)}
+					{(props.returnID == 1 || props.returnID == 2 || props.returnID == 3 || props.returnID == 4 || props.returnID == 5 || props.returnID == 6 || props.returnID == 7 || props.returnID == 8 || props.returnID == 9 || props.returnID == 10 || props.returnID == 11) && (
+						<div>
+							<ListItem
+								button
+								style={{
+									backgroundColor: selectedMenu === "Detalle_de_Información" ? "#d7efd2" : "",
+								}}
+								key="Detalle_de_Información"
+								onClick={() => SetSelectedMenu("Detalle_de_Información")}
+							>
+								<ListItemIcon>
+									<MdArrowForward style={{ height: "30", width: "30" }} />
+								</ListItemIcon>
+								<ListItemText primary="Información de Cadenas Productivas" />
+							</ListItem>
+							<Divider />
+						</div>
+					)}
+					{(props.returnID == 1 || props.returnID == 2 || props.returnID == 3 || props.returnID == 4 || props.returnID == 5 || props.returnID == 6 || props.returnID == 7 || props.returnID == 8 || props.returnID == 9 || props.returnID == 10 || props.returnID == 11) && (
+						<div>
+							<ListItem
+								button
+								style={{
+									backgroundColor: selectedMenu === "Sugerencias" ? "#d7efd2" : "",
+								}}
+								key="Sugerencias"
+								onClick={() => SetSelectedMenu("Sugerencias")}
+							>
+								<ListItemIcon>
+									<MdArrowForward style={{ height: "30", width: "30" }} />
+								</ListItemIcon>
+								<ListItemText primary="Sugerencias" />
+							</ListItem>
+							<Divider />
+						</div>
+					)}
+					{(props.returnID == 2 || props.returnID == 3 || props.returnID == 4) && (
+						<div>
+							<ListItem
+								button
+								style={{
+									backgroundColor: selectedMenu === "Usuarios_App" ? "#d7efd2" : "",
+								}}
+								key="Usuarios_App"
+								onClick={() => SetSelectedMenu("Usuarios_App")}
+							>
+								<ListItemIcon>
+									<MdArrowForward style={{ height: "30", width: "30" }} />
+								</ListItemIcon>
+								<ListItemText primary="Usuarios del App" />
+							</ListItem>
+							<Divider />
+						</div>
+					)}
+					{(props.returnID == 3 || props.returnID == 4) && (
+						<div>
+							<ListItem
+								button
+								style={{
+									backgroundColor: selectedMenu === "Usuarios Web" ? "#d7efd2" : "",
+								}}
+								key="Usuarios Web"
+								onClick={() => SetSelectedMenu("Usuarios Web")}
+							>
+								<ListItemIcon>
+									<MdArrowForward style={{ height: "30", width: "30" }} />
+								</ListItemIcon>
+								<ListItemText primary="Usuarios del CMS" />
+							</ListItem>
+							<Divider />
+						</div>
+					)}
+					{(props.returnID == 3 || props.returnID == 4) && (
+						<div>
+							<ListItem
+								button
+								style={{
+									backgroundColor: selectedMenu === "Asociación Productores" ? "#d7efd2" : "",
+								}}
+								key="Asociación Productores"
+								onClick={() => SetSelectedMenu("Asociación Productores")}
+							>
+								<ListItemIcon>
+									<MdArrowForward style={{ height: "30", width: "30" }} />
+								</ListItemIcon>
+								<ListItemText primary="Asociación Productores" />
+							</ListItem>
+							<Divider />
+						</div>
+					)}
+					{(props.returnID == 3 || props.returnID == 4) && (
+						<div>
+							<ListItem
+								button
+								style={{
+									backgroundColor: selectedMenu === "Certificaciones" ? "#d7efd2" : "",
+								}}
+								key="Certificaciones"
+								onClick={() => SetSelectedMenu("Certificaciones")}
+							>
+								<ListItemIcon>
+									<MdArrowForward style={{ height: "30", width: "30" }} />
+								</ListItemIcon>
+								<ListItemText primary="Certificaciones de Productores" />
+							</ListItem>
+							<Divider />
+						</div>
+					)}
+					{(props.returnID == 3 || props.returnID == 4) && (
+						<div>
+							<ListItem
+								button
+								style={{
+									backgroundColor: selectedMenu === "PreciosInternacionales" ? "#d7efd2" : "",
+								}}
+								key="PreciosInternacionales"
+								onClick={() => SetSelectedMenu("PreciosInternacionales")}
+							>
+								<ListItemIcon>
+									<MdArrowForward style={{ height: "30", width: "30" }} />
+								</ListItemIcon>
+								<ListItemText primary="Precios Internacionales" />
+							</ListItem>
+							<Divider />
+						</div>
+					)}
+					{(props.returnID == 3 || props.returnID == 4) && (
+						<div>
+							<ListItem
+								button
+								style={{
+									backgroundColor: selectedMenu === "InformesdePrecios" ? "#d7efd2" : "",
+								}}
+								key="InformesdePrecios"
+								onClick={() => SetSelectedMenu("InformesdePrecios")}
+							>
+								<ListItemIcon>
+									<MdArrowForward style={{ height: "30", width: "30" }} />
+								</ListItemIcon>
+								<ListItemText primary="Informes de Precios" />
+							</ListItem>
+							<Divider />
+						</div>
+					)}
 				</List>
 			</Scrollbar>
 		</>
@@ -281,11 +315,11 @@ export default function MainPage(props) {
 	const SelectedMenu = async (Menu) => {
 		// alert(Menu)
 		switch (Menu) {
-			case "Tipos_de_Alerta":
-				SetSelectedPage(<Page1 />);
-				break;
 			case "Alertas_Tempranas":
 				SetSelectedPage(<Page4 />);
+				break;
+			case "Tipos_de_Alerta":
+				SetSelectedPage(<Page1 />);
 				break;
 			case "Tipos_de_Información":
 				SetSelectedPage(<Page9 />); //10,11
@@ -319,8 +353,12 @@ export default function MainPage(props) {
 				break;
 		}
 		await setState({ left: false });
-		await SetSelectedMenu(Menu);
+		// await SetSelectedMenu(Menu);
 	};
+
+	React.useEffect(() => {
+		SelectedMenu(selectedMenu);
+	}, [selectedMenu]);
 
 	return (
 		<React.Fragment>

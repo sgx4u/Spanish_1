@@ -2,7 +2,7 @@ import { Grid, TextField, Paper, Button } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { AuthApis } from "../../httpServices/AuthApis";
 
-const Login = () => {
+const Login = ({ setSuccess, setReturnID }) => {
 	const {
 		register,
 		handleSubmit,
@@ -13,6 +13,12 @@ const Login = () => {
 	const onSubmit = async (data) => {
 		const authApiObject = new AuthApis();
 		const loginApiResponse = await authApiObject.loginHandlerApi(data);
+		setSuccess(loginApiResponse.success);
+		setReturnID(
+			loginApiResponse.data.body.map((info) => {
+				return info.idUsuario;
+			})
+		);
 		console.log("loginApiResponse <<<<@@@>>>>>", loginApiResponse);
 	};
 
