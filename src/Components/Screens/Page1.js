@@ -52,7 +52,6 @@ export default class Page1 extends Component {
 		await this.setState({ BackDrop: true });
 		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipos-de-alertas").then((res) => {
 			let API_Response = res.data;
-			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
 				this.SnackbarActions({
 					key: "Open",

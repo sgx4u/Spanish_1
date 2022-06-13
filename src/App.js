@@ -1,11 +1,12 @@
 import { useState } from "react";
+
 import "./App.css";
 import MainPage from "./Components/MainPage";
 import Login from "./Components/Screens/Login/Login";
 
 function App() {
 	const [success, setSuccess] = useState(false);
-	const [returnID, setReturnID] = useState();
+	const [filterPages, setFilterPages] = useState();
 
 	// useEffect(() => {
 	// 	const response = localStorage.getItem("login");
@@ -13,7 +14,7 @@ function App() {
 	// 	return () => {};
 	// }, []);
 
-	return success ? <MainPage returnID={returnID} setSuccess={setSuccess} /> : <Login setSuccess={setSuccess} setReturnID={setReturnID} />;
+	return success ? <MainPage setSuccess={setSuccess} filterPages={filterPages} /> : <Login setSuccess={setSuccess} setFilterPages={setFilterPages} />;
 }
 
 export default App;

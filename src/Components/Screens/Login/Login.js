@@ -1,8 +1,10 @@
 import { Grid, TextField, Paper, Button } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { AuthApis } from "../../httpServices/AuthApis";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const Login = ({ setSuccess, setReturnID }) => {
+const Login = ({ setSuccess, setFilterPages }) => {
 	const {
 		register,
 		handleSubmit,
@@ -10,17 +12,50 @@ const Login = ({ setSuccess, setReturnID }) => {
 		formState: { errors },
 	} = useForm();
 
+	const [returnID, setReturnID] = useState();
+	const [storeData, setStoreData] = useState();
+
 	const onSubmit = async (data) => {
 		const authApiObject = new AuthApis();
 		const loginApiResponse = await authApiObject.loginHandlerApi(data);
-		setSuccess(loginApiResponse.success);
 		setReturnID(
 			loginApiResponse.data.body.map((info) => {
 				return info.idUsuario;
 			})
 		);
-		console.log("loginApiResponse <<<<@@@>>>>>", loginApiResponse);
 	};
+
+	const getPermission = () => {
+		axios.get(`https://siam-mag-dev.azurewebsites.net/api/pantallas/get-permission/${returnID}`).then((res) => {
+			let API_Response = res.data;
+			if (API_Response === null || API_Response === undefined) {
+				console.log("Error", API_Response);
+			} else {
+				setStoreData(res);
+			}
+		});
+	};
+
+	const findPages = (storeData) => {
+		let filteredData = [];
+		storeData.data.body.map((info) => {
+			return filteredData.push(info.titulo);
+		});
+		setFilterPages(filteredData);
+		setSuccess(true);
+	};
+
+	useEffect(() => {
+		if (returnID != undefined || returnID != null) {
+			getPermission();
+		}
+	}, [returnID]);
+
+	useEffect(() => {
+		if (storeData != undefined || storeData != null) {
+			findPages(storeData);
+		}
+	}, [storeData]);
 
 	return (
 		<div className="LoginPage">

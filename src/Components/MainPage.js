@@ -18,6 +18,9 @@ import { GrTest } from "react-icons/gr";
 import { MdVerifiedUser, MdArrowForward } from "react-icons/md";
 import { FaSitemap, FaOpencart, FaRegBuilding, FaArrowRight } from "react-icons/fa";
 
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 import Page1 from "./Screens/Page1";
 import Page2 from "./Screens/Page2";
 import Page3 from "./Screens/Page3";
@@ -58,10 +61,11 @@ HideOnScroll.propTypes = {
 
 export default function MainPage(props) {
 	let Page = <Page1 />; //<h1>Sample Testing Page</h1>//<ProductEnquiries/>;//<ClientDetails/>; //<TSEnquiries/>//
-	const [SelectedPage, SetSelectedPage] = React.useState(Page);
-	const [selectedMenu, SetSelectedMenu] = React.useState("Alertas_Tempranas");
-	const [anchorEl, setAnchorEl] = React.useState(null);
-	const [state, setState] = React.useState({
+
+	const [SelectedPage, SetSelectedPage] = useState(Page);
+	const [selectedMenu, SetSelectedMenu] = useState();
+	const [anchorEl, setAnchorEl] = useState(null);
+	const [state, setState] = useState({
 		left: false,
 	});
 
@@ -75,6 +79,62 @@ export default function MainPage(props) {
 	const toggleDrawer = (anchor, open) => (event) => {
 		setState({ ...state, [anchor]: open });
 	};
+
+	const firstPage = () => {
+		for (let a = 0; a < props.filterPages.length; a++) {
+			switch (props.filterPages[a]) {
+				case "Tipos de Información": {
+					SetSelectedMenu("Tipos_de_Alerta");
+					break;
+				}
+				case "Alertas Tempranas": {
+					SetSelectedMenu("Alertas_Tempranas");
+					break;
+				}
+				case "Cadenas Productivas": {
+					SetSelectedMenu("Tipos_de_Información");
+					break;
+				}
+				case "Información de Cadenas Productivas": {
+					SetSelectedMenu("Detalle_de_Información");
+					break;
+				}
+				case "Sugerencias": {
+					SetSelectedMenu("Sugerencias");
+					break;
+				}
+				case "Usuarios del App": {
+					SetSelectedMenu("Usuarios_App");
+					break;
+				}
+				case "Usuarios del CMS": {
+					SetSelectedMenu("Usuarios Web");
+					break;
+				}
+				case "Directorio de Productores": {
+					SetSelectedMenu("Asociación Productores");
+					break;
+				}
+				case "Certificaciones de Productores": {
+					SetSelectedMenu("Certificaciones");
+					break;
+				}
+				case "Precios Internacionales": {
+					SetSelectedMenu("PreciosInternacionales");
+					break;
+				}
+				case "Informes de Precios": {
+					SetSelectedMenu("InformesdePrecios");
+					break;
+				}
+			}
+			return;
+		}
+	};
+
+	useEffect(() => {
+		firstPage();
+	}, []);
 
 	const DrawerContent = (
 		<>
@@ -108,25 +168,7 @@ export default function MainPage(props) {
 			<Divider />
 			<Scrollbar style={{ width: 250 }}>
 				<List style={{ width: 250 }}>
-					{(props.returnID == 1 || props.returnID == 2 || props.returnID == 3 || props.returnID == 4 || props.returnID == 5 || props.returnID == 6 || props.returnID == 7 || props.returnID == 8 || props.returnID == 9 || props.returnID == 10 || props.returnID == 11) && (
-						<div>
-							<ListItem
-								style={{
-									backgroundColor: selectedMenu === "Alertas_Tempranas" ? "#d7efd2" : "",
-								}}
-								button
-								key="Alertas_Tempranas"
-								onClick={() => SetSelectedMenu("Alertas_Tempranas")}
-							>
-								<ListItemIcon>
-									<MdArrowForward style={{ height: "30", width: "30" }} />
-								</ListItemIcon>
-								<ListItemText primary="Alertas Tempranas" />
-							</ListItem>
-							<Divider />
-						</div>
-					)}
-					{(props.returnID == 2 || props.returnID == 3 || props.returnID == 4 || props.returnID == 5 || props.returnID == 6 || props.returnID == 7) && (
+					{props.filterPages.find((info) => info === "Tipos de Información") && (
 						<div>
 							<ListItem
 								style={{
@@ -144,7 +186,25 @@ export default function MainPage(props) {
 							<Divider />
 						</div>
 					)}
-					{(props.returnID == 2 || props.returnID == 3 || props.returnID == 4 || props.returnID == 5 || props.returnID == 6 || props.returnID == 7) && (
+					{props.filterPages.find((info) => info === "Alertas Tempranas") && (
+						<div>
+							<ListItem
+								style={{
+									backgroundColor: selectedMenu === "Alertas_Tempranas" ? "#d7efd2" : "",
+								}}
+								button
+								key="Alertas_Tempranas"
+								onClick={() => SetSelectedMenu("Alertas_Tempranas")}
+							>
+								<ListItemIcon>
+									<MdArrowForward style={{ height: "30", width: "30" }} />
+								</ListItemIcon>
+								<ListItemText primary="Alertas Tempranas" />
+							</ListItem>
+							<Divider />
+						</div>
+					)}
+					{props.filterPages.find((info) => info === "Cadenas Productivas") && (
 						<div>
 							<ListItem
 								button
@@ -162,7 +222,7 @@ export default function MainPage(props) {
 							<Divider />
 						</div>
 					)}
-					{(props.returnID == 1 || props.returnID == 2 || props.returnID == 3 || props.returnID == 4 || props.returnID == 5 || props.returnID == 6 || props.returnID == 7 || props.returnID == 8 || props.returnID == 9 || props.returnID == 10 || props.returnID == 11) && (
+					{props.filterPages.find((info) => info === "Información de Cadenas Productivas") && (
 						<div>
 							<ListItem
 								button
@@ -180,7 +240,7 @@ export default function MainPage(props) {
 							<Divider />
 						</div>
 					)}
-					{(props.returnID == 1 || props.returnID == 2 || props.returnID == 3 || props.returnID == 4 || props.returnID == 5 || props.returnID == 6 || props.returnID == 7 || props.returnID == 8 || props.returnID == 9 || props.returnID == 10 || props.returnID == 11) && (
+					{props.filterPages.find((info) => info === "Sugerencias") && (
 						<div>
 							<ListItem
 								button
@@ -198,7 +258,7 @@ export default function MainPage(props) {
 							<Divider />
 						</div>
 					)}
-					{(props.returnID == 2 || props.returnID == 3 || props.returnID == 4) && (
+					{props.filterPages.find((info) => info === "Usuarios del App") && (
 						<div>
 							<ListItem
 								button
@@ -216,7 +276,7 @@ export default function MainPage(props) {
 							<Divider />
 						</div>
 					)}
-					{(props.returnID == 2 || props.returnID == 3 || props.returnID == 4) && (
+					{props.filterPages.find((info) => info === "Usuarios del CMS") && (
 						<div>
 							<ListItem
 								button
@@ -234,7 +294,7 @@ export default function MainPage(props) {
 							<Divider />
 						</div>
 					)}
-					{(props.returnID == 2 || props.returnID == 3 || props.returnID == 4) && (
+					{props.filterPages.find((info) => info === "Directorio de Productores") && (
 						<div>
 							<ListItem
 								button
@@ -252,7 +312,7 @@ export default function MainPage(props) {
 							<Divider />
 						</div>
 					)}
-					{(props.returnID == 2 || props.returnID == 3 || props.returnID == 4) && (
+					{props.filterPages.find((info) => info === "Certificaciones de Productores") && (
 						<div>
 							<ListItem
 								button
@@ -270,7 +330,7 @@ export default function MainPage(props) {
 							<Divider />
 						</div>
 					)}
-					{(props.returnID == 2 || props.returnID == 3 || props.returnID == 4) && (
+					{props.filterPages.find((info) => info === "Precios Internacionales") && (
 						<div>
 							<ListItem
 								button
@@ -288,7 +348,7 @@ export default function MainPage(props) {
 							<Divider />
 						</div>
 					)}
-					{(props.returnID == 2 || props.returnID == 3 || props.returnID == 4) && (
+					{props.filterPages.find((info) => info === "Informes de Precios") && (
 						<div>
 							<ListItem
 								button
@@ -315,11 +375,11 @@ export default function MainPage(props) {
 	const SelectedMenu = async (Menu) => {
 		// alert(Menu)
 		switch (Menu) {
-			case "Alertas_Tempranas":
-				SetSelectedPage(<Page4 />);
-				break;
 			case "Tipos_de_Alerta":
 				SetSelectedPage(<Page1 />);
+				break;
+			case "Alertas_Tempranas":
+				SetSelectedPage(<Page4 />);
 				break;
 			case "Tipos_de_Información":
 				SetSelectedPage(<Page9 />); //10,11
@@ -356,7 +416,7 @@ export default function MainPage(props) {
 		// await SetSelectedMenu(Menu);
 	};
 
-	React.useEffect(() => {
+	useEffect(() => {
 		SelectedMenu(selectedMenu);
 	}, [selectedMenu]);
 
