@@ -40,7 +40,7 @@ export default class Page2 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Tipos de Alertas</Typography>
+						<Typography variant="h4">Tipos de Alertas</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Typography variant="h6">Agregar Tipo Alerta</Typography>

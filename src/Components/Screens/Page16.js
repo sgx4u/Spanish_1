@@ -92,7 +92,7 @@ export default class Page16 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Usuario del APP</Typography>
+						<Typography variant="h4">Usuario del APP</Typography>
 					</Grid>
 
 					<Grid item xs={12}>
@@ -110,7 +110,7 @@ export default class Page16 extends Component {
 											Nombre
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											Correo Electrónico
+											Correo electrónico
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
 											Celular
@@ -158,14 +158,14 @@ export default class Page16 extends Component {
 				</Grid>
 
 				<Dialog open={this.state.Edit_window} onClose={() => this.setState({ Edit_window: false })} fullWidth size="lg">
-					<DialogTitle>Mantenimiento de Usuario del APP</DialogTitle>
+					<DialogTitle>Usuario del APP</DialogTitle>
 					<Divider />
 					<DialogContent>
 						<Grid container spacing={2}>
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5} sm={3}>
-										<Typography>Nombre de Usuario App:</Typography>
+										<Typography>Nombre de Usuario:</Typography>
 									</Grid>
 									<Grid item xs={7} sm={6}>
 										<TextField fullWidth value={this.state.selectedData.segundoNombre} />

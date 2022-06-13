@@ -83,7 +83,7 @@ export default function MainPage(props) {
 	const firstPage = () => {
 		for (let a = 0; a < props.filterPages.length; a++) {
 			switch (props.filterPages[a]) {
-				case "Tipos de Información": {
+				case "Categorías": {
 					SetSelectedMenu("Tipos_de_Alerta");
 					break;
 				}
@@ -95,24 +95,24 @@ export default function MainPage(props) {
 					SetSelectedMenu("Tipos_de_Información");
 					break;
 				}
-				case "Información de Cadenas Productivas": {
+				case "Noticias": {
 					SetSelectedMenu("Detalle_de_Información");
 					break;
 				}
-				case "Sugerencias": {
+				case "Comentarios y sugerencias": {
 					SetSelectedMenu("Sugerencias");
 					break;
 				}
-				case "Usuarios del App": {
+				case "Usuarios App": {
 					SetSelectedMenu("Usuarios_App");
 					break;
 				}
-				case "Usuarios del CMS": {
+				case "Usuarios CMS": {
 					SetSelectedMenu("Usuarios Web");
 					break;
 				}
 				case "Directorio de Productores": {
-					SetSelectedMenu("Asociación Productores");
+					SetSelectedMenu("Directorio de Productores");
 					break;
 				}
 				case "Certificaciones de Productores": {
@@ -168,7 +168,7 @@ export default function MainPage(props) {
 			<Divider />
 			<Scrollbar style={{ width: 250 }}>
 				<List style={{ width: 250 }}>
-					{props.filterPages.find((info) => info === "Tipos de Información") && (
+					{props.filterPages.find((info) => info === "Categorías") && (
 						<div>
 							<ListItem
 								style={{
@@ -181,7 +181,7 @@ export default function MainPage(props) {
 								<ListItemIcon>
 									<MdArrowForward style={{ height: "30", width: "30" }} />
 								</ListItemIcon>
-								<ListItemText primary="Tipos de Información" />
+								<ListItemText primary="Categorías" />
 							</ListItem>
 							<Divider />
 						</div>
@@ -222,7 +222,7 @@ export default function MainPage(props) {
 							<Divider />
 						</div>
 					)}
-					{props.filterPages.find((info) => info === "Información de Cadenas Productivas") && (
+					{props.filterPages.find((info) => info === "Noticias") && (
 						<div>
 							<ListItem
 								button
@@ -235,12 +235,12 @@ export default function MainPage(props) {
 								<ListItemIcon>
 									<MdArrowForward style={{ height: "30", width: "30" }} />
 								</ListItemIcon>
-								<ListItemText primary="Información de Cadenas Productivas" />
+								<ListItemText primary="Noticias" />
 							</ListItem>
 							<Divider />
 						</div>
 					)}
-					{props.filterPages.find((info) => info === "Sugerencias") && (
+					{props.filterPages.find((info) => info === "Comentarios y sugerencias") && (
 						<div>
 							<ListItem
 								button
@@ -253,12 +253,12 @@ export default function MainPage(props) {
 								<ListItemIcon>
 									<MdArrowForward style={{ height: "30", width: "30" }} />
 								</ListItemIcon>
-								<ListItemText primary="Sugerencias" />
+								<ListItemText primary="Comentarios y sugerencias" />
 							</ListItem>
 							<Divider />
 						</div>
 					)}
-					{props.filterPages.find((info) => info === "Usuarios del App") && (
+					{props.filterPages.find((info) => info === "Usuarios App") && (
 						<div>
 							<ListItem
 								button
@@ -271,12 +271,12 @@ export default function MainPage(props) {
 								<ListItemIcon>
 									<MdArrowForward style={{ height: "30", width: "30" }} />
 								</ListItemIcon>
-								<ListItemText primary="Usuarios del App" />
+								<ListItemText primary="Usuarios App" />
 							</ListItem>
 							<Divider />
 						</div>
 					)}
-					{props.filterPages.find((info) => info === "Usuarios del CMS") && (
+					{props.filterPages.find((info) => info === "Usuarios CMS") && (
 						<div>
 							<ListItem
 								button
@@ -289,7 +289,7 @@ export default function MainPage(props) {
 								<ListItemIcon>
 									<MdArrowForward style={{ height: "30", width: "30" }} />
 								</ListItemIcon>
-								<ListItemText primary="Usuarios del CMS" />
+								<ListItemText primary="Usuarios CMS" />
 							</ListItem>
 							<Divider />
 						</div>
@@ -299,15 +299,15 @@ export default function MainPage(props) {
 							<ListItem
 								button
 								style={{
-									backgroundColor: selectedMenu === "Asociación Productores" ? "#d7efd2" : "",
+									backgroundColor: selectedMenu === "Directorio de Productores" ? "#d7efd2" : "",
 								}}
-								key="Asociación Productores"
-								onClick={() => SetSelectedMenu("Asociación Productores")}
+								key="Directorio de Productores"
+								onClick={() => SetSelectedMenu("Directorio de Productores")}
 							>
 								<ListItemIcon>
 									<MdArrowForward style={{ height: "30", width: "30" }} />
 								</ListItemIcon>
-								<ListItemText primary="Asociación Productores" />
+								<ListItemText primary="Directorio de Productores" />
 							</ListItem>
 							<Divider />
 						</div>
@@ -396,7 +396,7 @@ export default function MainPage(props) {
 			case "Usuarios Web":
 				SetSelectedPage(<Page18 />); // 19,20
 				break;
-			case "Asociación Productores":
+			case "Directorio de Productores":
 				SetSelectedPage(<Page21 />); // 21 to 30
 				break;
 			case "Certificaciones":
@@ -439,7 +439,7 @@ export default function MainPage(props) {
 							SIAM CMS
 						</Typography>
 						<button onClick={() => props.setSuccess(false)} className="Logout_Main">
-							LOGOUT
+							SALIR
 						</button>
 					</Toolbar>
 				</AppBar>

@@ -243,7 +243,7 @@ export default class Page9 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Cadenas Productivas</Typography>
+						<Typography variant="h4">Cadenas Productivas</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Button
@@ -267,13 +267,13 @@ export default class Page9 extends Component {
 								<TableHead>
 									<TableRow>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											ID Información
+											ID
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
 											Nombre
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											Imagen Nombre
+											Nombre archivo
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
 											Imagen
@@ -356,7 +356,7 @@ export default class Page9 extends Component {
 										<Grid item xs={7}>
 											<TextField variant="outlined" select value={this.state.activo} fullWidth onChange={(e) => this.setState({ activo: e.target.value })}>
 												<MenuItem value={1}>Activo</MenuItem>
-												<MenuItem value={0}>InActivo</MenuItem>
+												<MenuItem value={0}>Inactivo</MenuItem>
 											</TextField>
 										</Grid>
 									</Grid>

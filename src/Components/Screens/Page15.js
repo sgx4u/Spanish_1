@@ -176,7 +176,7 @@ export default class Page15 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Sugerencias</Typography>
+						<Typography variant="h4">Comentarios y sugerencias</Typography>
 					</Grid>
 					<Grid item xs={6}>
 						<Grid item xs={12} sm={6}>
@@ -200,7 +200,7 @@ export default class Page15 extends Component {
 								<TableHead>
 									<TableRow>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											ID Sugerencia
+											ID
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
 											Correo Electrónico

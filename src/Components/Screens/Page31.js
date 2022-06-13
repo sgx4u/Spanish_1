@@ -136,7 +136,7 @@ export default class Page31 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Certificaciones de Productores</Typography>
+						<Typography variant="h4">Certificaciones de Productores</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Button color="primary" variant="outlined" style={{ float: "right" }} onClick={() => this.setState({ EditInfo: false, AddNew: true, Add_Edit_window: true })}>

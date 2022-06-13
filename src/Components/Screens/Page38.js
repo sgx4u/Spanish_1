@@ -240,7 +240,7 @@ export default class Page31 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Matenimiento de Informe de Precios</Typography>
+						<Typography variant="h4">Subir informes de precios</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Button
@@ -264,7 +264,7 @@ export default class Page31 extends Component {
 								<TableHead>
 									<TableRow>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											ID Informe de Precio
+											ID
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
 											Titulo
@@ -288,7 +288,7 @@ export default class Page31 extends Component {
 													<TableCell align="center">
 														<TextField select label="" value={data.activo} onChange={(e) => this.UpdateStatusData(data.idRetrospectiva, e.target.value)}>
 															<MenuItem value={1}>Activo</MenuItem>
-															<MenuItem value={0}>InActivo</MenuItem>
+															<MenuItem value={0}>Inactivo</MenuItem>
 														</TextField>
 													</TableCell>
 												</TableRow>
@@ -320,14 +320,14 @@ export default class Page31 extends Component {
 					fullWidth
 					size="lg"
 				>
-					<DialogTitle>Subir Archivo</DialogTitle>
+					<DialogTitle>Subir archivo</DialogTitle>
 					<Divider />
 					<DialogContent>
 						<Grid container spacing={2}>
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>
-										<Typography variant="h6">Tipo de Precio:</Typography>
+										<Typography variant="h6">Tipo de informe:</Typography>
 									</Grid>
 									<Grid item xs={7}>
 										<TextField variant="outlined" select fullWidth value={this.state.ModifiedData.nombre} onChange={(e) => this.setState({ ModifiedData: { ...this.state.ModifiedData, nombre: e.target.value } })}>

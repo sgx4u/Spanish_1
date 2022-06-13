@@ -93,7 +93,7 @@ export default class Page4 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Alertas Tempranas</Typography>
+						<Typography variant="h4">Alertas Tempranas</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Button color="primary" variant="outlined" style={{ float: "right" }} onClick={() => this.setState({ Agregar_window: true })}>
@@ -118,7 +118,7 @@ export default class Page4 extends Component {
 											Mensaje
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											Affectation
+											Destino
 										</TableCell>
 										{/* <TableCell style={{backgroundColor:"#a4b2b0"}} align="center">Departamento</TableCell>
                                         <TableCell style={{backgroundColor:"#a4b2b0"}} align="center">Municipio</TableCell> */}

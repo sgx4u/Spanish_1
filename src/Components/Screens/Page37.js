@@ -130,7 +130,7 @@ export default class Page31 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Subir Archivo de Precios Internacionales</Typography>
+						<Typography variant="h4">Subir archivo de "Precios Internacionales"</Typography>
 					</Grid>
 
 					{/* <Grid item xs={12}>
@@ -173,7 +173,7 @@ export default class Page31 extends Component {
 					<Grid item xs={12}>
 						<Grid container spacing={2}>
 							<Grid item xs={5}>
-								<Typography variant="h6">Subir Archivo:</Typography>
+								<Typography variant="h6">Subir archivo:</Typography>
 							</Grid>
 							<Grid item xs={7}>
 								<TextField variant="outlined" id="FileElement" fullWidth type="file" onChange={(e) => this.onChangeFiles(e)} />

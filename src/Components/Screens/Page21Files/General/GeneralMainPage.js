@@ -258,22 +258,22 @@ export default class GeneralMainPage extends Component {
 											Nombre\Productor
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											telephono
+											Teléfono
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											direccion
+											Direccion
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											whatsapp
+											Whatsapp
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											facebook
+											Facebook
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											instagram
+											Instagram
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											activo
+											Estado
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center"></TableCell>
 									</TableRow>

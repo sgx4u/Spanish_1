@@ -155,7 +155,7 @@ export default class Page18 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Usuario del CMS</Typography>
+						<Typography variant="h4">Usuario del CMS</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Button color="primary" variant="outlined" style={{ float: "right" }} onClick={() => this.setState({ Add_Edit_window: true, AddNew: true, EditInfo: false })}>

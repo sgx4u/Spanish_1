@@ -178,7 +178,7 @@ export default class Page1 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Tipos de Información</Typography>
+						<Typography variant="h4">Categorias</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Button

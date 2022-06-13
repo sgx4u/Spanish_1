@@ -95,7 +95,7 @@ export default class Page23 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Certifcaciones de Productores</Typography>
+						<Typography variant="h4">Certificaciones de productores</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						//Put Search Bar here //Put dropdown here{" "}

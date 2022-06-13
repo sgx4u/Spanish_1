@@ -40,12 +40,12 @@ export default class Page11 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Tipos de Información</Typography>
+						<Typography variant="h4">Categorías</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						{/* //* Edited - Subhajit Ghosh */}
 						{/* <Typography variant="h5">Editar Tipo de Informacion</Typography> */}
-						<Typography variant="h5">Editar Tipo de Información</Typography>
+						<Typography variant="h5">Editar categoría</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Grid container spacing={2}>

@@ -40,10 +40,10 @@ export default class Page10 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Tipos de Información</Typography>
+						<Typography variant="h4">Categorías</Typography>
 					</Grid>
 					<Grid item xs={12}>
-						<Typography variant="h5">Agregar Tipo de Información</Typography>
+						<Typography variant="h5">Agregar categoría</Typography>
 					</Grid>
 					<Grid item xs={4} sm={2}>
 						<Typography variant="h6">Nombre:</Typography>

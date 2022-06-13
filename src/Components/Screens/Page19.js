@@ -40,7 +40,7 @@ export default class Page19 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de Usuario Web</Typography>
+						<Typography variant="h4">Usuarios CMS</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Typography variant="h5">Agregar Usuario Web</Typography>

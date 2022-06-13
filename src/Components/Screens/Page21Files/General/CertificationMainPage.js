@@ -198,7 +198,7 @@ export default class CertificationMainPage extends Component {
 							<Grid item>
 								<Paper sx={{ width: 200 }}>
 									<center>
-										<Typography>Certifcaciones no Asociados</Typography>
+										<Typography>Certificaciones no asociadas</Typography>
 									</center>
 									{/* <Divider/> */}
 									<List dense component="div" role="list">
@@ -259,7 +259,7 @@ export default class CertificationMainPage extends Component {
 								<Paper sx={{ width: 200 }}>
 									{/* <Paper sx={{ width: 200, height: 230, overflow: 'auto' }}> */}
 									<center>
-										<Typography>Certifcaciones Asociados</Typography>
+										<Typography>Certificaciones asociadas</Typography>
 									</center>
 									{/* <Divider/> */}
 									<List dense component="div" role="list">

@@ -40,7 +40,7 @@ export default class Page13 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de noticias de Cadenas Productivas</Typography>
+						<Typography variant="h4">Noticias</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Typography variant="h5">Editar noticia</Typography>
@@ -48,7 +48,7 @@ export default class Page13 extends Component {
 					<Grid item xs={12}>
 						<Grid container spacing={2}>
 							<Grid item xs={5} sm={2}>
-								<Typography variant="h6">Información:</Typography>
+								<Typography variant="h6">Cadena productiva:</Typography>
 							</Grid>
 							<Grid item xs={7} sm={3}>
 								<TextField variant="outlined" fullWidth select value="Información 1">

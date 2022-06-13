@@ -177,7 +177,7 @@ export default class Page12 extends Component {
 			<>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<Typography variant="h4">Mantenimiento de noticias de Cadenas Productivas</Typography>
+						<Typography variant="h4">Noticias</Typography>
 					</Grid>
 					<Grid item xs={12}>
 						<Button color="primary" variant="outlined" style={{ float: "right" }} onClick={() => this.setState({ Add_Edit_window: true, EditInfo: false, AddNew: true, SelectedData: {} })}>
@@ -250,7 +250,7 @@ export default class Page12 extends Component {
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>
-										<Typography variant="h6">Cadenas Productivas:</Typography>
+										<Typography variant="h6">Cadenas Productiva:</Typography>
 									</Grid>
 									<Grid item xs={7}>
 										<TextField variant="outlined" defaultValue={"Seleccione Cadena Productiva"} fullWidth select value={this.state.SelectedData.idInformacion} onChange={(e) => this.InputDataChanges("idInformacion", e.target.value)}>
@@ -325,7 +325,7 @@ export default class Page12 extends Component {
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>
-										<Typography variant="h6">Tipos de Información:</Typography>
+										<Typography variant="h6">Categoría:</Typography>
 									</Grid>
 									<Grid item xs={7}>
 										<TextField variant="outlined" fullWidth select defaultValue={"Seleccione Tipo Información"} value={this.state.SelectedData.idTipoAlerta} onChange={(e) => this.InputDataChanges("idTipoAlerta", e.target.value)}>
@@ -350,7 +350,7 @@ export default class Page12 extends Component {
 										<Grid item xs={7}>
 											<TextField variant="outlined" fullWidth select value={this.state.SelectedData.activo} onChange={(e) => this.InputDataChanges("activo", e.target.value)}>
 												<MenuItem value={1}>Activo</MenuItem>
-												<MenuItem value={0}>InActivo</MenuItem>
+												<MenuItem value={0}>Inactivo</MenuItem>
 											</TextField>
 										</Grid>
 									</Grid>
