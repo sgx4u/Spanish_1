@@ -27,7 +27,7 @@ import axios from "axios";
 export class AuthApis {
 	loginHandlerApi = async (data) => {
 		try {
-			const response = await axios.get(`https://siam-mag-dev.azurewebsites.net/api/pantallas/get-login/${data.userName}/${data.password}`);
+			const response = await axios.get(`https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-login/${data.userName}/${data.password}`);
 			return { success: true, data: response.data, status: response.status };
 		} catch (error) {
 			if (error.response)

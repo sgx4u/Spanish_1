@@ -24,7 +24,7 @@ const Page5Form = ({ DropDowns, modalCloseHandler }) => {
 			tipoDeAlerta,
 			afectacion,
 		});
-		axios.post(`https://siam-mag-dev.azurewebsites.net/api/pantallas/add-alertas-tempranas/${textoAlerta}/${DescripciónDeAlerta}/1/1/1%2C2%2C3%2C4`).then((result) => console.log(console.log("Response", result)));
+		axios.post(`https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-alertas-tempranas/${textoAlerta}/${DescripciónDeAlerta}/1/1/1%2C2%2C3%2C4`).then((result) => console.log(console.log("Response", result)));
 		modalCloseHandler();
 		this.props.getData();
 	};

@@ -67,7 +67,7 @@ export default class Page15 extends Component {
 
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
-		// await axios.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-Detalle-de-Informacion/"+data.idInformacion+"/"+data.nombreInformacionDetalle+"/"+data.descripcion+"/"+data.link+"/"+data.idTipoAlerta,formData,config).then(res => {
+		// await axios.post("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-Detalle-de-Informacion/"+data.idInformacion+"/"+data.nombreInformacionDetalle+"/"+data.descripcion+"/"+data.link+"/"+data.idTipoAlerta,formData,config).then(res => {
 		//     let API_Response = res.data;
 		//     console.log(API_Response)
 		//     if(API_Response === null || API_Response === undefined){
@@ -81,7 +81,7 @@ export default class Page15 extends Component {
 		// }).catch(error => {
 		//     console.log(error);
 		// });
-		// await axios.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-Detalle-de-Informacion/"+data.idInformacion+"/"+data.nombreInformacionDetalle+"/"+data.descripcion+"/"+data.link+"/"+data.idTipoAlerta,formData,config).then(res => {
+		// await axios.post("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-Detalle-de-Informacion/"+data.idInformacion+"/"+data.nombreInformacionDetalle+"/"+data.descripcion+"/"+data.link+"/"+data.idTipoAlerta,formData,config).then(res => {
 		//     let API_Response = res.data;
 		//     console.log(API_Response)
 		//     if(API_Response === null || API_Response === undefined){
@@ -95,7 +95,7 @@ export default class Page15 extends Component {
 		// }).catch(error => {
 		//     console.log(error);
 		// });
-		let [DefaultData, FilterData] = await Promise.all([axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-Sugerencias/1"), axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-filtro-Sugerencias")]);
+		let [DefaultData, FilterData] = await Promise.all([axios.get("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-Sugerencias/1"), axios.get("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-filtro-Sugerencias")]);
 		DefaultData = DefaultData.data;
 		FilterData = FilterData.data;
 		console.log(DefaultData, FilterData);
@@ -125,7 +125,7 @@ export default class Page15 extends Component {
 	DropdownloadData = async (value) => {
 		this.setState({ SelectedDropdownValue: value });
 		await axios
-			.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-Sugerencias/" + value)
+			.get("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-Sugerencias/" + value)
 			.then((res) => {
 				this.setState({ BackDrop: true });
 				let API_Response = res.data;
@@ -156,7 +156,7 @@ export default class Page15 extends Component {
 
 	checkBoxHandler = async (idSugerencia, leido) => {
 		try {
-			const result = await axios.put(`https://siam-mag-dev.azurewebsites.net/api/pantallas/update-sugerencia-actualizar/${idSugerencia}/${leido}`);
+			const result = await axios.put(`https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-sugerencia-actualizar/${idSugerencia}/${leido}`);
 
 			this.setState({ isReRender: !this.state.isReRender });
 		} catch (error) {

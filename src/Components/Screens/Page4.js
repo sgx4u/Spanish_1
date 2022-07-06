@@ -41,7 +41,7 @@ export default class Page4 extends Component {
 
 	getData = () => {
 		this.setState({ BackDrop: true });
-		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-alertas-tempranas").then((res) => {
+		axios.get("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-alertas-tempranas").then((res) => {
 			let API_Response = res.data;
 			if (API_Response === null || API_Response === undefined) {
 				this.SnackbarActions({

@@ -50,7 +50,7 @@ export default class Page1 extends Component {
 
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
-		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipos-de-alertas").then((res) => {
+		axios.get("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-tipos-de-alertas").then((res) => {
 			let API_Response = res.data;
 			if (API_Response === null || API_Response === undefined) {
 				this.SnackbarActions({
@@ -115,7 +115,7 @@ export default class Page1 extends Component {
 		let data = this.state.ModifiedData;
 		// console.log(data)
 		if (this.state.AddNew) {
-			await axios.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-tipo_alertas/" + data.nombreTipoAlerta).then((res) => {
+			await axios.post("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-tipo_alertas/" + data.nombreTipoAlerta).then((res) => {
 				let API_Response = res.data;
 				console.log(API_Response);
 				if (API_Response === null || API_Response === undefined) {
@@ -138,7 +138,7 @@ export default class Page1 extends Component {
 				}
 			});
 		} else {
-			await axios.put("https://siam-mag-dev.azurewebsites.net/api/pantallas/update-tipos-de-Alertas/" + data.idTipoAlerta + "/" + data.nombreTipoAlerta + "/" + data.activo).then((res) => {
+			await axios.put("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-tipos-de-Alertas/" + data.idTipoAlerta + "/" + data.nombreTipoAlerta + "/" + data.activo).then((res) => {
 				let API_Response = res.data;
 				console.log(API_Response);
 				if (API_Response === null || API_Response === undefined) {

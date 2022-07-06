@@ -54,7 +54,7 @@ export default class Paises extends Component {
 
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
-		await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-productores-exportaderos").then((res) => {
+		await axios.get("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-productores-exportaderos").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
@@ -81,9 +81,9 @@ export default class Paises extends Component {
 	LoadListData = async (value) => {
 		await this.setState({ BackDrop: true, dropdownValue: value });
 		let [Data, Data1] = await Promise.all([
-			axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-paise-no-asociados/" + value),
-			// axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-detalle-no-asociados/"+value)
-			axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-paise-asociados/" + value),
+			axios.get("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-paise-no-asociados/" + value),
+			// axios.get("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-detalle-no-asociados/"+value)
+			axios.get("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-paise-asociados/" + value),
 		]);
 		Data = Data.data;
 		Data1 = Data1.data;
@@ -171,7 +171,7 @@ export default class Paises extends Component {
 		};
 		const config = { headers: { "content-type": "application/json" } };
 		await axios
-			.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-productores-paises-ingresar", reqData, config)
+			.post("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-productores-paises-ingresar", reqData, config)
 			.then((res) => {
 				let API_Response = res.data;
 				console.log(API_Response);

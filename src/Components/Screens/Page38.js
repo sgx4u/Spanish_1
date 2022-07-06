@@ -48,7 +48,7 @@ export default class Page31 extends Component {
 
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
-		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-informe-precios").then((res) => {
+		axios.get("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-informe-precios").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
@@ -70,7 +70,7 @@ export default class Page31 extends Component {
 			}
 		});
 
-		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipo-precios").then((res) => {
+		axios.get("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-tipo-precios").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
@@ -131,7 +131,7 @@ export default class Page31 extends Component {
 			redirect: "follow",
 		};
 
-		// fetch(`https://siam-mag-dev.azurewebsites.net/api/pantallas/add-subir-precios-internacional/${Data.nombre}/${Data.Título}/${Data.Descripción}`, requestOptions)
+		// fetch(`https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-subir-precios-internacional/${Data.nombre}/${Data.Título}/${Data.Descripción}`, requestOptions)
 		// 	.then((response) => response.text())
 		// 	.then((res) => {
 		// 		this.loadDefaultData();
@@ -156,7 +156,7 @@ export default class Page31 extends Component {
 		const config = { headers: { "content-type": "multipart/form-data" } };
 
 		await axios
-			.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-subir-precios-internacional/" + Data.nombre + "/" + Data.Título + "/" + Data.Descripción + "", formData, config)
+			.post("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-subir-precios-internacional/" + Data.nombre + "/" + Data.Título + "/" + Data.Descripción + "", formData, config)
 			.then((res) => {
 				let API_Response = res.data;
 				console.log(API_Response);
@@ -202,7 +202,7 @@ export default class Page31 extends Component {
 
 	UpdateStatusData = async (id, status) => {
 		await this.setState({ BackDrop: true });
-		await axios.put("https://siam-mag-dev.azurewebsites.net/api/pantallas/update-precio-informe/" + id + "/" + status).then((res) => {
+		await axios.put("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-precio-informe/" + id + "/" + status).then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {

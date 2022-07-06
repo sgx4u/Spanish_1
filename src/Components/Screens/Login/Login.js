@@ -26,7 +26,7 @@ const Login = ({ setSuccess, setFilterPages }) => {
 	};
 
 	const getPermission = () => {
-		axios.get(`https://siam-mag-dev.azurewebsites.net/api/pantallas/get-permission/${returnID}`).then((res) => {
+		axios.get(`https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-permission/${returnID}`).then((res) => {
 			let API_Response = res.data;
 			if (API_Response === null || API_Response === undefined) {
 				console.log("Error", API_Response);

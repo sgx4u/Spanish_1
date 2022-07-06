@@ -51,7 +51,7 @@ export default class Page31 extends Component {
 
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
-		await axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-certificados").then((res) => {
+		await axios.get("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-certificados").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
@@ -97,7 +97,7 @@ export default class Page31 extends Component {
 		await this.setState({ UpdateLoader: true });
 		let data = this.state.ModifiedData;
 		if (this.state.AddNew) {
-			await axios.post("https://siam-mag-dev.azurewebsites.net/api/pantallas/add-certificado/" + data.nombre).then((res) => {
+			await axios.post("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-certificado/" + data.nombre).then((res) => {
 				let API_Response = res.data;
 				console.log(API_Response);
 				if (API_Response === null || API_Response === undefined) {
@@ -110,7 +110,7 @@ export default class Page31 extends Component {
 				}
 			});
 		} else {
-			await axios.put("https://siam-mag-dev.azurewebsites.net/api/pantallas/update-certificados/" + data.idCertificado + "/" + data.nombre + "/" + data.activo).then((res) => {
+			await axios.put("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-certificados/" + data.idCertificado + "/" + data.nombre + "/" + data.activo).then((res) => {
 				let API_Response = res.data;
 				console.log(API_Response);
 				if (API_Response === null || API_Response === undefined) {

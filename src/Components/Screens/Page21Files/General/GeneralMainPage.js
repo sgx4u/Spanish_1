@@ -34,7 +34,7 @@ export default class GeneralMainPage extends Component {
 
 	loadDefaultData = async () => {
 		this.setState({ BackDrop: true });
-		await axios.get("https://siam-mag-dev.azurewebsites.net/api/desarrollos/Get_Productores").then((res) => {
+		await axios.get("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-web-productores").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
@@ -78,15 +78,27 @@ export default class GeneralMainPage extends Component {
 				nombre: SelectedData.nombre,
 				telephono: SelectedData.telephono,
 				whatsapp: SelectedData.whatsapp,
+				exportador: SelectedData.exportador,
 			},
 		});
 	};
+
 
 	TextFeildValueChanges = async (value, key) => {
 		let Data = this.state.ModifiedData;
 		Data[key] = value;
 		await this.setState({ ModifiedData: Data });
 		console.log(this.state.ModifiedData);
+	};
+
+	CheckBoxValueChanges = async (value, key) => {
+		let valor 
+		if(value = true){valor=1};
+		//console.log(valor)
+		let Data = this.state.ModifiedData;
+		Data[key] = valor;
+		await this.setState({ ModifiedData: Data });
+		//console.log(this.state.ModifiedData);
 	};
 
 	DropDownValueChanges = async (value) => {
@@ -117,7 +129,7 @@ export default class GeneralMainPage extends Component {
 
 		var config = {
 			method: "put",
-			url: `https://siam-mag-dev.azurewebsites.net/api/pantallas/update-productores-aquilizar/${data.idProdctores}/${data.nombre}/${data.telephono}/${data.facebook}/${data.whatsapp}/${data.direccion}/${data.instagram}/${data.activo ? data.activo : 1}/${data.exportador ? 1 : 0}`,
+			url: `https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-productores-aquilizar/${data.idProdctores}/${data.nombre}/${data.telephono}/${data.facebook}/${data.whatsapp}/${data.direccion}/${data.instagram}/${data.activo ? data.activo : 1}/${data.exportador ? 1 : 0}`,
 
 			data: formData,
 		};
@@ -125,7 +137,7 @@ export default class GeneralMainPage extends Component {
 			/*  formData.append("webProductores", JSON.stringify(documentJson)); */
 			var config_add = {
 				method: "post",
-				url: `https://siam-mag-dev.azurewebsites.net/api/pantallas/add-productores-ingresar/${data.nombre}/${data.telephono}/${data.direccion}/${data.whatsapp}/${data.facebook}/${data.instagram}/${data.exportador ? 1 : 0}`,
+				url: `https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-productores-ingresar/${data.nombre}/${data.telephono}/${data.facebook}/${data.whatsapp}/${data.direccion}/${data.instagram}/${data.exportador ? 1 : 0}`,
 				data: formData,
 			};
 			await axios(config_add).then((res) => {
@@ -270,7 +282,7 @@ export default class GeneralMainPage extends Component {
 											Facebook
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											Instagram
+											E-mail
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
 											Estado
@@ -325,7 +337,7 @@ export default class GeneralMainPage extends Component {
 							</Grid>
 							<Grid item xs={12}>
 								<center>
-									<FormControlLabel control={<Checkbox checked={this.state.ModifiedData.exportador} onChange={(e) => this.TextFeildValueChanges(e.target.checked, "exportador")} />} label="Exportador" labelPlacement="right" />
+									<FormControlLabel control={<Checkbox checked={this.state.ModifiedData.exportador} onChange={(e) => this.CheckBoxValueChanges(e.target.checked, "exportador")} />} label="Exportador" labelPlacement="right" />
 								</center>
 							</Grid>
 							<Grid item xs={12}>
@@ -364,7 +376,7 @@ export default class GeneralMainPage extends Component {
 										<Typography variant="h6">whatsapp:</Typography>
 									</Grid>
 									<Grid item xs={7}>
-										<TextField variant="outlined" fullWidth value={this.state.ModifiedData.whatsapp} onChange={(e) => this.TextFeildValueChanges(e.target.value, "whatsapp")} />
+										<TextField variant="outlined" defaultValue={"ND"} fullWidth value={this.state.ModifiedData.whatsapp} onChange={(e) => this.TextFeildValueChanges(e.target.value, "whatsapp")} />
 									</Grid>
 								</Grid>
 							</Grid>
@@ -374,17 +386,17 @@ export default class GeneralMainPage extends Component {
 										<Typography variant="h6">facebook:</Typography>
 									</Grid>
 									<Grid item xs={7}>
-										<TextField variant="outlined" fullWidth value={this.state.ModifiedData.facebook} onChange={(e) => this.TextFeildValueChanges(e.target.value, "facebook")} />
+										<TextField variant="outlined" defaultValue={"ND"} fullWidth value={this.state.ModifiedData.facebook} onChange={(e) => this.TextFeildValueChanges(e.target.value, "facebook")} />
 									</Grid>
 								</Grid>
 							</Grid>
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>
-										<Typography variant="h6">instagram:</Typography>
+										<Typography variant="h6">E-mail:</Typography>
 									</Grid>
 									<Grid item xs={7}>
-										<TextField variant="outlined" fullWidth value={this.state.ModifiedData.instagram} onChange={(e) => this.TextFeildValueChanges(e.target.value, "instagram")} />
+										<TextField variant="outlined" fullWidth defaultValue={"ND"} value={this.state.ModifiedData.instagram} onChange={(e) => this.TextFeildValueChanges(e.target.value, "instagram")} />
 									</Grid>
 								</Grid>
 							</Grid>
@@ -430,9 +442,9 @@ export default class GeneralMainPage extends Component {
 											<Typography variant="h6">Estado:</Typography>
 										</Grid>
 										<Grid item xs={7}>
-											<TextField variant="outlined" fullWidth value={this.state.ModifiedData.Estado} select>
-												<MenuItem value={1}>Activator</MenuItem>
-												<MenuItem value={9}>Inactivator</MenuItem>
+											<TextField variant="outlined" fullWidth select /*onChange={(e) => this.TextFeildValueChanges(e.target.value,"activo")}*/ >
+												<MenuItem value={1}>Activo</MenuItem>
+												<MenuItem value={0}>Inactivo</MenuItem>
 											</TextField>
 										</Grid>
 									</Grid>

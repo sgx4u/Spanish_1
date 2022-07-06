@@ -51,7 +51,7 @@ export default class Page23 extends Component {
 
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
-		axios.get("https://siam-mag-dev.azurewebsites.net/api/pantallas/get-tipos-de-alertas").then((res) => {
+		axios.get("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-tipos-de-alertas").then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
