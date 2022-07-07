@@ -373,7 +373,7 @@ export default function MainPage(props) {
 
 	// Pages Integration
 	const SelectedMenu = async (Menu) => {
-		// alert(Menu)
+		// Alert(Menu)
 		switch (Menu) {
 			case "Tipos_de_Alerta":
 				SetSelectedPage(<Page1 />);
