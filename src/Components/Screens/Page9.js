@@ -108,8 +108,6 @@ export default class Page9 extends Component {
 			}
 			const config = { headers: { "content-type": "multipart/form-data" } };
 			if (data.AddNew) {
-				console.log("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-tipos-de-Informacion/" + data.nombre + "/" + data.SelectedFileName, formData, config);
-
 				await axios
 					.post("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-tipos-de-Informacion/" + data.nombre + "/" + data.SelectedFileName, formData, config)
 					.then((res) => {
@@ -143,10 +141,8 @@ export default class Page9 extends Component {
 						console.log(error);
 					});
 			} else {
-				// console.log("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-tipos-de-Informacion/" + data.id + "/" + data.nombre + "/" + data.activo + "/" + (data.SelectedFileName === null ? data.nombreImagen : data.SelectedFileName));
-				console.log("FNVBJFDV", data.imagenNombre);
 				await axios
-					.put("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-tipos-de-Informacion/" + data.id + "/" + data.nombre + "/" + data.activo + "/" + (data.SelectedFileName === null ? data.imagenNombre : data.SelectedFileName), data.SelectedFileName !== null && formData, config)
+					.put("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-tipos-de-Informacion/" + data.id + "/" + data.nombre + "/" + data.activo + "/" + data.imagenNombre, config)
 					.then((res) => {
 						let API_Response = res.data;
 						console.log(API_Response);
