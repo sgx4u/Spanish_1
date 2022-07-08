@@ -107,9 +107,6 @@ export default class Page12 extends Component {
 			formData.append("file", data.file);
 		}
 
-		console.log("data.file1 <<<<@@@@>>>>>>", data.file1);
-		console.log("data.file1 <<<<@@@@>>>>>>", data.file2);
-
 		let extraFileUri = "";
 
 		if (data.nombreDocumento1 !== null && data.file1 !== undefined) {
@@ -148,10 +145,9 @@ export default class Page12 extends Component {
 					console.log(error);
 				});
 		} else {
-			console.log("Call Api 2", data);
-
+			let finalDesc = data.descripcion.replaceAll("\n", "!$!");
 			axios
-				.put("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-Detalle-de-Informacion/" + data.idInformacionDetalle + "/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + data.descripcion + "/" + data.link + "/" + data.idTipoAlerta + "/" + data.activo + "/" + data.nombreImagen + "/" + data.nombreDocumento1 + "/" + data.nombreDocumento2, formData, config)
+				.put("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-Detalle-de-Informacion/" + data.idInformacionDetalle + "/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + finalDesc + "/" + data.link + "/" + data.idTipoAlerta + "/" + data.activo + "/" + data.nombreImagen + "/" + data.nombreDocumento1 + "/" + data.nombreDocumento2, formData, config)
 				.then((res) => {
 					let API_Response = res.data;
 					console.log(API_Response);
@@ -220,7 +216,17 @@ export default class Page12 extends Component {
 												<TableCell align="center">{data.idInformacionDetalle}</TableCell>
 												{/* <TableCell align="center">{data.idInformacion}</TableCell> */}
 												<TableCell align="center">{data.nombreInformacionDetalle}</TableCell>
-												<TableCell align="center">{data.descripcion}</TableCell>
+												{/* <TableCell align="center">{this.lineBreakHandler(data.descripcion)}</TableCell> */}
+												<TableCell align="center">
+													{data.descripcion.split("!$!").map(function (item, idx) {
+														return (
+															<span key={idx}>
+																{item}
+																<br />
+															</span>
+														);
+													})}
+												</TableCell>
 												<TableCell align="center">{data.idTipoAlerta}</TableCell>
 												{/* <TableCell align="center"><img src={data.imagen} style={{height:20,width:20}} alt="Image Not Loading"/></TableCell>
                                                 <TableCell align="center">{data.doc_1}</TableCell>
@@ -278,7 +284,7 @@ export default class Page12 extends Component {
 										<Typography variant="h6">Contenido:</Typography>
 									</Grid>
 									<Grid item xs={7}>
-										<TextField variant="outlined" fullWidth multiline value={this.state.SelectedData.descripcion} onChange={(e) => this.InputDataChanges("descripcion", e.target.value)} />
+										<TextField variant="outlined" fullWidth multiline value={this.state.SelectedData.descripcion?.replaceAll("!$!", "\n")} onChange={(e) => this.InputDataChanges("descripcion", e.target.value)} />
 									</Grid>
 								</Grid>
 							</Grid>
