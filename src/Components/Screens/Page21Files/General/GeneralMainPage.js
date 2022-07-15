@@ -83,7 +83,6 @@ export default class GeneralMainPage extends Component {
 		});
 	};
 
-
 	TextFeildValueChanges = async (value, key) => {
 		let Data = this.state.ModifiedData;
 		Data[key] = value;
@@ -92,8 +91,10 @@ export default class GeneralMainPage extends Component {
 	};
 
 	CheckBoxValueChanges = async (value, key) => {
-		let valor 
-		if(value = true){valor=1};
+		let valor;
+		if ((value = true)) {
+			valor = 1;
+		}
 		//console.log(valor)
 		let Data = this.state.ModifiedData;
 		Data[key] = valor;
@@ -114,7 +115,7 @@ export default class GeneralMainPage extends Component {
 		const formData = new FormData();
 
 		formData.append("file", data.file ? data.file : "");
-
+		console.log("=====Test=====", this.state.ModifiedData);
 		let documentJson = {
 			activo: data.activo ? 1 : 0,
 			direccion: data.direccion,
@@ -129,7 +130,7 @@ export default class GeneralMainPage extends Component {
 
 		var config = {
 			method: "put",
-			url: `https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-productores-aquilizar/${data.idProdctores}/${data.nombre}/${data.telephono}/${data.facebook}/${data.whatsapp}/${data.direccion}/${data.instagram}/${data.activo ? data.activo : 1}/${data.exportador ? 1 : 0}`,
+			url: `https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-productores-aquilizar/${data.idProdctores}/${data.nombre}/${data.telephono}/${data.facebook}/${data.whatsapp}/${data.direccion}/${data.instagram}/${data.activo}/${data.exportador ? 1 : 0}`,
 
 			data: formData,
 		};
@@ -442,7 +443,7 @@ export default class GeneralMainPage extends Component {
 											<Typography variant="h6">Estado:</Typography>
 										</Grid>
 										<Grid item xs={7}>
-											<TextField variant="outlined" fullWidth select /*onChange={(e) => this.TextFeildValueChanges(e.target.value,"activo")}*/ >
+											<TextField variant="outlined" fullWidth select onChange={(e) => this.TextFeildValueChanges(e.target.value, "activo")} defaultValue={this.state.ModifiedData.activo}>
 												<MenuItem value={1}>Activo</MenuItem>
 												<MenuItem value={0}>Inactivo</MenuItem>
 											</TextField>
