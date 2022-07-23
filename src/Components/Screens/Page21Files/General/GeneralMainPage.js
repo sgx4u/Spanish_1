@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import MuiAlert from "@mui/lab/Alert";
 import { FormControlLabel, Checkbox, Paper, Table, TableBody, TableCell, TableHead, TablePagination, TableRow, Badge, TextField, Fab, Backdrop, Grid, MenuItem, Button, Snackbar, InputAdornment, Typography, Divider, DialogActions, Dialog, DialogContent, DialogTitle, CircularProgress } from "@mui/material";
 import TableContainer from "@mui/material/TableContainer";
@@ -25,7 +25,11 @@ export default class GeneralMainPage extends Component {
 			AddNew: false,
 			EditInfo: false,
 			ModifiedData: { file: "" },
+			ExportadorOriginal:0,
 		};
+		var FaceB;
+		var WhatsA;
+		var EmaiL;
 	}
 
 	async componentDidMount() {
@@ -48,7 +52,10 @@ export default class GeneralMainPage extends Component {
 				this.setState({
 					Data: API_Response.body,
 					MasterData: API_Response.body,
+					
+					
 				});
+				
 			} else {
 				this.SnackbarActions({
 					key: "Open",
@@ -59,6 +66,7 @@ export default class GeneralMainPage extends Component {
 			}
 		});
 		this.setState({ BackDrop: false });
+		
 	};
 
 	EditWindow = (Index) => {
@@ -87,15 +95,15 @@ export default class GeneralMainPage extends Component {
 		let Data = this.state.ModifiedData;
 		Data[key] = value;
 		await this.setState({ ModifiedData: Data });
-		console.log(this.state.ModifiedData);
+		//console.log(this.state.ModifiedData);
 	};
 
 	CheckBoxValueChanges = async (value, key) => {
 		let valor;
-		if ((value = true)) {
+		if ((value == true)) {
 			valor = 1;
 		}
-		//console.log(valor)
+		console.log("Checkbox",key, value,valor)
 		let Data = this.state.ModifiedData;
 		Data[key] = valor;
 		await this.setState({ ModifiedData: Data });
@@ -115,34 +123,49 @@ export default class GeneralMainPage extends Component {
 		const formData = new FormData();
 
 		formData.append("file", data.file ? data.file : "");
-		console.log("=====Test=====", this.state.ModifiedData);
-		let documentJson = {
-			activo: data.activo ? 1 : 0,
-			direccion: data.direccion,
-			facebook: data.facebook,
-			fechaCreado: date,
-			instagram: data.instagram,
-			nombre: data.nombre,
-			telephono: data.telephono,
-			whatsapp: data.whatsapp,
-			exportador: data.exportador ? 1 : 0,
+		//console.log("=====Test=====", this.state.ModifiedData);
+
+		if(data.facebook) {
+		let FacebookMod = data.facebook.replaceAll("/", "ppp");
+		this.FaceB = FacebookMod
+		}
+		else
+		{this.FaceB = "ND"
 		};
 
-		let FacebookMod = data.facebook.replaceAll("/", "ppp");
-		console.log(FacebookMod)
+		if(data.instagram) {
+			let InstagramMod = data.instagram
+			this.EmaiL = InstagramMod
+			}
+			else
+			{this.EmaiL = "ND"
+			};		
+
+		if(data.whatsapp) {
+			let WhatsappMod = data.whatsapp
+			this.WhatsA = WhatsappMod
+			}
+			else
+			{this.WhatsA = "ND"
+			};		
+
+		let Es_Exportador = data.exportador;
+
+		//console.log("Exportador:",Es_Exportador);
 		var config = {
 			method: "put",
-			url: `https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-productores-aquilizar/${data.idProdctores}/${data.nombre}/${data.telephono}/${FacebookMod}/${data.whatsapp}/${data.direccion}/${data.instagram}/${data.activo}/${data.exportador ? 1 : 0}`,
+			url: `https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-productores-aquilizar/${data.idProdctores}/${data.nombre}/${data.telephono}/${this.FaceB}/${data.whatsapp}/${data.direccion}/${data.instagram}/${data.activo}/${Es_Exportador}`,
 			data: formData,
 		};
+
 		if (this.state.AddNew) {
 			/*  formData.append("webProductores", JSON.stringify(documentJson)); */
 			var config_add = {
 				method: "post",
-				url: `https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-productores-ingresar/${data.nombre}/${data.telephono}/${FacebookMod}/${data.whatsapp}/${data.direccion}/${data.instagram}/${data.exportador ? 1 : 0}`,
+				url: `https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-productores-ingresar/${data.nombre}/${data.telephono}/${this.FaceB}/${this.WhatsA}/${data.direccion}/${this.EmaiL}/${data.exportador ? 1 : 0}`,
 				data: formData,
 			};
-			
+			console.log(config_add);
 			await axios(config_add).then((res) => {
 				let API_Response = res.data;
 				console.log(API_Response);
@@ -229,6 +252,7 @@ export default class GeneralMainPage extends Component {
 		await this.setState({ ModifiedData: Data });
 	};
 
+
 	render() {
 		// const classes = useStyles();
 		return (
@@ -276,7 +300,7 @@ export default class GeneralMainPage extends Component {
 											Teléfono
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											Direccion
+											Dirección
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
 											Whatsapp
@@ -341,6 +365,7 @@ export default class GeneralMainPage extends Component {
 							<Grid item xs={12}>
 								<center>
 									<FormControlLabel control={<Checkbox checked={this.state.ModifiedData.exportador} onChange={(e) => this.CheckBoxValueChanges(e.target.checked, "exportador")} />} label="Exportador" labelPlacement="right" />
+									{/* <FormControlLabel control={<Checkbox onChange={(e) => this.CheckBoxValueChanges(e.target.checked, "exportador")} />} label="Exportador" labelPlacement="right" /> */}
 								</center>
 							</Grid>
 							<Grid item xs={12}>
@@ -366,7 +391,7 @@ export default class GeneralMainPage extends Component {
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>
-										<Typography variant="h6">Direccion:</Typography>
+										<Typography variant="h6">Dirección:</Typography>
 									</Grid>
 									<Grid item xs={7}>
 										<TextField variant="outlined" fullWidth value={this.state.ModifiedData.direccion} onChange={(e) => this.TextFeildValueChanges(e.target.value, "direccion")} />
