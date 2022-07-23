@@ -24,9 +24,12 @@ export default class ProductsMainPage extends Component {
 			Dropdown2: [],
 			Dropdown3: [],
 			Cantidad: 0,
-			Peso: "",
+			Peso: " ",
 		};
+		var	ID_Productor = 0;
 	}
+
+	
 
 	// Alert Messages Trigger function
 	SnackbarActions = async (Data) => {
@@ -48,6 +51,8 @@ export default class ProductsMainPage extends Component {
 
 	loadDefaultData = async () => {
 		await this.setState({ BackDrop: true });
+
+
 		let [Data, Data1] = await Promise.all([axios.get("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-productores-lista"), axios.get("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/categoris_lista")]);
 		Data = Data.data;
 		Data1 = Data1.data;
@@ -89,10 +94,31 @@ export default class ProductsMainPage extends Component {
 	// Default page load API is not there(not need to show at the time of page load)
 	// Delete API Not there
 
+
+	LoadDatosProductores = async (value) => {
+		await this.setState({ BackDrop: true });
+		//let ID_Productor = value
+		this.ID_Productor = value
+		console.log(this.ID_Productor)
+		//let Cantidad = parseInt(this.state.Cantidad);
+		await axios.post("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-Detalle-productores-ingresar/" + value + "/0/0/0").then((res) => {
+			let API_Response = res.data;
+			console.log(API_Response);
+			if (API_Response === null || API_Response === undefined) {
+				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+			} else if (API_Response.code === "OK") {
+				this.setState({ Data: API_Response.body });
+			} else {
+				this.SnackbarActions({ key: "Open", variant: "warning", Message: "API Not responding.....", TimeOut: 1000 });
+			}
+		});
+		await this.setState({ BackDrop: false });
+	};
+
 	AddData = async () => {
 		await this.setState({ BackDrop: true });
 		let Cantidad = parseInt(this.state.Cantidad);
-		await axios.post("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-Detalle-productores-ingresar/" + this.state.dropdown1Value + "/" + this.state.dropdown3Value + "/" + Cantidad + "/" + this.state.Peso).then((res) => {
+		await axios.post("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/get-Detalle-productores-ingresar/" + this.ID_Productor + "/" + this.state.dropdown3Value + "/" + Cantidad + "/" + this.state.Peso).then((res) => {
 			let API_Response = res.data;
 			console.log(API_Response);
 			if (API_Response === null || API_Response === undefined) {
@@ -126,7 +152,7 @@ export default class ProductsMainPage extends Component {
 			dropdown2Value: "Selecciona Categoría de Productos",
 			dropdown1Value: "Selecciona Productor",
 			Cantidad: 0,
-			Peso: "",
+			Peso: "0",
 		});
 	};
 
@@ -138,7 +164,8 @@ export default class ProductsMainPage extends Component {
 					<Grid item xs={12}>
 						<Grid container spacing={2}>
 							<Grid item xs={12} sm={4}>
-								<TextField fullWidth select defaultValue={"Selecciona Productor"} value={this.state.dropdown1Value} onChange={(e) => this.setState({ dropdown1Value: e.target.value })}>
+								{/* <TextField fullWidth select defaultValue={"Selecciona Productor"} value={this.state.dropdown1Value} onChange={(e) => this.setState({ dropdown1Value: e.target.value })}> */}
+								<TextField fullWidth select defaultValue={"Selecciona Productor"} value={this.state.dropdown1Value} onChange={(e) => this.LoadDatosProductores(e.target.value)}>									
 									<MenuItem value={"Selecciona Productor"}>Selecciona Productor</MenuItem>
 									{this.state.Dropdown1.map((data, Index) => {
 										return (
@@ -184,7 +211,7 @@ export default class ProductsMainPage extends Component {
 								<TextField fullWidth label="Cantidad" value={this.state.Cantidad} onChange={(e) => this.setState({ Cantidad: e.target.value })} type="number" />
 							</Grid>
 							<Grid item xs={12} sm={4}>
-								<TextField fullWidth label="Peso" value={this.state.Peso} onChange={(e) => this.setState({ Peso: e.target.value })} />
+								<TextField fullWidth label="Unidad de medida (Ej. Quintales, Toneladas, etc.)" value={this.state.Peso} onChange={(e) => this.setState({ Peso: e.target.value })} />
 							</Grid>
 							<Grid item xs={6} sm={2}>
 								<Button variant="outlined" style={{ marginTop: 10, float: "right" }} onClick={() => this.AddData()}>
@@ -210,7 +237,7 @@ export default class ProductsMainPage extends Component {
 											cantidad
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center">
-											peso
+											Unidad Medida
 										</TableCell>
 										<TableCell style={{ backgroundColor: "#a4b2b0" }} align="center"></TableCell>
 									</TableRow>

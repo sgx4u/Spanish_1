@@ -128,19 +128,21 @@ export default class GeneralMainPage extends Component {
 			exportador: data.exportador ? 1 : 0,
 		};
 
+		let FacebookMod = data.facebook.replaceAll("/", "ppp");
+		console.log(FacebookMod)
 		var config = {
 			method: "put",
-			url: `https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-productores-aquilizar/${data.idProdctores}/${data.nombre}/${data.telephono}/${data.facebook}/${data.whatsapp}/${data.direccion}/${data.instagram}/${data.activo}/${data.exportador ? 1 : 0}`,
-
+			url: `https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-productores-aquilizar/${data.idProdctores}/${data.nombre}/${data.telephono}/${FacebookMod}/${data.whatsapp}/${data.direccion}/${data.instagram}/${data.activo}/${data.exportador ? 1 : 0}`,
 			data: formData,
 		};
 		if (this.state.AddNew) {
 			/*  formData.append("webProductores", JSON.stringify(documentJson)); */
 			var config_add = {
 				method: "post",
-				url: `https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-productores-ingresar/${data.nombre}/${data.telephono}/${data.facebook}/${data.whatsapp}/${data.direccion}/${data.instagram}/${data.exportador ? 1 : 0}`,
+				url: `https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-productores-ingresar/${data.nombre}/${data.telephono}/${FacebookMod}/${data.whatsapp}/${data.direccion}/${data.instagram}/${data.exportador ? 1 : 0}`,
 				data: formData,
 			};
+			
 			await axios(config_add).then((res) => {
 				let API_Response = res.data;
 				console.log(API_Response);
@@ -364,7 +366,7 @@ export default class GeneralMainPage extends Component {
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>
-										<Typography variant="h6">direccion:</Typography>
+										<Typography variant="h6">Direccion:</Typography>
 									</Grid>
 									<Grid item xs={7}>
 										<TextField variant="outlined" fullWidth value={this.state.ModifiedData.direccion} onChange={(e) => this.TextFeildValueChanges(e.target.value, "direccion")} />
@@ -374,7 +376,7 @@ export default class GeneralMainPage extends Component {
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>
-										<Typography variant="h6">whatsapp:</Typography>
+										<Typography variant="h6">Whatsapp:</Typography>
 									</Grid>
 									<Grid item xs={7}>
 										<TextField variant="outlined" defaultValue={"ND"} fullWidth value={this.state.ModifiedData.whatsapp} onChange={(e) => this.TextFeildValueChanges(e.target.value, "whatsapp")} />
@@ -384,7 +386,7 @@ export default class GeneralMainPage extends Component {
 							<Grid item xs={12}>
 								<Grid container spacing={2}>
 									<Grid item xs={5}>
-										<Typography variant="h6">facebook:</Typography>
+										<Typography variant="h6">Facebook:</Typography>
 									</Grid>
 									<Grid item xs={7}>
 										<TextField variant="outlined" defaultValue={"ND"} fullWidth value={this.state.ModifiedData.facebook} onChange={(e) => this.TextFeildValueChanges(e.target.value, "facebook")} />

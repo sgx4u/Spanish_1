@@ -123,10 +123,11 @@ export default class Page12 extends Component {
 		}
 
 		const config = { headers: { "content-type": "multipart/form-data" } };
+		let finalDesc = data.descripcion.replaceAll("\n", "!$!");
 		if (this.state.AddNew) {
 			console.log("Call Api 1", data);
 			axios
-				.post("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-Detalle-de-Informacion/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + data.descripcion + "/" + data.idTipoAlerta + "/" + data.nombreImagen + extraFileUri, formData, config)
+				.post("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-Detalle-de-Informacion/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + finalDesc + "/" + data.idTipoAlerta + "/" + data.nombreImagen + extraFileUri, formData, config)
 				// .post("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/add-Detalle-de-Informacion/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + data.descripcion + "/" + data.link + "/" + data.idTipoAlerta + "/" + data.nombreImagen + extraFileUri, formData, config)
 
 				.then((res) => {
@@ -145,7 +146,7 @@ export default class Page12 extends Component {
 					console.log(error);
 				});
 		} else {
-			let finalDesc = data.descripcion.replaceAll("\n", "!$!");
+			//let finalDesc = data.descripcion.replaceAll("\n", "!$!");
 			axios
 				.put("https://siam-pra-1656956256760.azurewebsites.net/api/pracms/update-Detalle-de-Informacion/" + data.idInformacionDetalle + "/" + data.idInformacion + "/" + data.nombreInformacionDetalle + "/" + finalDesc + "/" + data.link + "/" + data.idTipoAlerta + "/" + data.activo + "/" + data.nombreImagen + "/" + data.nombreDocumento1 + "/" + data.nombreDocumento2, formData, config)
 				.then((res) => {
